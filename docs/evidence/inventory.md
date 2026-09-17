@@ -7,7 +7,7 @@ Last updated: 2026-09-17
 | Phase 0 infrastructure | Complete | Yes | Verified unpublished theme | Yes | Not applicable | Not applicable | Theme Check + remote upload | Not applicable |
 | Custom comparison section | Complete | Yes | Verified unpublished theme | Yes | Desktop, mobile, editor session | Yes | Theme Check + browser matrix | Yes |
 | Advanced PDP | Complete | Yes | Verified unpublished product preview | Yes | Authenticated desktop/mobile task captures | Yes | Theme Check + browser matrix | Yes |
-| Bug Fix Lab | Not started | No | No | No | No | No | No | No |
+| Bug Fix Lab | Complete | Yes — 3 fixes | Verified unpublished product/cart previews | Yes | Authenticated before/after task captures | Yes | Theme Check + browser matrix | Yes |
 | Product configurator | Not started | No | No | No | No | No | No | No |
 | Quantity/purchase logic | Not started | No | No | No | No | No | No | No |
 | Cart engineering | Not started | No | No | No | No | No | No | No |
@@ -29,6 +29,8 @@ Last updated: 2026-09-17
 - Atlas Insulated Bottle exists as a real six-variant Shopify product with assigned variant media and inventory.
 - Advanced PDP variant, price, media, availability, URL, Ajax cart, metafield, and metaobject behavior was verified remotely.
 - The Phase 2 desktop storefront and mobile Theme Editor captures are preserved as authenticated task deliverables.
+- Phase 3 reproduced and fixed a stale AJAX cart count, missing cart variant details, and an invalid empty-cart checkout state.
+- Phase 3 before/after browser captures are preserved as authenticated task deliverables; fix source is commit `049ab5c`.
 
 ## Tooling limitation
 

@@ -7,6 +7,7 @@ Last updated: 2026-09-17
 - Phase 0 infrastructure and safe-delivery workflow.
 - Product Comparison Section running in a real unpublished Shopify theme.
 - Advanced PDP running against a real six-variant Shopify product.
+- Bug Fix Evidence Lab with three reproduced, diagnosed, fixed, and remotely verified storefront defects.
 - Valid Online Store 2.0 schema with configurable settings and addable, removable, reorderable blocks.
 - Variant/media/price/availability/URL synchronization, Ajax add-to-cart, product metafields, and a referenced warranty metaobject.
 - Real Theme Editor verification, desktop/mobile captures, clean Theme Check, case studies, test matrices, and demo scripts.
@@ -23,6 +24,8 @@ Last updated: 2026-09-17
 - Metafield/metaobject storefront content
 - Mobile PDP fixes
 - Contained AJAX add-to-cart work
+- Shopify Liquid debugging and inherited-theme troubleshooting
+- Cart badge, variant-display, and empty-state repairs
 
 ## Jobs I should NOT claim yet
 
@@ -47,6 +50,10 @@ Last updated: 2026-09-17
 | Variant/media synchronization | [Phase 2 test matrix](test-results/phase-2-advanced-pdp.md) |
 | Metafield/metaobject content | [Advanced PDP data model](case-studies/advanced-product-page.md#product-data-model) |
 | AJAX add-to-cart | [Advanced PDP source](../theme/sections/product.liquid) and [cart verification](test-results/phase-2-advanced-pdp.md) |
+| Shopify Liquid debugging | [Bug Fix Lab case study](case-studies/bug-fix-lab.md) |
+| Cart-state troubleshooting | [Phase 3 test matrix](test-results/phase-3-bug-fix-lab.md) |
+| Variant display repair | [Cart source](../theme/sections/cart.liquid) and [Bug 2 evidence](case-studies/bug-fix-lab.md#bug-2--cart-lines-hid-the-selected-variant) |
+| Empty-state repair | [Bug 3 evidence](case-studies/bug-fix-lab.md#bug-3--empty-cart-showed-an-unusable-checkout-state) |
 
 ## READY
 
@@ -59,11 +66,15 @@ Last updated: 2026-09-17
 - Metafield/metaobject content — real Shopify definitions, values, reference, and Liquid rendering
 - AJAX add-to-cart — correct selected variant verified in cart without page navigation
 - Responsive PDP work — Shopify mobile preview verified
+- Liquid debugging — three real defects with reproduction, root cause, fix commit, and verification
+- Inherited-theme troubleshooting — product/header/cart behavior repaired in the existing Skeleton-based theme
+- Cart-state and conditional-rendering fixes — stale badge, missing variants, and empty checkout state verified
 
 ## PLAUSIBLE
 
 - Small homepage customizations — adjacent to the completed section, but no broader homepage rebuild is claimed.
 - Basic cart-template edits — Ajax cart behavior is proven, but a full cart-drawer system is not.
+- Basic accessibility repair — count-aware names and variant-specific controls are proven, but a full accessibility audit is not.
 
 ## NOT YET
 
@@ -71,7 +82,7 @@ Last updated: 2026-09-17
 
 ## Approximate job scope currently supported
 
-Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, and Ajax-cart tasks. Pricing is intentionally not inferred from this independent evidence.
+Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Ajax-cart, Liquid-debugging, and inherited-theme repair tasks. Pricing is intentionally not inferred from this independent evidence.
 
 ## Best applications to target now
 
@@ -80,6 +91,7 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 3. Add metafield-driven product information or a reusable metaobject reference.
 4. Implement or repair a contained Ajax add-to-cart flow.
 5. Fix responsive behavior within an existing section or PDP.
+6. Diagnose and repair contained Liquid, cart-state, or conditional-rendering defects.
 
 ## Do not target yet
 
@@ -89,4 +101,4 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 
 ## Next evidence gap
 
-Build the Bug Fix Evidence Lab with three reproducible before/after defects. It will prove diagnosis and repair ability rather than only greenfield implementation.
+Build the Product Configurator. It is the next module that can unlock higher-value contained customization work by proving structured personalization, validation, live state, Shopify variant selection, and line-item properties reaching cart/order context.
