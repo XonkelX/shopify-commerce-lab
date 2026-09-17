@@ -10,8 +10,73 @@
 {
   "sections": {
     "main": {
-      "type": "hello-world",
-      "settings": {}
+      "type": "product-comparison",
+      "blocks": {
+        "compact": {
+          "type": "item",
+          "settings": {
+            "demo_image": "compact",
+            "badge": "Lightweight",
+            "title": "Trail 20",
+            "price_text": "$28",
+            "feature_1": "20 oz",
+            "feature_2": "18 hours",
+            "feature_3": "Short trips",
+            "button_label": "Explore Trail 20",
+            "link": "/collections/all"
+          }
+        },
+        "everyday": {
+          "type": "item",
+          "settings": {
+            "demo_image": "everyday",
+            "badge": "Most popular",
+            "title": "Everyday 24",
+            "price_text": "$34",
+            "feature_1": "24 oz",
+            "feature_2": "24 hours",
+            "feature_3": "Daily carry",
+            "button_label": "Explore Everyday 24",
+            "link": "/collections/all"
+          }
+        },
+        "summit": {
+          "type": "item",
+          "settings": {
+            "demo_image": "summit",
+            "badge": "Max capacity",
+            "title": "Summit 32",
+            "price_text": "$42",
+            "feature_1": "32 oz",
+            "feature_2": "30 hours",
+            "feature_3": "Long days",
+            "button_label": "Explore Summit 32",
+            "link": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["compact", "everyday", "summit"],
+      "settings": {
+        "eyebrow": "Find your fit",
+        "heading": "One bottle. Three ways to roam.",
+        "description": "<p>Built from the same durable stainless steel, tuned for different days. Compare the details and choose your everyday carry.</p>",
+        "alignment": "center",
+        "columns": "3",
+        "image_ratio": "square",
+        "show_price": true,
+        "feature_1_label": "Capacity",
+        "feature_2_label": "Cold retention",
+        "feature_3_label": "Best for",
+        "background_color": "#F3F0E9",
+        "card_color": "#FFFEFB",
+        "text_color": "#17231D",
+        "muted_color": "#607067",
+        "accent_color": "#2E6A4F",
+        "corner_radius": 20,
+        "full_width": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [

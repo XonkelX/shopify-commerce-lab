@@ -8,18 +8,20 @@ Each completed module will pair real Shopify behavior with source code, testing 
 
 ## Current status
 
-- Phase 0 — **INCOMPLETE**
+- Phase 0 — **COMPLETE**
+- Phase 1 — **COMPLETE**
 - Local Shopify CLI: 4.8.0
 - Base theme: Shopify Skeleton theme
-- Local Theme Check: 39 files inspected, 0 offenses
-- Shopify account and development-store preview: not yet connected or verified
-- Client-facing evidence modules: none yet
+- Current Theme Check: 40 files inspected, 0 offenses
+- Shopify development store: Oniel Lab
+- Unpublished evidence theme: Shopify Commerce Lab, theme ID `155175092398`
+- Completed client-facing module: Product Comparison Section
 
-No paid Shopify job category is marked ready from this repository yet. The local tooling and documentation exist, but the development workflow cannot pass its remote-store gate until a Shopify account authorizes the CLI and a development store is selected.
+The product-comparison module is verified in a real Shopify Theme Editor and unpublished storefront preview. Claims remain limited to the storefront work directly demonstrated by this module.
 
 ## Live preview
 
-Not available yet. A shareable preview will be added only after the Shopify CLI is authenticated against a development store and the preview is verified.
+[Open the password-protected unpublished preview](https://oniel-lab.myshopify.com/?preview_theme_id=155175092398). The storefront password is intentionally not stored in this repository.
 
 ## Repository map
 
@@ -45,13 +47,17 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 
 ## Case studies
 
-None yet. Phase 1 will add the first case study only after a custom section works in a real Shopify Theme Editor and all required evidence has been captured.
+- [Product Comparison Section](docs/case-studies/product-comparison-section.md)
 
 ## Supported job categories
 
-None marked **READY** yet. See [`docs/evidence/job-mapping.md`](docs/evidence/job-mapping.md).
+- Small custom Shopify sections
+- Liquid section implementation and edits
+- Theme Editor configurable homepage sections
+- Responsive section/layout work
+
+See [`docs/evidence/job-mapping.md`](docs/evidence/job-mapping.md) for exact readiness labels and exclusions.
 
 ## Attribution
 
 The starter theme under `theme/` was generated with Shopify CLI from Shopify's open-source Skeleton theme. Project-specific evidence and modules will be clearly distinguished from upstream starter code.
-
