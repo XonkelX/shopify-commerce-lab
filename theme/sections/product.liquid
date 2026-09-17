@@ -124,6 +124,22 @@
       const message = form.querySelector('[data-cart-message]');
       const selectedOptions = () => optionGroups.map((group) => group.querySelector('input:checked')?.value || '');
       const findVariant = (options) => variants.find((variant) => variant.options.every((value, index) => value === options[index]));
+      const refreshCartCount = async () => {
+        try {
+          const response = await fetch(`${window.Shopify.routes.root}cart.js`, { headers: { Accept: 'application/json' } });
+          if (!response.ok) return;
+          const cart = await response.json();
+          document.querySelectorAll('[data-cart-count]').forEach((count) => {
+            count.textContent = cart.item_count;
+            count.hidden = cart.item_count === 0;
+          });
+          document.querySelectorAll('[data-cart-link]').forEach((link) => {
+            link.setAttribute('aria-label', `Cart, ${cart.item_count} ${cart.item_count === 1 ? 'item' : 'items'}`);
+          });
+        } catch (error) {
+          console.warn('Cart updated, but the cart count could not be refreshed.', error);
+        }
+      };
       const showMedia = (mediaId) => {
         if (!mediaId) return;
         root.querySelectorAll('[data-media-id]').forEach((media) => { const active = Number(media.dataset.mediaId) === Number(mediaId); media.hidden = !active; media.classList.toggle('is-active', active); });
@@ -165,6 +181,7 @@
           const response = await fetch(`${window.Shopify.routes.root}cart/add.js`, { method: 'POST', headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' }, body: new FormData(form) });
           const result = await response.json(); if (!response.ok) throw new Error(result.description || result.message || 'This item could not be added.');
           message.innerHTML = `Added ${result.product_title || 'your selection'} to cart. <a href="${window.Shopify.routes.root}cart">View cart</a>`;
+          await refreshCartCount();
         } catch (error) { message.textContent = error.message || 'Something went wrong. Please try again.'; message.classList.add('is-error'); message.focus(); }
         finally { addButton.classList.remove('is-loading'); addButton.disabled = !findVariant(selectedOptions())?.available; }
       });
