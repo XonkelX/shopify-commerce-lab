@@ -1,0 +1,7 @@
+Title,URL handle,Description,Vendor,Type,Tags,Published on online store,Status,Option1 name,Option1 value,Option2 name,Option2 value,SKU,Price,Compare-at price,Charge tax,Inventory tracker,Inventory quantity,Continue selling when out of stock,Weight value (grams),Weight unit for display,Requires shipping,Fulfillment service
+Atlas Insulated Bottle,atlas-insulated-bottle,"A durable, double-wall stainless-steel bottle designed for daily commutes and long trail days. Choose the capacity and color that match your routine.",Oniel Lab,Insulated Bottle,"phase-2, evidence-product",true,active,Color,Sage,Size,20 oz,ATLAS-SAGE-20,28.00,32.00,true,shopify,12,deny,340,g,true,manual
+,atlas-insulated-bottle,,, ,,,active,Color,Sage,Size,32 oz,ATLAS-SAGE-32,38.00,42.00,true,shopify,0,deny,455,g,true,manual
+,atlas-insulated-bottle,,, ,,,active,Color,Terracotta,Size,20 oz,ATLAS-TERRA-20,30.00,34.00,true,shopify,9,deny,340,g,true,manual
+,atlas-insulated-bottle,,, ,,,active,Color,Terracotta,Size,32 oz,ATLAS-TERRA-32,40.00,44.00,true,shopify,8,deny,455,g,true,manual
+,atlas-insulated-bottle,,, ,,,active,Color,Navy,Size,20 oz,ATLAS-NAVY-20,30.00,34.00,true,shopify,10,deny,340,g,true,manual
+,atlas-insulated-bottle,,, ,,,active,Color,Navy,Size,32 oz,ATLAS-NAVY-32,40.00,44.00,true,shopify,7,deny,455,g,true,manual

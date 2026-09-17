@@ -1,52 +1,196 @@
-{% comment %}
-  This section is used in the product template to render product page with
-  media, content, and add-to-cart form.
+{% liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  assign selected_media = selected_variant.featured_media | default: product.featured_media
+  assign warranty = product.metafields.custom.warranty.value
+  assign product_form_id = 'AtlasProductForm-' | append: section.id
+%}
 
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/product
-{% endcomment %}
+<section id="AtlasProduct-{{ section.id }}" class="atlas-product" data-section-id="{{ section.id }}" style="--atlas-bg:{{ section.settings.background_color }};--atlas-card:{{ section.settings.card_color }};--atlas-text:{{ section.settings.text_color }};--atlas-muted:{{ section.settings.muted_color }};--atlas-accent:{{ section.settings.accent_color }};--atlas-pad-top:{{ section.settings.padding_top }}px;--atlas-pad-bottom:{{ section.settings.padding_bottom }}px;">
+  <div class="atlas-product__layout">
+    <div class="atlas-product__gallery" aria-label="Product media">
+      {% if product.media.size > 0 %}
+        <div class="atlas-product__stage">
+          {% for media in product.media %}
+            <figure class="atlas-product__media{% if media.id == selected_media.id %} is-active{% endif %}" data-media-id="{{ media.id }}" {% unless media.id == selected_media.id %}hidden{% endunless %}>
+              {{ media.preview_image | image_url: width: 1600 | image_tag: widths: '480, 720, 960, 1200, 1600', sizes: '(min-width: 900px) 56vw, 100vw', loading: 'eager', alt: media.alt | default: product.title, class: 'atlas-product__image' }}
+            </figure>
+          {% endfor %}
+        </div>
+        {% if product.media.size > 1 %}
+          <div class="atlas-product__thumbs" role="list" aria-label="Choose product image">
+            {% for media in product.media %}
+              <button class="atlas-product__thumb{% if media.id == selected_media.id %} is-active{% endif %}" type="button" data-media-target="{{ media.id }}" aria-label="Show image {{ forloop.index }} of {{ product.media.size }}" aria-pressed="{% if media.id == selected_media.id %}true{% else %}false{% endif %}">
+                {{ media.preview_image | image_url: width: 180 | image_tag: loading: 'lazy', alt: '', class: 'atlas-product__thumb-image' }}
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="atlas-product__media atlas-product__media--placeholder">{{ 'product-1' | placeholder_svg_tag: 'atlas-product__placeholder' }}</div>
+      {% endif %}
+    </div>
 
-<div class="product-images">
-  {% for image in product.images %}
-    {% render 'image', class: 'product-image', image: image %}
-  {% endfor %}
-</div>
+    <div class="atlas-product__details{% if section.settings.sticky_details %} atlas-product__details--sticky{% endif %}">
+      {% if section.settings.eyebrow != blank %}<p class="atlas-product__eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+      {% if section.settings.show_vendor and product.vendor != blank %}<p class="atlas-product__vendor">{{ product.vendor | escape }}</p>{% endif %}
+      <h1 class="atlas-product__title">{{ product.title | escape }}</h1>
+      <div class="atlas-product__price-row" aria-live="polite" aria-atomic="true">
+        <span class="atlas-product__price" data-product-price>{{ selected_variant.price | money }}</span>
+        <s class="atlas-product__compare" data-compare-price{% unless selected_variant.compare_at_price > selected_variant.price %} hidden{% endunless %}>{% if selected_variant.compare_at_price > selected_variant.price %}{{ selected_variant.compare_at_price | money }}{% endif %}</s>
+      </div>
+      <p class="atlas-product__availability{% unless selected_variant.available %} is-sold-out{% endunless %}" data-availability>
+        {% if selected_variant.available %}<span class="atlas-product__status-dot" aria-hidden="true"></span> In stock and ready to ship{% else %}Currently unavailable{% endif %}
+      </p>
+      {% if product.description != blank %}<div class="atlas-product__description rte">{{ product.description }}</div>{% endif %}
 
-<div class="product-info">
-  <h1>{{ product.title }}</h1>
-  <p>{{ product.price | money }}</p>
-  <p>{{ product.description }}</p>
-</div>
+      <form id="{{ product_form_id }}" class="atlas-product__form" action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="id" value="{{ selected_variant.id }}" data-variant-id>
+        {% unless product.has_only_default_variant %}
+          <div class="atlas-product__options">
+            {% for option in product.options_with_values %}
+              <fieldset class="atlas-option" data-option-index="{{ forloop.index0 }}">
+                <legend class="atlas-option__legend">{{ option.name | escape }}: <span data-option-value>{{ option.selected_value | escape }}</span></legend>
+                <div class="atlas-option__values">
+                  {% for value in option.values %}
+                    {% assign option_id = section.id | append: '-' | append: option.position | append: '-' | append: forloop.index %}
+                    <input class="atlas-option__input visually-hidden" type="radio" id="Option-{{ option_id }}" name="options[{{ option.name | escape }}]" value="{{ value | escape }}" data-option-position="{{ option.position | minus: 1 }}" {% if option.selected_value == value %}checked{% endif %}>
+                    <label class="atlas-option__label" for="Option-{{ option_id }}">{{ value | escape }}</label>
+                  {% endfor %}
+                </div>
+              </fieldset>
+            {% endfor %}
+          </div>
+        {% endunless %}
+        <div class="atlas-product__purchase-row">
+          <label class="atlas-product__quantity"><span>Quantity</span><input type="number" name="quantity" min="1" value="1" inputmode="numeric"></label>
+          <button class="atlas-product__add" type="submit" data-add-to-cart{% unless selected_variant.available %} disabled{% endunless %}><span data-add-label>{% if selected_variant.available %}Add to cart{% else %}Sold out{% endif %}</span><span class="atlas-product__spinner" aria-hidden="true"></span></button>
+        </div>
+        <div class="atlas-product__message" data-cart-message role="status" aria-live="polite" tabindex="-1"></div>
+      </form>
+      {% if section.settings.trust_copy != blank %}<p class="atlas-product__trust">{{ section.settings.trust_copy | escape }}</p>{% endif %}
 
-<div class="product-form">
-  {% form 'product', product %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
+      {% if product.metafields.custom.materials != blank or product.metafields.custom.dimensions != blank or product.metafields.custom.compatibility != blank %}
+        <div class="atlas-product__specs" aria-labelledby="ProductSpecs-{{ section.id }}">
+          <h2 id="ProductSpecs-{{ section.id }}">Product details</h2>
+          <dl>
+            {% if product.metafields.custom.materials != blank %}<div><dt>Materials</dt><dd>{{ product.metafields.custom.materials.value | escape }}</dd></div>{% endif %}
+            {% if product.metafields.custom.dimensions != blank %}<div><dt>Dimensions</dt><dd>{{ product.metafields.custom.dimensions.value | escape }}</dd></div>{% endif %}
+            {% if product.metafields.custom.compatibility != blank %}<div><dt>Compatibility</dt><dd>{{ product.metafields.custom.compatibility.value | escape }}</dd></div>{% endif %}
+          </dl>
+        </div>
+      {% endif %}
+      {% if warranty != blank %}
+        <aside class="atlas-product__warranty" aria-labelledby="WarrantyTitle-{{ section.id }}">
+          <p class="atlas-product__warranty-kicker">Warranty program</p>
+          <h2 id="WarrantyTitle-{{ section.id }}">{{ warranty.title.value | escape }}</h2>
+          {% if warranty.coverage.value != blank %}<p class="atlas-product__coverage">{{ warranty.coverage.value | escape }} coverage</p>{% endif %}
+          {% if warranty.details.value != blank %}<p>{{ warranty.details.value | escape }}</p>{% endif %}
+        </aside>
+      {% endif %}
+    </div>
+  </div>
 
-    <select name="id">
-      {% for variant in product.variants %}
-        <option
-          value="{{ variant.id }}"
-          {% if variant == current_variant %}
-            selected="selected"
-          {% endif %}
-        >
-          {{ variant.title }} - {{ variant.price | money }}
-        </option>
-      {% endfor %}
-    </select>
+  <script type="application/json" data-variants-json>
+    [{% for variant in product.variants %}{"id":{{ variant.id | json }},"available":{{ variant.available | json }},"price":{{ variant.price | money | json }},"comparePrice":{{ variant.compare_at_price | money | json }},"compareAtCents":{{ variant.compare_at_price | default: 0 | json }},"priceCents":{{ variant.price | json }},"options":{{ variant.options | json }},"featuredMediaId":{{ variant.featured_media.id | default: 0 | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}]
+  </script>
+</section>
 
-    <input type="text" name="quantity" min="1" value="1">
+{% stylesheet %}
+  .atlas-product{grid-column:1/-1;color:var(--atlas-text);background:var(--atlas-bg);padding:var(--atlas-pad-top) max(20px,calc((100vw - 1280px)/2)) var(--atlas-pad-bottom)}
+  .atlas-product *{box-sizing:border-box}.atlas-product__layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,.72fr);gap:clamp(40px,6vw,92px);align-items:start}.atlas-product__stage{overflow:hidden;border-radius:28px;background:#e8e3d8;aspect-ratio:1}.atlas-product__media{width:100%;height:100%;margin:0}.atlas-product__media[hidden]{display:none}.atlas-product__image{display:block;width:100%;height:100%;object-fit:cover}.atlas-product__media--placeholder{display:grid;min-height:520px;place-items:center;border-radius:28px;background:#e8e3d8}.atlas-product__placeholder{width:70%;color:#b8ae9d}.atlas-product__thumbs{display:grid;grid-template-columns:repeat(5,minmax(0,78px));gap:12px;margin-top:14px}.atlas-product__thumb{padding:0;overflow:hidden;border:2px solid transparent;border-radius:14px;background:transparent;aspect-ratio:1;cursor:pointer;opacity:.66;transition:border-color .2s ease,opacity .2s ease,transform .2s ease}.atlas-product__thumb:hover{opacity:1;transform:translateY(-2px)}.atlas-product__thumb.is-active{border-color:var(--atlas-accent);opacity:1}.atlas-product__thumb-image{width:100%;height:100%;object-fit:cover}.atlas-product__details--sticky{position:sticky;top:28px}
+  .atlas-product__eyebrow,.atlas-product__vendor,.atlas-product__warranty-kicker{margin:0 0 10px;color:var(--atlas-accent);font-size:.76rem;font-weight:750;letter-spacing:.14em;text-transform:uppercase}.atlas-product__vendor{color:var(--atlas-muted)}.atlas-product__title{max-width:13ch;margin:0;font-size:clamp(2.4rem,5vw,4.8rem);line-height:.96;letter-spacing:-.055em}.atlas-product__price-row{display:flex;align-items:baseline;gap:12px;margin:24px 0 8px}.atlas-product__price{font-size:1.55rem;font-weight:760}.atlas-product__compare{color:var(--atlas-muted);font-size:1rem}.atlas-product__availability{display:flex;align-items:center;gap:8px;margin:0;color:#27634b;font-size:.92rem;font-weight:650}.atlas-product__availability.is-sold-out{color:#9b3a2e}.atlas-product__status-dot{width:8px;height:8px;border-radius:50%;background:#43a477;box-shadow:0 0 0 4px rgba(67,164,119,.14)}.atlas-product__description{max-width:58ch;margin-top:25px;color:var(--atlas-muted);line-height:1.65}.atlas-product__form{margin-top:30px}.atlas-option{min-width:0;margin:0 0 24px;padding:0;border:0}.atlas-option__legend{margin-bottom:11px;font-weight:720}.atlas-option__legend span{color:var(--atlas-muted);font-weight:520}.atlas-option__values{display:flex;flex-wrap:wrap;gap:10px}.atlas-option__label{display:inline-flex;min-width:56px;min-height:46px;align-items:center;justify-content:center;padding:10px 16px;border:1px solid rgba(31,39,33,.18);border-radius:999px;background:var(--atlas-card);cursor:pointer;font-size:.92rem;font-weight:680;transition:.18s ease}.atlas-option__label:hover{border-color:var(--atlas-accent)}.atlas-option__input:checked+.atlas-option__label{border-color:var(--atlas-text);background:var(--atlas-text);color:var(--atlas-card);box-shadow:0 0 0 2px var(--atlas-bg),0 0 0 4px var(--atlas-text)}.atlas-option__input:focus-visible+.atlas-option__label,.atlas-product__thumb:focus-visible,.atlas-product__add:focus-visible,.atlas-product__quantity input:focus-visible{outline:3px solid var(--atlas-accent);outline-offset:3px}.atlas-option__input:disabled+.atlas-option__label{cursor:not-allowed;opacity:.32;text-decoration:line-through}.atlas-option__input[data-state="sold-out"]+.atlas-option__label{background-image:linear-gradient(to top right,transparent calc(50% - 1px),rgba(155,58,46,.6) 50%,transparent calc(50% + 1px))}
+  .atlas-product__purchase-row{display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px}.atlas-product__quantity{display:grid;gap:6px;color:var(--atlas-muted);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}.atlas-product__quantity input{width:100%;min-height:54px;padding:0 14px;border:1px solid rgba(31,39,33,.18);border-radius:13px;background:var(--atlas-card);color:var(--atlas-text);font:inherit;font-size:1rem}.atlas-product__add{align-self:end;min-height:54px;padding:0 24px;border:0;border-radius:13px;background:var(--atlas-accent);color:#fff;cursor:pointer;font:inherit;font-weight:760;transition:transform .18s ease,opacity .18s ease}.atlas-product__add:hover:not(:disabled){transform:translateY(-2px)}.atlas-product__add:disabled{cursor:not-allowed;opacity:.48}.atlas-product__add.is-loading [data-add-label]{opacity:.55}.atlas-product__spinner{display:none;width:16px;height:16px;margin-left:8px;border:2px solid rgba(255,255,255,.38);border-top-color:#fff;border-radius:50%;vertical-align:middle;animation:atlas-spin .7s linear infinite}.atlas-product__add.is-loading .atlas-product__spinner{display:inline-block}.atlas-product__message{min-height:24px;margin-top:12px;font-size:.92rem;font-weight:650}.atlas-product__message.is-error{color:#9b3a2e}.atlas-product__message a{color:inherit;text-underline-offset:3px}.atlas-product__trust{margin:17px 0 0;color:var(--atlas-muted);font-size:.86rem;text-align:center}.atlas-product__specs,.atlas-product__warranty{margin-top:34px;padding:24px;border:1px solid rgba(31,39,33,.12);border-radius:20px;background:var(--atlas-card)}.atlas-product__specs h2,.atlas-product__warranty h2{margin:0 0 16px;font-size:1.1rem}.atlas-product__specs dl{margin:0}.atlas-product__specs dl div{display:grid;grid-template-columns:112px 1fr;gap:16px;padding:11px 0;border-top:1px solid rgba(31,39,33,.1)}.atlas-product__specs dt{color:var(--atlas-muted);font-size:.84rem;font-weight:700}.atlas-product__specs dd{margin:0;font-size:.9rem;line-height:1.5}.atlas-product__warranty{background:color-mix(in srgb,var(--atlas-accent) 8%,var(--atlas-card))}.atlas-product__warranty-kicker{margin-bottom:7px}.atlas-product__coverage{font-weight:750}.atlas-product__warranty p:last-child{margin-bottom:0;color:var(--atlas-muted);line-height:1.55}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}@keyframes atlas-spin{to{transform:rotate(360deg)}}
+  @media(max-width:899px){.atlas-product{padding-inline:18px}.atlas-product__layout{grid-template-columns:1fr;gap:32px}.atlas-product__details--sticky{position:static}.atlas-product__title{max-width:15ch;font-size:clamp(2.35rem,12vw,4rem)}.atlas-product__thumbs{grid-template-columns:repeat(5,minmax(0,64px))}}
+  @media(max-width:480px){.atlas-product__stage{border-radius:20px}.atlas-product__purchase-row{grid-template-columns:82px minmax(0,1fr)}.atlas-option__label{min-height:43px;padding:8px 13px}.atlas-product__specs dl div{grid-template-columns:1fr;gap:5px}}
+  @media(prefers-reduced-motion:reduce){.atlas-product *,.atlas-product *::before,.atlas-product *::after{scroll-behavior:auto!important;transition:none!important;animation-duration:.01ms!important}}
+{% endstylesheet %}
 
-    <input type="submit" value="Add to cart">
-    {{ form | payment_button }}
-  {% endform %}
-</div>
+{% javascript %}
+  (() => {
+    document.querySelectorAll('[id^="AtlasProduct-"]').forEach((root) => {
+      if (root.dataset.initialized === 'true') return;
+      root.dataset.initialized = 'true';
+      const variantsNode = root.querySelector('[data-variants-json]');
+      const form = root.querySelector('.atlas-product__form');
+      if (!variantsNode || !form) return;
+      const variants = JSON.parse(variantsNode.textContent);
+      const optionGroups = [...root.querySelectorAll('[data-option-index]')];
+      const variantInput = form.querySelector('[data-variant-id]');
+      const price = root.querySelector('[data-product-price]');
+      const comparePrice = root.querySelector('[data-compare-price]');
+      const availability = root.querySelector('[data-availability]');
+      const addButton = form.querySelector('[data-add-to-cart]');
+      const addLabel = form.querySelector('[data-add-label]');
+      const message = form.querySelector('[data-cart-message]');
+      const selectedOptions = () => optionGroups.map((group) => group.querySelector('input:checked')?.value || '');
+      const findVariant = (options) => variants.find((variant) => variant.options.every((value, index) => value === options[index]));
+      const showMedia = (mediaId) => {
+        if (!mediaId) return;
+        root.querySelectorAll('[data-media-id]').forEach((media) => { const active = Number(media.dataset.mediaId) === Number(mediaId); media.hidden = !active; media.classList.toggle('is-active', active); });
+        root.querySelectorAll('[data-media-target]').forEach((thumb) => { const active = Number(thumb.dataset.mediaTarget) === Number(mediaId); thumb.classList.toggle('is-active', active); thumb.setAttribute('aria-pressed', String(active)); });
+      };
+      const updateStates = (options) => optionGroups.forEach((group, groupIndex) => group.querySelectorAll('input[type="radio"]').forEach((radio) => {
+        const candidateOptions = [...options]; candidateOptions[groupIndex] = radio.value;
+        const candidate = findVariant(candidateOptions); radio.disabled = !candidate; radio.dataset.state = candidate ? (candidate.available ? 'available' : 'sold-out') : 'unavailable';
+        const label = root.querySelector(`label[for="${CSS.escape(radio.id)}"]`);
+        if (label) label.setAttribute('aria-label', `${radio.value}${!candidate ? ', unavailable combination' : (!candidate.available ? ', sold out' : '')}`);
+      }));
+      const renderVariant = () => {
+        const options = selectedOptions(); const variant = findVariant(options);
+        optionGroups.forEach((group) => { const value = group.querySelector('[data-option-value]'); const checked = group.querySelector('input:checked'); if (value && checked) value.textContent = checked.value; });
+        updateStates(options);
+        if (!variant) { addButton.disabled = true; addLabel.textContent = 'Unavailable'; availability.textContent = 'This option combination is unavailable'; availability.classList.add('is-sold-out'); return; }
+        variantInput.value = variant.id; price.textContent = variant.price;
+        const onSale = variant.compareAtCents > variant.priceCents; comparePrice.hidden = !onSale; comparePrice.textContent = onSale ? variant.comparePrice : '';
+        addButton.disabled = !variant.available; addLabel.textContent = variant.available ? 'Add to cart' : 'Sold out'; availability.classList.toggle('is-sold-out', !variant.available);
+        availability.innerHTML = variant.available ? '<span class="atlas-product__status-dot" aria-hidden="true"></span> In stock and ready to ship' : 'Currently unavailable';
+        if (variant.featuredMediaId) showMedia(variant.featuredMediaId);
+        const url = new URL(window.location.href); url.searchParams.set('variant', variant.id); window.history.replaceState({}, '', url); message.textContent = ''; message.classList.remove('is-error');
+      };
+      root.querySelectorAll('.atlas-option__input').forEach((input) => input.addEventListener('change', renderVariant));
+      root.querySelectorAll('[data-media-target]').forEach((thumb) => thumb.addEventListener('click', () => showMedia(thumb.dataset.mediaTarget)));
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (addButton.disabled) return;
+        const quantityInput = form.querySelector('[name="quantity"]');
+        const quantity = Number(quantityInput?.value);
+        if (!Number.isInteger(quantity) || quantity < 1) {
+          message.textContent = 'Enter a quantity of 1 or more.';
+          message.classList.add('is-error');
+          message.focus();
+          return;
+        }
+        addButton.disabled = true; addButton.classList.add('is-loading'); message.textContent = 'Adding your selection…'; message.classList.remove('is-error');
+        try {
+          const response = await fetch(`${window.Shopify.routes.root}cart/add.js`, { method: 'POST', headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' }, body: new FormData(form) });
+          const result = await response.json(); if (!response.ok) throw new Error(result.description || result.message || 'This item could not be added.');
+          message.innerHTML = `Added ${result.product_title || 'your selection'} to cart. <a href="${window.Shopify.routes.root}cart">View cart</a>`;
+        } catch (error) { message.textContent = error.message || 'Something went wrong. Please try again.'; message.classList.add('is-error'); message.focus(); }
+        finally { addButton.classList.remove('is-loading'); addButton.disabled = !findVariant(selectedOptions())?.available; }
+      });
+      renderVariant();
+    });
+  })();
+{% endjavascript %}
 
 {% schema %}
 {
-  "name": "t:general.product",
-  "settings": [],
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  }
+  "name": "Advanced product",
+  "tag": "section",
+  "class": "advanced-product-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Built for the everyday" },
+    { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": true },
+    { "type": "checkbox", "id": "sticky_details", "label": "Keep product details visible on desktop", "default": true },
+    { "type": "text", "id": "trust_copy", "label": "Trust message", "default": "Free shipping over $50 · 30-day returns · Secure checkout" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#f5f2eb" },
+    { "type": "color", "id": "card_color", "label": "Card background", "default": "#fffdf8" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#1f2721" },
+    { "type": "color", "id": "muted_color", "label": "Muted text", "default": "#687168" },
+    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#b95538" },
+    { "type": "range", "id": "padding_top", "min": 24, "max": 120, "step": 8, "unit": "px", "label": "Top padding", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 24, "max": 120, "step": 8, "unit": "px", "label": "Bottom padding", "default": 80 }
+  ],
+  "disabled_on": { "groups": ["header", "footer"] }
 }
 {% endschema %}

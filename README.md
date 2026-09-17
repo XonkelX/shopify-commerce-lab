@@ -10,14 +10,15 @@ Each completed module will pair real Shopify behavior with source code, testing 
 
 - Phase 0 — **COMPLETE**
 - Phase 1 — **COMPLETE**
+- Phase 2 — **COMPLETE**
 - Local Shopify CLI: 4.8.0
 - Base theme: Shopify Skeleton theme
 - Current Theme Check: 40 files inspected, 0 offenses
 - Shopify development store: Oniel Lab
 - Unpublished evidence theme: Shopify Commerce Lab, theme ID `155175092398`
-- Completed client-facing module: Product Comparison Section
+- Completed client-facing modules: Product Comparison Section and Advanced Product Detail Page
 
-The product-comparison module is verified in a real Shopify Theme Editor and unpublished storefront preview. Claims remain limited to the storefront work directly demonstrated by this module.
+Both modules are verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 2 adds a real six-variant product, variant/media/price/availability synchronization, Shopify metafields, a reusable warranty metaobject, and Ajax add-to-cart behavior.
 
 ## Live preview
 
@@ -48,6 +49,7 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 ## Case studies
 
 - [Product Comparison Section](docs/case-studies/product-comparison-section.md)
+- [Advanced Product Detail Page](docs/case-studies/advanced-product-page.md)
 
 ## Supported job categories
 
@@ -55,6 +57,10 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 - Liquid section implementation and edits
 - Theme Editor configurable homepage sections
 - Responsive section/layout work
+- Product-page and variant-state work
+- Product media synchronization
+- Metafield/metaobject storefront content
+- AJAX add-to-cart work
 
 See [`docs/evidence/job-mapping.md`](docs/evidence/job-mapping.md) for exact readiness labels and exclusions.
 
