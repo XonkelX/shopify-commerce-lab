@@ -12,7 +12,7 @@ Last updated: 2026-09-17
 | Quantity/purchase logic | Complete | Yes | Verified unpublished Theme Editor preview and native cart flow | Yes | Authenticated mobile/editor/cart captures | Yes | Theme Check + calculation/cart matrix | Yes |
 | Cart engineering | Complete | Yes | Verified unpublished PDP and mobile Theme Editor flow | Yes | Authenticated populated/error/empty/mobile captures | Yes | Theme Check + AJAX cart matrix | Yes |
 | Quality evidence | Complete | Yes | Verified unpublished home/product/collection previews | Yes | Authenticated browser session | Yes | Theme Check + 9 Lighthouse runs + accessibility matrix + CI | Reproduction guide |
-| Portfolio packaging | Not started | No | No | No | No | No | No | No |
+| Portfolio packaging | Complete | Yes | Six verified live routes | Yes | Six fresh storefront captures | Six concise proof pages | Link/asset gate | Six short proof clips |
 | Integration Lab | Not started | No | No | No | No | No | No | No |
 
 ## Verified evidence
@@ -44,6 +44,7 @@ Last updated: 2026-09-17
 - Phase 7 repaired ARIA semantics, contrast, touch-target, image-delivery, metadata, eager-loading, and shipping-copy consistency findings.
 - Phase 7 verified keyboard order, visible focus, native-dialog focus management, focus wrapping, Escape restoration, and focused live error messaging in the authenticated storefront.
 - Phase 7 added push/PR CI for official Shopify Theme Check and repository quality invariants.
+- Phase 8 packages the major proof into one focused hub with six concise pages, six fresh screenshots, six short H.264 clips, verified live routes, direct code links, testing records, and explicit job mappings.
 
 ## Tooling limitation
 

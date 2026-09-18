@@ -16,14 +16,19 @@ Each completed module will pair real Shopify behavior with source code, testing 
 - Phase 5 — **COMPLETE**
 - Phase 6 — **COMPLETE**
 - Phase 7 — **COMPLETE**
+- Phase 8 — **COMPLETE**
 - Local Shopify CLI: 4.8.0
 - Base theme: Shopify Skeleton theme
 - Current Theme Check: 45 files inspected, 0 offenses
 - Shopify development store: Oniel Lab
 - Unpublished evidence theme: Shopify Commerce Lab, theme ID `155175092398`
-- Completed evidence modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, Personalized Product Configurator, Case Quantity Purchase Calculator, AJAX Cart Drawer, and Storefront Quality Engineering
+- Completed evidence modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, Personalized Product Configurator, Case Quantity Purchase Calculator, AJAX Cart Drawer, Storefront Quality Engineering, and focused Portfolio Evidence Packaging
 
-All modules are verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 7 adds warning-level Theme Check, repeatable three-run Lighthouse medians, automated and manual accessibility evidence, documented limitations, and push/PR CI.
+All modules are verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 8 packages the strongest proof into six concise buyer-facing pages with real screenshots, short clips, live previews, validation records, job mappings, and source links.
+
+## Two-minute Shopify proof
+
+[Open the focused Shopify evidence hub](docs/shopify/README.md) to review the six strongest proofs without reading the full project history.
 
 ## Live preview
 
@@ -33,6 +38,7 @@ All modules are verified in a real Shopify Theme Editor and unpublished storefro
 
 - [`theme/`](theme/) — Shopify Online Store 2.0 theme source, initialized from Shopify's Skeleton theme
 - [`docs/case-studies/`](docs/case-studies/) — completed case studies only
+- [`docs/shopify/`](docs/shopify/) — concise buyer-facing evidence hub
 - [`docs/evidence/`](docs/evidence/) — evidence inventory and job-to-proof mapping
 - [`docs/screenshots/`](docs/screenshots/) — verified visual evidence only
 - [`docs/test-results/`](docs/test-results/) — reproducible validation records

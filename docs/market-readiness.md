@@ -12,6 +12,7 @@ Last updated: 2026-09-17
 - Case Quantity Purchase Calculator with transparent ceiling logic, edge validation, merchant controls, real variant states, computed cart quantity, and cart-persistent calculation properties.
 - AJAX Cart Drawer with product-form integration, quantity and removal controls, Shopify-authoritative section refresh, variant/property display, loading/error/empty states, shipping progress, mobile layout, and keyboard behavior.
 - Quality Engineering evidence with warning-level Theme Check, nine Lighthouse audits, three-run medians, automated/manual accessibility verification, issue remediation, reproducible scripts, and push/PR CI.
+- Focused Shopify evidence packaging with six concise buyer pages, six real storefront screenshots, six short proof clips, live previews, test status, job mappings, and direct source links.
 - Valid Online Store 2.0 schema with configurable settings and addable, removable, reorderable blocks.
 - Variant/media/price/availability/URL synchronization, Ajax add-to-cart, product metafields, and a referenced warranty metaobject.
 - Real Theme Editor verification, desktop/mobile/cart captures, clean Theme Check, case studies, test matrices, and demo scripts.
@@ -83,6 +84,7 @@ Last updated: 2026-09-17
 | Shopify theme quality audit | [Phase 7 quality matrix](test-results/phase-7-quality.md) |
 | Lighthouse and accessibility QA | [Phase 7 reproduction guide](evidence/phase-7-reproduction.md) |
 | Theme QA automation | [Quality workflow](../.github/workflows/quality.yml) and [local gate](../scripts/verify-phase-7.ps1) |
+| Fast buyer evaluation | [Focused Shopify evidence hub](shopify/README.md) |
 
 ## READY
 
@@ -109,6 +111,7 @@ Last updated: 2026-09-17
 - Theme quality audit — clean Theme Check, nine Lighthouse runs, manual accessibility checks, repaired findings, and disclosed limitations
 - Contained accessibility repair — ARIA semantics, labels, focus order/visibility, dialog management, error announcements, touch targets, and contrast are evidenced
 - Theme QA automation — warning-level Theme Check and structural invariants run on every push and pull request
+- Portfolio evidence packaging — six major proofs are discoverable from one focused hub with working screenshot, video, live, test, job, and code links
 
 ## PLAUSIBLE
 
@@ -123,7 +126,7 @@ Last updated: 2026-09-17
 
 ## Approximate job scope currently supported
 
-Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Liquid-debugging, inherited-theme repair, configurator, personalization, fixed-unit purchase-calculator, AJAX cart-drawer, and theme-quality tasks. The evidence now supports contained Shopify functionality and QA projects in the prompt's $300–$1,000 target band; actual pricing still depends on scope, data model, design, and integration risk.
+Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Liquid-debugging, inherited-theme repair, configurator, personalization, fixed-unit purchase-calculator, AJAX cart-drawer, and theme-quality tasks. The [focused evidence hub](shopify/README.md) makes the strongest proof reviewable in under two minutes. The evidence supports contained Shopify functionality and QA projects in the prompt's $300–$1,000 target band; actual pricing still depends on scope, data model, design, and integration risk.
 
 ## Best applications to target now
 
@@ -147,4 +150,4 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 
 ## Next evidence gap
 
-Build Phase 8 — Portfolio Evidence Packaging. The next gap is converting the completed modules and QA records into concise, client-facing portfolio artifacts without overstating results.
+Phase 8 — Portfolio Evidence Packaging — is complete. The next gap is Phase 9, a contained Shopify Integration Lab demonstrating real Admin GraphQL, webhooks, persistence, retry/idempotency behavior, failure visibility, and a merchant-facing UI. Backend/API work remains unsupported until that evidence exists.
