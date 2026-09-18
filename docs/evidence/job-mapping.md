@@ -28,7 +28,9 @@ Readiness is based on inspectable evidence in this repository, not expected abil
 | Cart quantity/removal | Stepper, typed updates, remove, empty state, and authoritative subtotals | READY |
 | Cart loading/error states | In-flight UI plus real Shopify inventory-error recovery | READY |
 | Free-shipping progress | Merchant-configured threshold with live authoritative cart total | READY |
+| Shopify theme quality audit | Theme Check, nine-run Lighthouse matrix, accessibility pass, repairs, and documented limitations | READY |
+| Theme QA automation | Reproducible PowerShell gates plus push/PR GitHub Actions | READY |
 | Shopify GraphQL/API integration | None yet | NOT YET |
 | Webhook processing | None yet | NOT YET |
 
-Phases 1–6 directly support contained section work, product-page/variant work, structured content, evidence-backed Liquid debugging, product configurators, personalization interfaces, fixed-unit purchase calculators, and advanced AJAX cart-drawer work. Bundles, subscriptions, recommendations, and backend/API claims remain unsupported until their dedicated evidence exists.
+Phases 1–7 directly support contained section work, product-page/variant work, structured content, evidence-backed Liquid debugging, product configurators, personalization interfaces, fixed-unit purchase calculators, advanced AJAX cart-drawer work, and evidence-led theme QA. Bundles, subscriptions, recommendations, and backend/API claims remain unsupported until their dedicated evidence exists.

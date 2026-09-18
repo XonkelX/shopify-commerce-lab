@@ -11,6 +11,7 @@ Last updated: 2026-09-17
 - Personalized Product Configurator with structured selection, live preview, validation, real variants, merchant settings, and cart-persistent line-item properties.
 - Case Quantity Purchase Calculator with transparent ceiling logic, edge validation, merchant controls, real variant states, computed cart quantity, and cart-persistent calculation properties.
 - AJAX Cart Drawer with product-form integration, quantity and removal controls, Shopify-authoritative section refresh, variant/property display, loading/error/empty states, shipping progress, mobile layout, and keyboard behavior.
+- Quality Engineering evidence with warning-level Theme Check, nine Lighthouse audits, three-run medians, automated/manual accessibility verification, issue remediation, reproducible scripts, and push/PR CI.
 - Valid Online Store 2.0 schema with configurable settings and addable, removable, reorderable blocks.
 - Variant/media/price/availability/URL synchronization, Ajax add-to-cart, product metafields, and a referenced warranty metaobject.
 - Real Theme Editor verification, desktop/mobile/cart captures, clean Theme Check, case studies, test matrices, and demo scripts.
@@ -39,6 +40,9 @@ Last updated: 2026-09-17
 - Cart quantity, removal, subtotal, and header-count synchronization
 - Cart loading, inventory-error, and empty states
 - Free-shipping progress interfaces
+- Shopify theme QA and handoff audits
+- Lighthouse measurement and contained performance/accessibility remediation
+- Theme Check and practical GitHub Actions quality gates
 
 ## Jobs I should NOT claim yet
 
@@ -49,6 +53,8 @@ Last updated: 2026-09-17
 - Shopify Functions
 - Checkout extensions
 - Shopify Plus architecture
+- Full WCAG conformance certification
+- Production Core Web Vitals guarantees
 
 ## Best evidence link or artifact for each supported job type
 
@@ -74,6 +80,9 @@ Last updated: 2026-09-17
 | AJAX cart drawer | [AJAX Cart Drawer Engineering](case-studies/cart-engineering.md) |
 | Cart quantity/removal | [Phase 6 cart validation matrix](test-results/phase-6-cart-engineering.md) |
 | Cart loading/error/empty states | [Phase 6 completion evidence](evidence/phase-6-completion.md) |
+| Shopify theme quality audit | [Phase 7 quality matrix](test-results/phase-7-quality.md) |
+| Lighthouse and accessibility QA | [Phase 7 reproduction guide](evidence/phase-7-reproduction.md) |
+| Theme QA automation | [Quality workflow](../.github/workflows/quality.yml) and [local gate](../scripts/verify-phase-7.ps1) |
 
 ## READY
 
@@ -97,12 +106,15 @@ Last updated: 2026-09-17
 - AJAX cart drawer — additions, quantities, removal, totals, properties, status states, mobile, and keyboard behavior verified
 - Cart error recovery — real inventory ceiling refreshes to Shopify's authoritative quantity and subtotal
 - Free-shipping progress — merchant goal responds to server-rendered cart totals
+- Theme quality audit — clean Theme Check, nine Lighthouse runs, manual accessibility checks, repaired findings, and disclosed limitations
+- Contained accessibility repair — ARIA semantics, labels, focus order/visibility, dialog management, error announcements, touch targets, and contrast are evidenced
+- Theme QA automation — warning-level Theme Check and structural invariants run on every push and pull request
 
 ## PLAUSIBLE
 
 - Small homepage customizations — adjacent to the completed section, but no broader homepage rebuild is claimed.
 - Conditional cart messaging — shipping-goal behavior is proven, but cross-sell and recommendation rules are not.
-- Basic accessibility repair — count-aware names and variant-specific controls are proven, but a full accessibility audit is not.
+- Performance remediation — image priority, responsive delivery, metadata, and measured page audits are proven, but production field Core Web Vitals are not.
 - Small conditional personalization additions — adjacent to the completed module, but uploads and surcharge architectures are not claimed.
 
 ## NOT YET
@@ -111,7 +123,7 @@ Last updated: 2026-09-17
 
 ## Approximate job scope currently supported
 
-Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Liquid-debugging, inherited-theme repair, configurator, personalization, fixed-unit purchase-calculator, and AJAX cart-drawer tasks. The evidence now supports contained Shopify functionality projects in the prompt's $300–$1,000 target band; actual pricing still depends on scope, data model, design, and integration risk.
+Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Liquid-debugging, inherited-theme repair, configurator, personalization, fixed-unit purchase-calculator, AJAX cart-drawer, and theme-quality tasks. The evidence now supports contained Shopify functionality and QA projects in the prompt's $300–$1,000 target band; actual pricing still depends on scope, data model, design, and integration risk.
 
 ## Best applications to target now
 
@@ -124,6 +136,7 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 7. Build a contained product configurator or personalization flow using real variants and line-item properties.
 8. Build a fixed-pack, case, coverage, or volume calculator that submits a correct whole Shopify quantity.
 9. Build or repair an AJAX cart drawer with quantity, removal, totals, properties, and responsive states.
+10. Audit and repair a contained Shopify theme area using Theme Check, Lighthouse, keyboard/accessibility checks, and documented handoff evidence.
 
 ## Do not target yet
 
@@ -134,4 +147,4 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 
 ## Next evidence gap
 
-Build Phase 7 — Quality Evidence. The next gap is reproducible Theme Check, Lighthouse, accessibility, and useful CI evidence across the completed storefront modules.
+Build Phase 8 — Portfolio Evidence Packaging. The next gap is converting the completed modules and QA records into concise, client-facing portfolio artifacts without overstating results.

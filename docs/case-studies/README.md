@@ -8,3 +8,4 @@ This directory contains only completed, evidence-backed Shopify case studies.
 - [Personalized Product Configurator](product-configurator.md)
 - [Case Quantity Purchase Calculator](purchase-logic-calculator.md)
 - [AJAX Cart Drawer Engineering](cart-engineering.md)
+- [Storefront Quality Engineering](quality-engineering.md)

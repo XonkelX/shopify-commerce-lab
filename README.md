@@ -15,14 +15,15 @@ Each completed module will pair real Shopify behavior with source code, testing 
 - Phase 4 — **COMPLETE**
 - Phase 5 — **COMPLETE**
 - Phase 6 — **COMPLETE**
+- Phase 7 — **COMPLETE**
 - Local Shopify CLI: 4.8.0
 - Base theme: Shopify Skeleton theme
 - Current Theme Check: 45 files inspected, 0 offenses
 - Shopify development store: Oniel Lab
 - Unpublished evidence theme: Shopify Commerce Lab, theme ID `155175092398`
-- Completed client-facing modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, Personalized Product Configurator, Case Quantity Purchase Calculator, and AJAX Cart Drawer
+- Completed evidence modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, Personalized Product Configurator, Case Quantity Purchase Calculator, AJAX Cart Drawer, and Storefront Quality Engineering
 
-All modules are verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 6 adds Shopify-authoritative AJAX cart additions, quantity changes, removal, subtotals, properties, loading/error/empty states, shipping-goal progress, and modal keyboard behavior.
+All modules are verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 7 adds warning-level Theme Check, repeatable three-run Lighthouse medians, automated and manual accessibility evidence, documented limitations, and push/PR CI.
 
 ## Live preview
 
@@ -58,6 +59,7 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 - [Personalized Product Configurator](docs/case-studies/product-configurator.md)
 - [Case Quantity Purchase Calculator](docs/case-studies/purchase-logic-calculator.md)
 - [AJAX Cart Drawer Engineering](docs/case-studies/cart-engineering.md)
+- [Storefront Quality Engineering](docs/case-studies/quality-engineering.md)
 
 ## Supported job categories
 
@@ -78,6 +80,7 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 - Transparent whole-unit rounding and cart audit properties
 - AJAX cart drawer, quantity updates, removal, and authoritative subtotal synchronization
 - Cart loading, inventory-error, empty, mobile, and keyboard states
+- Shopify theme QA with Theme Check, repeatable Lighthouse, accessibility verification, and CI
 
 See [`docs/evidence/job-mapping.md`](docs/evidence/job-mapping.md) for exact readiness labels and exclusions.
 

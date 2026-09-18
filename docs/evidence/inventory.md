@@ -11,7 +11,7 @@ Last updated: 2026-09-17
 | Product configurator | Complete | Yes | Verified unpublished product preview | Yes | Authenticated desktop/mobile/editor/cart captures | Yes | Theme Check + browser matrix | Yes |
 | Quantity/purchase logic | Complete | Yes | Verified unpublished Theme Editor preview and native cart flow | Yes | Authenticated mobile/editor/cart captures | Yes | Theme Check + calculation/cart matrix | Yes |
 | Cart engineering | Complete | Yes | Verified unpublished PDP and mobile Theme Editor flow | Yes | Authenticated populated/error/empty/mobile captures | Yes | Theme Check + AJAX cart matrix | Yes |
-| Quality evidence | Not started | No | No | No | No | No | No | No |
+| Quality evidence | Complete | Yes | Verified unpublished home/product/collection previews | Yes | Authenticated browser session | Yes | Theme Check + 9 Lighthouse runs + accessibility matrix + CI | Reproduction guide |
 | Portfolio packaging | Not started | No | No | No | No | No | No | No |
 | Integration Lab | Not started | No | No | No | No | No | No | No |
 
@@ -39,6 +39,11 @@ Last updated: 2026-09-17
 - Phase 5 mobile Theme Editor and cart captures are preserved as authenticated task deliverables.
 - Phase 6 verifies AJAX add, button and typed quantity updates, removal, subtotal/count synchronization, variant and property rendering, loading, real inventory errors, empty state, and a configurable shipping goal.
 - Phase 6 populated, error, empty, corrected-layout, and final mobile captures are preserved as authenticated task deliverables.
+- Phase 7 ran Theme Check at warning severity with 45 files and zero offenses, with no suppressions.
+- Phase 7 preserved all nine Lighthouse runs in a sanitized matrix and reports medians for home, product, and collection instead of selecting a best run.
+- Phase 7 repaired ARIA semantics, contrast, touch-target, image-delivery, metadata, eager-loading, and shipping-copy consistency findings.
+- Phase 7 verified keyboard order, visible focus, native-dialog focus management, focus wrapping, Escape restoration, and focused live error messaging in the authenticated storefront.
+- Phase 7 added push/PR CI for official Shopify Theme Check and repository quality invariants.
 
 ## Tooling limitation
 
