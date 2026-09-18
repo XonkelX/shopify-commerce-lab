@@ -9,6 +9,7 @@ Last updated: 2026-09-17
 - Advanced PDP running against a real six-variant Shopify product.
 - Bug Fix Evidence Lab with three reproduced, diagnosed, fixed, and remotely verified storefront defects.
 - Personalized Product Configurator with structured selection, live preview, validation, real variants, merchant settings, and cart-persistent line-item properties.
+- Case Quantity Purchase Calculator with transparent ceiling logic, edge validation, merchant controls, real variant states, computed cart quantity, and cart-persistent calculation properties.
 - Valid Online Store 2.0 schema with configurable settings and addable, removable, reorderable blocks.
 - Variant/media/price/availability/URL synchronization, Ajax add-to-cart, product metafields, and a referenced warranty metaobject.
 - Real Theme Editor verification, desktop/mobile/cart captures, clean Theme Check, case studies, test matrices, and demo scripts.
@@ -31,10 +32,12 @@ Last updated: 2026-09-17
 - Product personalization interfaces
 - Line-item property capture and cart rendering
 - Advanced PDP option and validation logic
+- Fixed-pack and case quantity calculators
+- Non-standard whole-unit purchase logic
 
 ## Jobs I should NOT claim yet
 
-- Advanced cart drawers, bundles, and purchase calculators
+- Advanced cart drawers and bundles
 - Shopify app development
 - Admin GraphQL integrations
 - Webhooks
@@ -61,6 +64,8 @@ Last updated: 2026-09-17
 | Product configurator | [Personalized Product Configurator case study](case-studies/product-configurator.md) |
 | Product personalization | [Phase 4 validation matrix](test-results/phase-4-product-configurator.md) |
 | Line-item properties | [Cart rendering source](../theme/sections/cart.liquid) and [Phase 4 completion evidence](evidence/phase-4-completion.md) |
+| Quantity/purchase calculator | [Case Quantity Purchase Calculator](case-studies/purchase-logic-calculator.md) |
+| Non-standard order logic | [Phase 5 calculation and cart matrix](test-results/phase-5-purchase-logic.md) |
 
 ## READY
 
@@ -79,6 +84,8 @@ Last updated: 2026-09-17
 - Product configurator — structured personalization, live preview, validation, real variants, and cart-persistent properties verified
 - Product personalization — text/style/gift choices survive as visible Shopify line-item properties
 - Advanced PDP option logic — variant and custom state remain synchronized across desktop and mobile
+- Quantity/purchase calculator — exact and round-up boundaries, limits, sold-out state, and quantity-12 cart submission verified
+- Non-standard order logic — customer requirements translate into whole purchasable units with a visible equation and cart audit properties
 
 ## PLAUSIBLE
 
@@ -89,11 +96,11 @@ Last updated: 2026-09-17
 
 ## NOT YET
 
-- Quantity/purchase calculators, advanced cart engineering, Shopify API, and webhook categories in [job-mapping.md](evidence/job-mapping.md).
+- Advanced cart engineering, Shopify API, and webhook categories in [job-mapping.md](evidence/job-mapping.md).
 
 ## Approximate job scope currently supported
 
-Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Ajax/native-cart, Liquid-debugging, inherited-theme repair, configurator, and personalization tasks. The evidence now supports contained Shopify functionality projects in the prompt's $300–$1,000 target band; actual pricing still depends on scope, data model, design, and integration risk.
+Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Ajax/native-cart, Liquid-debugging, inherited-theme repair, configurator, personalization, and fixed-unit purchase-calculator tasks. The evidence now supports contained Shopify functionality projects in the prompt's $300–$1,000 target band; actual pricing still depends on scope, data model, design, and integration risk.
 
 ## Best applications to target now
 
@@ -104,14 +111,15 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 5. Fix responsive behavior within an existing section or PDP.
 6. Diagnose and repair contained Liquid, cart-state, or conditional-rendering defects.
 7. Build a contained product configurator or personalization flow using real variants and line-item properties.
+8. Build a fixed-pack, case, coverage, or volume calculator that submits a correct whole Shopify quantity.
 
 ## Do not target yet
 
-1. Bundles, subscription logic, or complex quantity/purchase calculators.
+1. Bundles, subscription logic, or multi-product purchase calculators.
 2. Full cart drawers or advanced cart architecture.
 3. Image-upload personalization or dynamic-pricing architecture without a scoped app/variant design.
 4. Shopify app, API, webhook, checkout, Functions, or Plus work.
 
 ## Next evidence gap
 
-Build the Quantity / Purchase Logic Module. It is the next evidence gap for quantity tiers, purchase constraints, calculation transparency, and technically correct cart behavior.
+Build Phase 6 — Cart Engineering. It is the next evidence gap for richer cart architecture, line updates/removals, grouped purchasing behavior, and cart-level interaction quality.

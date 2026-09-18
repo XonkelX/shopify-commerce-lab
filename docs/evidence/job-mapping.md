@@ -22,8 +22,9 @@ Readiness is based on inspectable evidence in this repository, not expected abil
 | Product configurator | Personalized Product Configurator preview, source, case study, and cart proof | READY |
 | Product personalization | Live preview, validation, and four line-item properties | READY |
 | Advanced PDP option logic | Real variant/media/availability synchronization plus personalization state | READY |
-| Quantity/purchase calculator | None yet | NOT YET |
+| Quantity/purchase calculator | Case Quantity Purchase Calculator source, calculation matrix, and quantity-12 cart proof | READY |
+| Non-standard order logic | Ceiling rounding, limits, sold-out blocking, and visible calculation properties | READY |
 | Shopify GraphQL/API integration | None yet | NOT YET |
 | Webhook processing | None yet | NOT YET |
 
-Phases 1–4 directly support contained section work, product-page/variant work, structured content, Ajax and native cart work, evidence-backed Liquid debugging, product configurators, and personalization interfaces. Quantity calculators, advanced cart engineering, and backend/API claims remain unsupported until their dedicated phases are complete.
+Phases 1–5 directly support contained section work, product-page/variant work, structured content, Ajax and native cart work, evidence-backed Liquid debugging, product configurators, personalization interfaces, and fixed-unit purchase calculators. Advanced cart engineering and backend/API claims remain unsupported until their dedicated phases are complete.

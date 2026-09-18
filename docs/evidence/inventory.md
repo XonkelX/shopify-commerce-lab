@@ -9,7 +9,7 @@ Last updated: 2026-09-17
 | Advanced PDP | Complete | Yes | Verified unpublished product preview | Yes | Authenticated desktop/mobile task captures | Yes | Theme Check + browser matrix | Yes |
 | Bug Fix Lab | Complete | Yes — 3 fixes | Verified unpublished product/cart previews | Yes | Authenticated before/after task captures | Yes | Theme Check + browser matrix | Yes |
 | Product configurator | Complete | Yes | Verified unpublished product preview | Yes | Authenticated desktop/mobile/editor/cart captures | Yes | Theme Check + browser matrix | Yes |
-| Quantity/purchase logic | Not started | No | No | No | No | No | No | No |
+| Quantity/purchase logic | Complete | Yes | Verified unpublished Theme Editor preview and native cart flow | Yes | Authenticated mobile/editor/cart captures | Yes | Theme Check + calculation/cart matrix | Yes |
 | Cart engineering | Not started | No | No | No | No | No | No | No |
 | Quality evidence | Not started | No | No | No | No | No | No | No |
 | Portfolio packaging | Not started | No | No | No | No | No | No | No |
@@ -34,6 +34,9 @@ Last updated: 2026-09-17
 - Atlas Personalized Bottle exists as a real Shopify product with the duplicated six-variant matrix and assigned media.
 - Phase 4 verifies structured personalization, invalid states, live preview, merchant settings, responsive behavior, correct Navy / 32 oz selection, and four line-item properties rendered in cart.
 - Phase 4 desktop, mobile, Theme Editor, and cart captures are preserved as authenticated task deliverables.
+- Phase 5 verifies whole-case ceiling logic, calculation transparency, range validation, variant availability, and native cart submission with the computed quantity.
+- The verified 125-bottle, 10%-reserve flow submitted 12 Navy / 32 oz cases, produced a $480 cart subtotal, and preserved all four calculation properties.
+- Phase 5 mobile Theme Editor and cart captures are preserved as authenticated task deliverables.
 
 ## Tooling limitation
 
