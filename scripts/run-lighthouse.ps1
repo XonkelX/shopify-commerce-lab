@@ -14,6 +14,14 @@ $outputRoot = Join-Path $projectRoot $OutputDirectory
 $chromePath = 'C:\Program Files\Google\Chrome\Application\chrome.exe'
 $lighthouseVersion = '12.8.2'
 
+function Get-Median {
+  param([double[]]$Values)
+  $sorted = @($Values | Sort-Object)
+  $middle = [math]::Floor($sorted.Count / 2)
+  if ($sorted.Count % 2 -eq 1) { return $sorted[$middle] }
+  return [math]::Round(($sorted[$middle - 1] + $sorted[$middle]) / 2, 3)
+}
+
 if (-not (Get-Command npx -ErrorAction SilentlyContinue)) {
   throw 'npx is required to run the pinned Lighthouse CLI.'
 }
@@ -66,16 +74,15 @@ foreach ($page in $pages.GetEnumerator()) {
 
 $medians = foreach ($pageName in $pages.Keys) {
   $pageRuns = @($results | Where-Object page -eq $pageName)
-  $middle = [math]::Floor($pageRuns.Count / 2)
   [pscustomobject]@{
     page = $pageName
-    performance = @($pageRuns.performance | Sort-Object)[$middle]
-    accessibility = @($pageRuns.accessibility | Sort-Object)[$middle]
-    bestPractices = @($pageRuns.bestPractices | Sort-Object)[$middle]
-    seo = @($pageRuns.seo | Sort-Object)[$middle]
-    lcpMs = @($pageRuns.lcpMs | Sort-Object)[$middle]
-    tbtMs = @($pageRuns.tbtMs | Sort-Object)[$middle]
-    cls = @($pageRuns.cls | Sort-Object)[$middle]
+    performance = Get-Median $pageRuns.performance
+    accessibility = Get-Median $pageRuns.accessibility
+    bestPractices = Get-Median $pageRuns.bestPractices
+    seo = Get-Median $pageRuns.seo
+    lcpMs = Get-Median $pageRuns.lcpMs
+    tbtMs = Get-Median $pageRuns.tbtMs
+    cls = Get-Median $pageRuns.cls
   }
 }
 
