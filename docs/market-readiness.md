@@ -10,6 +10,7 @@ Last updated: 2026-09-17
 - Bug Fix Evidence Lab with three reproduced, diagnosed, fixed, and remotely verified storefront defects.
 - Personalized Product Configurator with structured selection, live preview, validation, real variants, merchant settings, and cart-persistent line-item properties.
 - Case Quantity Purchase Calculator with transparent ceiling logic, edge validation, merchant controls, real variant states, computed cart quantity, and cart-persistent calculation properties.
+- AJAX Cart Drawer with product-form integration, quantity and removal controls, Shopify-authoritative section refresh, variant/property display, loading/error/empty states, shipping progress, mobile layout, and keyboard behavior.
 - Valid Online Store 2.0 schema with configurable settings and addable, removable, reorderable blocks.
 - Variant/media/price/availability/URL synchronization, Ajax add-to-cart, product metafields, and a referenced warranty metaobject.
 - Real Theme Editor verification, desktop/mobile/cart captures, clean Theme Check, case studies, test matrices, and demo scripts.
@@ -34,10 +35,14 @@ Last updated: 2026-09-17
 - Advanced PDP option and validation logic
 - Fixed-pack and case quantity calculators
 - Non-standard whole-unit purchase logic
+- AJAX cart drawers
+- Cart quantity, removal, subtotal, and header-count synchronization
+- Cart loading, inventory-error, and empty states
+- Free-shipping progress interfaces
 
 ## Jobs I should NOT claim yet
 
-- Advanced cart drawers and bundles
+- Bundles and subscription cart logic
 - Shopify app development
 - Admin GraphQL integrations
 - Webhooks
@@ -66,6 +71,9 @@ Last updated: 2026-09-17
 | Line-item properties | [Cart rendering source](../theme/sections/cart.liquid) and [Phase 4 completion evidence](evidence/phase-4-completion.md) |
 | Quantity/purchase calculator | [Case Quantity Purchase Calculator](case-studies/purchase-logic-calculator.md) |
 | Non-standard order logic | [Phase 5 calculation and cart matrix](test-results/phase-5-purchase-logic.md) |
+| AJAX cart drawer | [AJAX Cart Drawer Engineering](case-studies/cart-engineering.md) |
+| Cart quantity/removal | [Phase 6 cart validation matrix](test-results/phase-6-cart-engineering.md) |
+| Cart loading/error/empty states | [Phase 6 completion evidence](evidence/phase-6-completion.md) |
 
 ## READY
 
@@ -86,21 +94,24 @@ Last updated: 2026-09-17
 - Advanced PDP option logic — variant and custom state remain synchronized across desktop and mobile
 - Quantity/purchase calculator — exact and round-up boundaries, limits, sold-out state, and quantity-12 cart submission verified
 - Non-standard order logic — customer requirements translate into whole purchasable units with a visible equation and cart audit properties
+- AJAX cart drawer — additions, quantities, removal, totals, properties, status states, mobile, and keyboard behavior verified
+- Cart error recovery — real inventory ceiling refreshes to Shopify's authoritative quantity and subtotal
+- Free-shipping progress — merchant goal responds to server-rendered cart totals
 
 ## PLAUSIBLE
 
 - Small homepage customizations — adjacent to the completed section, but no broader homepage rebuild is claimed.
-- Basic cart-template edits — Ajax cart behavior is proven, but a full cart-drawer system is not.
+- Conditional cart messaging — shipping-goal behavior is proven, but cross-sell and recommendation rules are not.
 - Basic accessibility repair — count-aware names and variant-specific controls are proven, but a full accessibility audit is not.
 - Small conditional personalization additions — adjacent to the completed module, but uploads and surcharge architectures are not claimed.
 
 ## NOT YET
 
-- Advanced cart engineering, Shopify API, and webhook categories in [job-mapping.md](evidence/job-mapping.md).
+- Bundles, subscriptions, recommendation logic, Shopify API, and webhook categories in [job-mapping.md](evidence/job-mapping.md).
 
 ## Approximate job scope currently supported
 
-Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Ajax/native-cart, Liquid-debugging, inherited-theme repair, configurator, personalization, and fixed-unit purchase-calculator tasks. The evidence now supports contained Shopify functionality projects in the prompt's $300–$1,000 target band; actual pricing still depends on scope, data model, design, and integration risk.
+Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Liquid-debugging, inherited-theme repair, configurator, personalization, fixed-unit purchase-calculator, and AJAX cart-drawer tasks. The evidence now supports contained Shopify functionality projects in the prompt's $300–$1,000 target band; actual pricing still depends on scope, data model, design, and integration risk.
 
 ## Best applications to target now
 
@@ -112,14 +123,15 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 6. Diagnose and repair contained Liquid, cart-state, or conditional-rendering defects.
 7. Build a contained product configurator or personalization flow using real variants and line-item properties.
 8. Build a fixed-pack, case, coverage, or volume calculator that submits a correct whole Shopify quantity.
+9. Build or repair an AJAX cart drawer with quantity, removal, totals, properties, and responsive states.
 
 ## Do not target yet
 
 1. Bundles, subscription logic, or multi-product purchase calculators.
-2. Full cart drawers or advanced cart architecture.
+2. Cross-sell recommendation engines or complex promotional cart rules.
 3. Image-upload personalization or dynamic-pricing architecture without a scoped app/variant design.
 4. Shopify app, API, webhook, checkout, Functions, or Plus work.
 
 ## Next evidence gap
 
-Build Phase 6 — Cart Engineering. It is the next evidence gap for richer cart architecture, line updates/removals, grouped purchasing behavior, and cart-level interaction quality.
+Build Phase 7 — Quality Evidence. The next gap is reproducible Theme Check, Lighthouse, accessibility, and useful CI evidence across the completed storefront modules.

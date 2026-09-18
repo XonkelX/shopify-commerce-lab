@@ -14,14 +14,15 @@ Each completed module will pair real Shopify behavior with source code, testing 
 - Phase 3 — **COMPLETE**
 - Phase 4 — **COMPLETE**
 - Phase 5 — **COMPLETE**
+- Phase 6 — **COMPLETE**
 - Local Shopify CLI: 4.8.0
 - Base theme: Shopify Skeleton theme
-- Current Theme Check: 44 files inspected, 0 offenses
+- Current Theme Check: 45 files inspected, 0 offenses
 - Shopify development store: Oniel Lab
 - Unpublished evidence theme: Shopify Commerce Lab, theme ID `155175092398`
-- Completed client-facing modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, Personalized Product Configurator, and Case Quantity Purchase Calculator
+- Completed client-facing modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, Personalized Product Configurator, Case Quantity Purchase Calculator, and AJAX Cart Drawer
 
-All modules are verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 5 adds transparent whole-case ceiling logic, input limits, real variant availability, computed Shopify cart quantity, and calculation properties rendered in cart.
+All modules are verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 6 adds Shopify-authoritative AJAX cart additions, quantity changes, removal, subtotals, properties, loading/error/empty states, shipping-goal progress, and modal keyboard behavior.
 
 ## Live preview
 
@@ -56,6 +57,7 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 - [Shopify Bug Fix Evidence Lab](docs/case-studies/bug-fix-lab.md)
 - [Personalized Product Configurator](docs/case-studies/product-configurator.md)
 - [Case Quantity Purchase Calculator](docs/case-studies/purchase-logic-calculator.md)
+- [AJAX Cart Drawer Engineering](docs/case-studies/cart-engineering.md)
 
 ## Supported job categories
 
@@ -74,6 +76,8 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 - Advanced PDP selection and validation flows
 - Fixed-pack, case, and purchase-quantity calculators
 - Transparent whole-unit rounding and cart audit properties
+- AJAX cart drawer, quantity updates, removal, and authoritative subtotal synchronization
+- Cart loading, inventory-error, empty, mobile, and keyboard states
 
 See [`docs/evidence/job-mapping.md`](docs/evidence/job-mapping.md) for exact readiness labels and exclusions.
 

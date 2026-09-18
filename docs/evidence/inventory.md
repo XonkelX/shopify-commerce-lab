@@ -10,7 +10,7 @@ Last updated: 2026-09-17
 | Bug Fix Lab | Complete | Yes — 3 fixes | Verified unpublished product/cart previews | Yes | Authenticated before/after task captures | Yes | Theme Check + browser matrix | Yes |
 | Product configurator | Complete | Yes | Verified unpublished product preview | Yes | Authenticated desktop/mobile/editor/cart captures | Yes | Theme Check + browser matrix | Yes |
 | Quantity/purchase logic | Complete | Yes | Verified unpublished Theme Editor preview and native cart flow | Yes | Authenticated mobile/editor/cart captures | Yes | Theme Check + calculation/cart matrix | Yes |
-| Cart engineering | Not started | No | No | No | No | No | No | No |
+| Cart engineering | Complete | Yes | Verified unpublished PDP and mobile Theme Editor flow | Yes | Authenticated populated/error/empty/mobile captures | Yes | Theme Check + AJAX cart matrix | Yes |
 | Quality evidence | Not started | No | No | No | No | No | No | No |
 | Portfolio packaging | Not started | No | No | No | No | No | No | No |
 | Integration Lab | Not started | No | No | No | No | No | No | No |
@@ -37,6 +37,8 @@ Last updated: 2026-09-17
 - Phase 5 verifies whole-case ceiling logic, calculation transparency, range validation, variant availability, and native cart submission with the computed quantity.
 - The verified 125-bottle, 10%-reserve flow submitted 12 Navy / 32 oz cases, produced a $480 cart subtotal, and preserved all four calculation properties.
 - Phase 5 mobile Theme Editor and cart captures are preserved as authenticated task deliverables.
+- Phase 6 verifies AJAX add, button and typed quantity updates, removal, subtotal/count synchronization, variant and property rendering, loading, real inventory errors, empty state, and a configurable shipping goal.
+- Phase 6 populated, error, empty, corrected-layout, and final mobile captures are preserved as authenticated task deliverables.
 
 ## Tooling limitation
 
