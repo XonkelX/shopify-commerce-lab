@@ -1,0 +1,158 @@
+{% liquid
+  assign shipping_goal_cents = section.settings.free_shipping_goal | times: 100
+  assign shipping_remaining = shipping_goal_cents | minus: cart.total_price
+  assign shipping_progress = cart.total_price | times: 100 | divided_by: shipping_goal_cents
+  if shipping_progress > 100
+    assign shipping_progress = 100
+  endif
+%}
+
+<dialog
+  id="CartDrawerRoot"
+  class="cart-drawer-root full-width"
+  data-cart-drawer-root
+  data-section-id="{{ section.id }}"
+  aria-labelledby="CartDrawerHeading"
+  aria-describedby="CartDrawerStatus"
+>
+  <button class="cart-drawer__overlay" type="button" data-cart-drawer-close tabindex="-1" aria-label="Dismiss cart"></button>
+
+  <aside
+    id="CartDrawer"
+    class="cart-drawer"
+    tabindex="-1"
+  >
+    <div class="cart-drawer__header">
+      <div>
+        <p>Your selection</p>
+        <h2 id="CartDrawerHeading">Cart <span>({{ cart.item_count }})</span></h2>
+      </div>
+      <button class="cart-drawer__close" type="button" data-cart-drawer-close aria-label="Close cart">&times;</button>
+    </div>
+
+    <div id="CartDrawerStatus" class="cart-drawer__status" role="status" aria-live="polite" data-cart-drawer-status></div>
+    <div class="cart-drawer__error" role="alert" data-cart-drawer-error hidden></div>
+
+    {% if cart.item_count == 0 %}
+      <div class="cart-drawer__empty" data-cart-drawer-empty>
+        <span aria-hidden="true">0</span>
+        <h3>Your cart is ready for an idea</h3>
+        <p>Add a bottle configuration and its full variant and customization details will appear here.</p>
+        <a href="{{ routes.all_products_collection_url }}">Explore products</a>
+      </div>
+    {% else %}
+      <div class="cart-drawer__body">
+        <section class="cart-goal" aria-label="Free-shipping progress">
+          {% if shipping_remaining > 0 %}
+            <p>Add <strong>{{ shipping_remaining | money }}</strong> to reach the free-shipping goal.</p>
+          {% else %}
+            <p><strong>Free-shipping goal reached.</strong> Shipping rates are confirmed at checkout.</p>
+          {% endif %}
+          <div class="cart-goal__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ shipping_progress }}" aria-label="{{ shipping_progress }}% of free-shipping goal">
+            <span style="width: {{ shipping_progress }}%"></span>
+          </div>
+          <small>Merchant goal: {{ shipping_goal_cents | money }}</small>
+        </section>
+
+        <div class="cart-drawer__items" role="list">
+          {% for item in cart.items %}
+            <article class="cart-drawer-item" role="listitem" data-cart-line="{{ forloop.index }}">
+              <a class="cart-drawer-item__media" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+                {% if item.image %}
+                  {{ item.image | image_url: width: 180 | image_tag: loading: 'lazy', widths: '90, 180', sizes: '90px' }}
+                {% endif %}
+              </a>
+
+              <div class="cart-drawer-item__content">
+                <a class="cart-drawer-item__title" href="{{ item.url }}">{{ item.product.title | escape }}</a>
+
+                {% unless item.product.has_only_default_variant %}
+                  <p class="cart-drawer-item__variant">{{ item.variant.title | escape }}</p>
+                {% endunless %}
+
+                {%- capture drawer_properties -%}
+                  {%- for property in item.properties -%}
+                    {%- assign property_name_start = property.first | slice: 0 -%}
+                    {%- if property.last != blank and property_name_start != '_' -%}
+                      <div><dt>{{ property.first | escape }}</dt><dd>{{ property.last | escape }}</dd></div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endcapture -%}
+                {% if drawer_properties != blank %}<dl class="cart-drawer-item__properties">{{ drawer_properties }}</dl>{% endif %}
+
+                <div class="cart-drawer-item__footer">
+                  <div class="cart-drawer-quantity" aria-label="Quantity for {{ item.product.title | escape }}">
+                    <button type="button" data-cart-quantity="{{ item.quantity | minus: 1 }}" data-line="{{ forloop.index }}" aria-label="Decrease {{ item.product.title | escape }} quantity">&minus;</button>
+                    <input type="number" min="0" max="999" step="1" value="{{ item.quantity }}" data-cart-quantity-input data-line="{{ forloop.index }}" aria-label="{{ item.product.title | escape }} quantity">
+                    <button type="button" data-cart-quantity="{{ item.quantity | plus: 1 }}" data-line="{{ forloop.index }}" aria-label="Increase {{ item.product.title | escape }} quantity">+</button>
+                  </div>
+                  <strong>{{ item.final_line_price | money }}</strong>
+                </div>
+
+                <button class="cart-drawer-item__remove" type="button" data-cart-remove data-line="{{ forloop.index }}" aria-label="Remove {{ item.product.title | escape }} — {{ item.variant.title | escape }}">Remove</button>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="cart-drawer__footer">
+        <div><span>Subtotal</span><strong>{{ cart.total_price | money }}</strong></div>
+        <p>Taxes, discounts, and shipping are calculated at checkout.</p>
+        <a class="cart-drawer__checkout" href="{{ routes.cart_url }}">Review cart</a>
+        <form action="{{ routes.cart_url }}" method="post"><button class="cart-drawer__checkout cart-drawer__checkout--primary" type="submit" name="checkout">Checkout</button></form>
+      </div>
+    {% endif %}
+
+    <div class="cart-drawer__loading" aria-hidden="true"><span></span></div>
+  </aside>
+</dialog>
+
+{% stylesheet %}
+  .cart-drawer-root{position:fixed;z-index:1000;inset:0;display:block;width:100%;max-width:none;height:100%;max-height:none;margin:0;padding:0;border:0;background:transparent;overflow:hidden}.cart-drawer-root:not([open]){display:none}.cart-drawer-root::backdrop{background:transparent}.cart-drawer__overlay{position:absolute;inset:0;border:0;background:rgba(16,22,18,.48);opacity:0;cursor:pointer;transition:opacity .22s ease}.cart-drawer-root.is-open .cart-drawer__overlay{opacity:1}.cart-drawer{position:absolute;top:0;right:0;display:flex;width:100%;max-width:480px;height:100%;flex-direction:column;background:#fffdf8;color:#1f2721;box-shadow:-18px 0 60px rgba(22,30,24,.2);transform:translateX(100%);transition:transform .24s ease;outline:0}.cart-drawer-root.is-open .cart-drawer{transform:translateX(0)}.cart-drawer__header{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid rgba(31,39,33,.12)}.cart-drawer__header p{margin:0 0 3px;color:#b95538;font-size:.68rem;font-weight:760;letter-spacing:.13em;text-transform:uppercase}.cart-drawer__header h2{margin:0;font-size:1.55rem;letter-spacing:-.035em}.cart-drawer__header h2 span{color:#687168;font-size:.9rem;font-weight:600}.cart-drawer__close{display:grid;width:42px;height:42px;place-items:center;border:1px solid rgba(31,39,33,.14);border-radius:50%;background:transparent;color:inherit;cursor:pointer;font-size:1.8rem;line-height:1}.cart-drawer__status{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.cart-drawer__error{margin:12px 24px 0;padding:11px 13px;border-radius:10px;background:#f8dfda;color:#8b3025;font-size:.82rem;font-weight:680}.cart-drawer__body{min-height:0;overflow-y:auto;padding:18px 24px 26px}.cart-goal{margin-bottom:22px;padding:15px 16px;border-radius:14px;background:#f3eee4}.cart-goal p{margin:0 0 10px;font-size:.84rem}.cart-goal__track{height:7px;overflow:hidden;border-radius:999px;background:#d9d2c5}.cart-goal__track span{display:block;height:100%;border-radius:inherit;background:#b95538;transition:width .25s ease}.cart-goal small{display:block;margin-top:8px;color:#687168;font-size:.68rem}.cart-drawer__items{display:grid;gap:14px}.cart-drawer-item{display:grid;grid-template-columns:90px minmax(0,1fr);gap:14px;padding-bottom:18px;border-bottom:1px solid rgba(31,39,33,.1)}.cart-drawer-item__media{overflow:hidden;border-radius:13px;background:#eee8dc;aspect-ratio:1}.cart-drawer-item__media img{width:100%;height:100%;object-fit:cover}.cart-drawer-item__title{color:inherit;font-size:.93rem;font-weight:760;text-decoration:none}.cart-drawer-item__variant{margin:3px 0 8px;color:#687168;font-size:.76rem}.cart-drawer-item__properties{display:grid;gap:4px;margin:8px 0;padding:9px 10px;border-radius:9px;background:#f5f1e9}.cart-drawer-item__properties div{display:grid;grid-template-columns:minmax(88px,auto) 1fr;gap:7px}.cart-drawer-item__properties dt{color:#687168;font-size:.68rem;font-weight:680}.cart-drawer-item__properties dt::after{content:':'}.cart-drawer-item__properties dd{margin:0;font-size:.68rem;overflow-wrap:anywhere}.cart-drawer-item__footer{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:10px}.cart-drawer-quantity{display:grid;grid-template-columns:34px 42px 34px;overflow:hidden;border:1px solid rgba(31,39,33,.16);border-radius:10px}.cart-drawer-quantity button,.cart-drawer-quantity input{width:100%;height:34px;border:0;background:#fff;color:inherit;text-align:center}.cart-drawer-quantity button{cursor:pointer;font-size:1rem}.cart-drawer-quantity input{padding:0;appearance:textfield}.cart-drawer-quantity input::-webkit-inner-spin-button{appearance:none}.cart-drawer-item__footer strong{font-size:.9rem}.cart-drawer-item__remove{margin-top:9px;padding:0;border:0;background:transparent;color:#9b3a2e;cursor:pointer;font-size:.72rem;text-decoration:underline;text-underline-offset:3px}.cart-drawer__footer{margin-top:auto;padding:20px 24px 24px;border-top:1px solid rgba(31,39,33,.12);background:#fffdf8}.cart-drawer__footer>div{display:flex;justify-content:space-between;gap:20px;font-size:1.02rem}.cart-drawer__footer p{margin:7px 0 14px;color:#687168;font-size:.72rem}.cart-drawer__footer form{margin:0}.cart-drawer__checkout{display:flex;min-height:48px;align-items:center;justify-content:center;margin-top:9px;border:1px solid #1f2721;border-radius:11px;color:#1f2721;font-size:.84rem;font-weight:740;text-decoration:none}.cart-drawer__checkout--primary{width:100%;background:#1f2721;color:#fff;cursor:pointer}.cart-drawer__empty{display:grid;min-height:0;flex:1;align-content:center;justify-items:start;padding:36px 24px}.cart-drawer__empty>span{display:grid;width:52px;height:52px;margin-bottom:22px;place-items:center;border-radius:50%;background:#1f2721;color:#fff;font-weight:780}.cart-drawer__empty h3{margin:0 0 9px;font-size:1.6rem}.cart-drawer__empty p{max-width:36ch;margin:0 0 22px;color:#687168;line-height:1.55}.cart-drawer__empty a{display:inline-flex;min-height:46px;align-items:center;padding:0 18px;border-radius:10px;background:#b95538;color:#fff;font-weight:740;text-decoration:none}.cart-drawer__loading{position:absolute;inset:0;display:grid;place-items:center;background:rgba(255,253,248,.72);opacity:0;pointer-events:none;transition:opacity .15s ease}.cart-drawer__loading span{width:34px;height:34px;border:3px solid rgba(31,39,33,.18);border-top-color:#b95538;border-radius:50%;animation:cart-drawer-spin .7s linear infinite}.cart-drawer[aria-busy="true"] .cart-drawer__loading{opacity:1;pointer-events:auto}.cart-drawer button:focus-visible,.cart-drawer a:focus-visible,.cart-drawer input:focus-visible{outline:3px solid #d97857;outline-offset:3px}html.cart-drawer-open{overflow:hidden}@keyframes cart-drawer-spin{to{transform:rotate(360deg)}}@media(max-width:520px){.cart-drawer__header,.cart-drawer__body,.cart-drawer__footer{padding-left:18px;padding-right:18px}.cart-drawer-item{grid-template-columns:78px minmax(0,1fr)}.cart-drawer-item__properties div{grid-template-columns:1fr}.cart-drawer{max-width:none}}@media(prefers-reduced-motion:reduce){.cart-drawer,.cart-drawer__overlay,.cart-goal__track span,.cart-drawer__loading span{transition:none;animation:none}}
+{% endstylesheet %}
+
+<script>
+  (()=>{
+    if(window.ShopifyCartDrawer)return;
+    let lastTrigger=null,quantityTimer=null;
+    const rootUrl=()=>window.Shopify?.routes?.root||'/';
+    const root=()=>document.querySelector('[data-cart-drawer-root]');
+    const panel=()=>root()?.querySelector('.cart-drawer');
+    const announce=(message)=>{const status=root()?.querySelector('[data-cart-drawer-status]');if(status)status.textContent=message||''};
+    const showError=(message)=>{const error=root()?.querySelector('[data-cart-drawer-error]');if(!error)return;error.textContent=message||'The cart could not be updated. Please try again.';error.hidden=false};
+    const clearError=()=>{const error=root()?.querySelector('[data-cart-drawer-error]');if(error){error.textContent='';error.hidden=true}};
+    const setBusy=(busy,message)=>{const drawer=panel();if(!drawer)return;drawer.setAttribute('aria-busy',String(busy));drawer.querySelectorAll('button,input,a').forEach((control)=>{if(control.matches('button,input'))control.disabled=busy});announce(message||'')};
+    const updateHeader=async()=>{const response=await fetch(`${rootUrl()}cart.js`,{headers:{Accept:'application/json'}});if(!response.ok)return;const cart=await response.json();document.querySelectorAll('[data-cart-count]').forEach((count)=>{count.textContent=cart.item_count;count.hidden=cart.item_count===0});document.querySelectorAll('[data-cart-link]').forEach((link)=>link.setAttribute('aria-label',`Cart, ${cart.item_count} ${cart.item_count===1?'item':'items'}`))};
+    const open=(trigger)=>{const drawerRoot=root();if(!drawerRoot)return;lastTrigger=trigger||document.activeElement;if(!drawerRoot.open)drawerRoot.showModal();drawerRoot.classList.add('is-open');document.documentElement.classList.add('cart-drawer-open');requestAnimationFrame(()=>drawerRoot.querySelector('[data-cart-drawer-close]:not(.cart-drawer__overlay)')?.focus())};
+    const close=()=>{const drawerRoot=root();if(!drawerRoot)return;drawerRoot.classList.remove('is-open');if(drawerRoot.open)drawerRoot.close();document.documentElement.classList.remove('cart-drawer-open');if(lastTrigger?.isConnected)lastTrigger.focus()};
+    const refresh=async(keepOpen=true)=>{const current=root();if(!current)return;const sectionId=current.dataset.sectionId;const response=await fetch(`${rootUrl()}cart?section_id=${encodeURIComponent(sectionId)}`,{headers:{'X-Requested-With':'XMLHttpRequest'}});if(!response.ok)throw new Error('The updated cart could not be loaded.');const html=await response.text();const documentFragment=new DOMParser().parseFromString(html,'text/html');const replacement=documentFragment.querySelector('[data-cart-drawer-root]');if(!replacement)throw new Error('The cart response was incomplete.');current.replaceWith(replacement);await updateHeader();if(keepOpen)open(lastTrigger)};
+    const change=async(line,quantity)=>{const value=Number(quantity);if(!Number.isInteger(value)||value<0||value>999){showError('Enter a whole quantity between 0 and 999.');return}clearError();setBusy(true,value===0?'Removing item…':'Updating quantity…');try{const response=await fetch(`${rootUrl()}cart/change.js`,{method:'POST',headers:{Accept:'application/json','Content-Type':'application/json','X-Requested-With':'XMLHttpRequest'},body:JSON.stringify({line:Number(line),quantity:value})});const result=await response.json();if(!response.ok)throw new Error(result.description||result.message||'The quantity could not be updated.');await refresh(true);announce(value===0?'Item removed.':'Quantity and subtotal updated.')}catch(error){try{await refresh(true)}catch(refreshError){}showError(error.message||'The cart could not be updated. Please try again.');setBusy(false,'Cart update failed.')}};
+    const add=async(form,trigger)=>{open(trigger||form.querySelector('[type="submit"]'));clearError();setBusy(true,'Adding item…');try{const response=await fetch(`${rootUrl()}cart/add.js`,{method:'POST',headers:{Accept:'application/json','X-Requested-With':'XMLHttpRequest'},body:new FormData(form)});const result=await response.json();if(!response.ok)throw new Error(result.description||result.message||'This item could not be added.');await refresh(true);announce(`${result.product_title||'Item'} added to cart.`);return result}catch(error){showError(error.message||'This item could not be added. Please try again.');setBusy(false,'Add to cart failed.');throw error}};
+    document.addEventListener('click',(event)=>{const cartLink=event.target.closest('[data-cart-link]');if(cartLink){event.preventDefault();open(cartLink);return}const closer=event.target.closest('[data-cart-drawer-close]');if(closer){event.preventDefault();close();return}const remove=event.target.closest('[data-cart-remove]');if(remove){change(remove.dataset.line,0);return}const quantity=event.target.closest('[data-cart-quantity]');if(quantity)change(quantity.dataset.line,quantity.dataset.cartQuantity)});
+    document.addEventListener('input',(event)=>{const input=event.target.closest('[data-cart-quantity-input]');if(!input)return;clearTimeout(quantityTimer);quantityTimer=setTimeout(()=>change(input.dataset.line,input.value),500)});
+    document.addEventListener('change',(event)=>{const input=event.target.closest('[data-cart-quantity-input]');if(!input)return;clearTimeout(quantityTimer);change(input.dataset.line,input.value)});
+    document.addEventListener('submit',(event)=>{const form=event.target.closest('form[action*="/cart/add"]');if(!form||event.defaultPrevented)return;event.preventDefault();add(form,event.submitter).catch(()=>{})});
+    document.addEventListener('keydown',(event)=>{const drawerRoot=root();if(!drawerRoot?.classList.contains('is-open'))return;const quantityInput=event.target.closest('[data-cart-quantity-input]');if(quantityInput&&event.key==='Enter'){event.preventDefault();clearTimeout(quantityTimer);change(quantityInput.dataset.line,quantityInput.value);return}if(event.key==='Escape'){event.preventDefault();close();return}if(event.key!=='Tab')return;const focusable=[...drawerRoot.querySelectorAll('button:not([disabled]):not([tabindex="-1"]),a[href],input:not([disabled])')].filter((item)=>item.offsetParent!==null);if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}});
+    window.ShopifyCartDrawer={open,close,refresh,change,add};
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": [
+    {
+      "type": "range",
+      "id": "free_shipping_goal",
+      "label": "Free-shipping goal",
+      "info": "Match this display goal to the store's shipping-rate configuration.",
+      "min": 25,
+      "max": 250,
+      "step": 5,
+      "unit": "$",
+      "default": 75
+    }
+  ]
+}
+{% endschema %}

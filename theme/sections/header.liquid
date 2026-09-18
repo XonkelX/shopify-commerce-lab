@@ -19,6 +19,8 @@
     <a
       href="{{ routes.cart_url }}"
       aria-label="Cart, {{ cart.item_count }} {% if cart.item_count == 1 %}item{% else %}items{% endif %}"
+      aria-haspopup="dialog"
+      aria-controls="CartDrawer"
       data-cart-link
     >
       <sup data-cart-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</sup>

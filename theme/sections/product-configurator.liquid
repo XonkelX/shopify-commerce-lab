@@ -154,6 +154,7 @@
         if (personalization && !/^[A-Za-z0-9 .&'\-]+$/.test(personalization)) { message.textContent = 'Use letters, numbers, spaces, and simple punctuation only.'; message.classList.add('is-error'); textInput.focus(); return; }
         if (!Number.isInteger(quantity) || quantity < 1) { message.textContent = 'Enter a quantity of 1 or more.'; message.classList.add('is-error'); message.focus(); return; }
         submit.disabled = true; submitLabel.textContent = 'Adding…'; message.textContent = '';
+        if(window.ShopifyCartDrawer){window.ShopifyCartDrawer.add(form,submit).then(()=>{submitLabel.textContent='Added';}).catch((error)=>{message.textContent=error.message||'This item could not be added.';message.classList.add('is-error');submit.disabled=false;submitLabel.textContent='Add personalized bottle';});return;}
         HTMLFormElement.prototype.submit.call(form);
       });
       renderVariant(); renderText(); renderStyle();

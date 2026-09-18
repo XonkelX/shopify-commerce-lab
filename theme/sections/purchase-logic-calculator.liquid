@@ -163,7 +163,7 @@
       };
       groups.forEach((group)=>group.querySelectorAll('input').forEach((input)=>input.addEventListener('change',renderVariant)));
       unitsInput.addEventListener('input',calculate); reserveInput.addEventListener('input',calculate);
-      form.addEventListener('submit',(event)=>{ event.preventDefault(); calculate(); if(!calculation||!activeVariant?.available)return; submit.disabled=true; submitLabel.textContent='Adding…'; HTMLFormElement.prototype.submit.call(form); });
+      form.addEventListener('submit',(event)=>{ event.preventDefault(); calculate(); if(!calculation||!activeVariant?.available)return; submit.disabled=true; submitLabel.textContent='Adding…'; if(window.ShopifyCartDrawer){window.ShopifyCartDrawer.add(form,submit).then(()=>{submitLabel.textContent='Added';}).catch((error)=>{message.textContent=error.message||'This item could not be added.';submit.disabled=false;submitLabel.textContent=`Add ${calculation.cases} ${calculation.cases===1?'case':'cases'}`;});return;} HTMLFormElement.prototype.submit.call(form); });
       renderVariant();
     });
   })();
