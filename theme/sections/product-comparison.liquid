@@ -34,7 +34,7 @@
     </div>
 
     {% if section.blocks.size > 0 %}
-      <div class="comparison-grid" role="list" aria-label="{{ section.settings.heading | default: 'Product comparison' | escape }}">
+      <div class="comparison-grid">
         {% for block in section.blocks %}
           {% liquid
             assign selected_product = block.settings.product
@@ -54,7 +54,7 @@
             endif
           %}
 
-          <article class="comparison-card" role="listitem" {{ block.shopify_attributes }}>
+          <article class="comparison-card" {{ block.shopify_attributes }}>
             <div class="comparison-card__media comparison-card__media--{{ section.settings.image_ratio }}">
               {% if block.settings.badge != blank %}
                 <span class="comparison-card__badge">{{ block.settings.badge | escape }}</span>

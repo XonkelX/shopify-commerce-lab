@@ -16,8 +16,8 @@
             class: 'collection-product__image',
             image: product.featured_image,
             url: product.url,
-            width: 400,
-            height: 400,
+            width: 800,
+            height: 800,
             crop: 'center'
           %}
         {% endif %}
@@ -35,7 +35,14 @@
 {% stylesheet %}
   .collection-products {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    gap: 1.5rem;
+  }
+
+  .collection-product__content a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
   }
 {% endstylesheet %}
 

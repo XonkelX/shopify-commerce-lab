@@ -5,6 +5,7 @@
 node_modules/
 .playwright-cli/
 output/playwright/
+output/lighthouse/
 *.log
 .DS_Store
 Thumbs.db

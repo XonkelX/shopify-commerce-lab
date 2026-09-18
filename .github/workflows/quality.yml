@@ -1,0 +1,30 @@
+name: Theme quality
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  theme-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shopify Theme Check
+        uses: shopify/theme-check-action@v2
+        with:
+          theme_root: ./theme
+          flags: --fail-level warning
+          token: ${{ github.token }}
+          base: ${{ github.event.repository.default_branch }}
+
+  repository-quality:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON, schemas, and quality invariants
+        shell: pwsh
+        run: ./scripts/verify-phase-7.ps1 -SkipThemeCheck
