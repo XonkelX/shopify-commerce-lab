@@ -1,0 +1,194 @@
+{% liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  assign selected_media = selected_variant.featured_media | default: product.featured_media
+%}
+
+<section
+  id="PurchaseLogic-{{ section.id }}"
+  class="purchase-logic"
+  style="--pl-accent:{{ section.settings.accent_color }};--pl-bg:{{ section.settings.background_color }};--pl-card:{{ section.settings.card_color }};--pl-text:{{ section.settings.text_color }};--pl-muted:{{ section.settings.muted_color }};"
+  data-units-per-case="{{ section.settings.units_per_case }}"
+  data-max-units="{{ section.settings.max_units }}"
+  data-currency="{{ cart.currency.iso_code | default: shop.currency }}"
+>
+  <header class="purchase-logic__intro">
+    <p>{{ section.settings.eyebrow | escape }}</p>
+    <h1>{{ product.title | escape }}</h1>
+    <div>{{ section.settings.intro }}</div>
+  </header>
+
+  <div class="purchase-logic__layout">
+    <div class="pl-product">
+      <div class="pl-product__media">
+        {% if product.media.size > 0 %}
+          {% for media in product.media %}
+            <figure data-pl-media="{{ media.id }}"{% unless media.id == selected_media.id %} hidden{% endunless %}>
+              {{ media.preview_image | image_url: width: 1200 | image_tag: widths: '480, 720, 960, 1200', sizes: '(min-width: 900px) 42vw, 100vw', loading: 'eager', alt: media.alt | default: product.title }}
+            </figure>
+          {% endfor %}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'pl-product__placeholder' }}
+        {% endif %}
+      </div>
+      <div class="pl-product__facts">
+        <span data-pl-variant>{{ selected_variant.title | escape }}</span>
+        <strong data-pl-price>{{ selected_variant.price | money }} per case</strong>
+        <span data-pl-availability>{% if selected_variant.available %}Available{% else %}Sold out{% endif %}</span>
+      </div>
+      <p>{{ section.settings.case_note | escape }}</p>
+    </div>
+
+    <form class="pl-form" action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="id" value="{{ selected_variant.id }}" data-pl-variant-id>
+      <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
+      <input type="hidden" name="quantity" value="1" data-pl-quantity>
+      <input type="hidden" name="properties[Requested bottles]" value="{{ section.settings.default_units }}" data-pl-property-units>
+      <input type="hidden" name="properties[Reserve percent]" value="{{ section.settings.default_reserve }}%" data-pl-property-reserve>
+      <input type="hidden" name="properties[Bottles per case]" value="{{ section.settings.units_per_case }}" data-pl-property-coverage>
+      <input type="hidden" name="properties[Purchase calculation]" value="" data-pl-property-rule>
+
+      <div class="pl-step">
+        <div class="pl-step__heading"><span>1</span><div><p>Choose the case</p><h2>Bottle specification</h2></div></div>
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <fieldset class="pl-option" data-pl-option="{{ forloop.index0 }}">
+              <legend>{{ option.name | escape }}: <span data-pl-option-value>{{ option.selected_value | escape }}</span></legend>
+              <div>
+                {% for value in option.values %}
+                  {% assign option_id = section.id | append: '-pl-' | append: option.position | append: '-' | append: forloop.index %}
+                  <input class="visually-hidden" type="radio" id="{{ option_id }}" name="pl-options[{{ option.name | escape }}]" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}>
+                  <label for="{{ option_id }}">{{ value | escape }}</label>
+                {% endfor %}
+              </div>
+            </fieldset>
+          {% endfor %}
+        {% endunless %}
+      </div>
+
+      <div class="pl-step">
+        <div class="pl-step__heading"><span>2</span><div><p>Plan the order</p><h2>Case calculator</h2></div></div>
+        <div class="pl-inputs">
+          <label>
+            <span>{{ section.settings.units_label | escape }}</span>
+            <input type="number" min="1" max="{{ section.settings.max_units }}" step="1" value="{{ section.settings.default_units }}" inputmode="numeric" data-pl-units>
+            <small>Whole bottles, 1–{{ section.settings.max_units }}</small>
+          </label>
+          <label>
+            <span>Reserve allowance</span>
+            <span class="pl-suffix"><input type="number" min="0" max="50" step="0.5" value="{{ section.settings.default_reserve }}" inputmode="decimal" data-pl-reserve><b>%</b></span>
+            <small>Adds extras for loss or late guests</small>
+          </label>
+        </div>
+        <p class="pl-rule">Each purchasable case contains <strong>{{ section.settings.units_per_case }} bottles</strong>. Partial cases always round up.</p>
+        <div class="pl-message" role="alert" aria-live="polite" data-pl-message></div>
+      </div>
+
+      <div class="pl-result" aria-live="polite">
+        <div class="pl-result__hero"><p>Purchase quantity</p><strong><span data-pl-cases>1</span> <span data-pl-case-word>case</span></strong></div>
+        <dl>
+          <div><dt>Requested</dt><dd><span data-pl-requested>0</span> <span data-pl-requested-word>bottles</span></dd></div>
+          <div><dt>Reserve</dt><dd><span data-pl-buffer>0</span> <span data-pl-buffer-word>bottles</span></dd></div>
+          <div><dt>Planned need</dt><dd><span data-pl-total>0</span> <span data-pl-total-word>bottles</span></dd></div>
+          <div><dt>Raw case requirement</dt><dd data-pl-raw>0</dd></div>
+          <div><dt>Purchased capacity</dt><dd><span data-pl-capacity>0</span> <span data-pl-capacity-word>bottles</span></dd></div>
+          <div><dt>Capacity remaining</dt><dd><span data-pl-surplus>0</span> <span data-pl-surplus-word>bottles</span></dd></div>
+        </dl>
+        <p class="pl-equation" data-pl-equation></p>
+        <p class="pl-estimate">Estimated merchandise total: <strong data-pl-estimate>—</strong></p>
+        <button type="submit" data-pl-submit><span data-pl-submit-label>Add calculated cases</span></button>
+        <p class="pl-price-note">Final cart total uses the selected Shopify variant price × whole-case quantity.</p>
+      </div>
+    </form>
+  </div>
+
+  <script type="application/json" data-pl-variants>
+    [{% for variant in product.variants %}{"id":{{ variant.id | json }},"available":{{ variant.available | json }},"price":{{ variant.price | json }},"priceFormatted":{{ variant.price | money | json }},"options":{{ variant.options | json }},"featuredMediaId":{{ variant.featured_media.id | default: 0 | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}]
+  </script>
+</section>
+
+{% stylesheet %}
+  .purchase-logic{grid-column:1/-1;padding:clamp(48px,7vw,96px) max(18px,calc((100vw - 1240px)/2));background:var(--pl-bg);color:var(--pl-text)}
+  .purchase-logic *{box-sizing:border-box}.purchase-logic.purchase-logic .purchase-logic__intro{display:block!important;height:auto!important;max-width:780px;margin:0 0 42px}.purchase-logic__intro>p{margin:0 0 10px;color:var(--pl-accent);font-size:.76rem;font-weight:760;letter-spacing:.15em;text-transform:uppercase}.purchase-logic__intro h1{margin:0;font-size:clamp(2.6rem,6vw,5.3rem);line-height:.96;letter-spacing:-.055em;overflow-wrap:anywhere}.purchase-logic__intro>div{max-width:58ch;margin-top:18px;color:var(--pl-muted);line-height:1.6}.purchase-logic__layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(440px,1fr);gap:clamp(34px,6vw,78px);align-items:start}.pl-product{position:sticky;top:24px}.pl-product__media{overflow:hidden;border-radius:28px;background:#ece6d9;aspect-ratio:1}.pl-product__media figure{width:100%;height:100%;margin:0}.pl-product__media figure[hidden]{display:none}.pl-product__media img{width:100%;height:100%;object-fit:cover}.pl-product__placeholder{width:100%;height:100%;padding:15%;color:#b8ae9d}.pl-product__facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.pl-product__facts span,.pl-product__facts strong{padding:8px 12px;border-radius:999px;background:var(--pl-card);font-size:.8rem}.pl-product__facts strong{background:var(--pl-text);color:var(--pl-card)}.pl-product>p{color:var(--pl-muted);font-size:.8rem;line-height:1.5}.pl-form{display:grid;gap:18px;min-width:0}.pl-step,.pl-result{padding:24px;border:1px solid rgba(31,39,33,.12);border-radius:20px;background:var(--pl-card)}.pl-step__heading{display:flex;gap:13px;align-items:center;margin-bottom:21px}.pl-step__heading>span{display:grid;flex:0 0 34px;width:34px;height:34px;place-items:center;border-radius:50%;background:var(--pl-text);color:var(--pl-card);font-weight:760}.pl-step__heading p{margin:0;color:var(--pl-accent);font-size:.7rem;font-weight:740;letter-spacing:.11em;text-transform:uppercase}.pl-step__heading h2{margin:2px 0 0;font-size:1.25rem}.pl-option{min-width:0;margin:0 0 19px;padding:0;border:0}.pl-option legend{margin-bottom:10px;font-size:.86rem;font-weight:720}.pl-option legend span{color:var(--pl-muted);font-weight:520}.pl-option>div{display:flex;flex-wrap:wrap;gap:9px}.pl-option label{display:inline-flex;min-height:43px;align-items:center;justify-content:center;padding:8px 14px;border:1px solid rgba(31,39,33,.18);border-radius:999px;cursor:pointer;font-size:.86rem;font-weight:680}.pl-option input:checked+label{border-color:var(--pl-text);background:var(--pl-text);color:var(--pl-card);box-shadow:0 0 0 2px var(--pl-card),0 0 0 4px var(--pl-text)}.pl-option input:disabled+label{cursor:not-allowed;opacity:.34;text-decoration:line-through}.pl-inputs{display:grid;grid-template-columns:1fr 1fr;gap:14px}.pl-inputs label{display:grid;gap:7px}.pl-inputs label>span:first-child{font-size:.84rem;font-weight:720}.pl-inputs input{width:100%;min-height:50px;padding:0 13px;border:1px solid rgba(31,39,33,.18);border-radius:12px;background:#fff;color:var(--pl-text);font:inherit}.pl-inputs small{color:var(--pl-muted);font-size:.72rem;line-height:1.4}.pl-suffix{position:relative}.pl-suffix input{padding-right:36px}.pl-suffix b{position:absolute;top:50%;right:13px;transform:translateY(-50%);color:var(--pl-muted)}.pl-rule{margin:20px 0 0;padding:13px 14px;border-radius:12px;background:var(--pl-bg);color:var(--pl-muted);font-size:.82rem;line-height:1.5}.pl-message{min-height:22px;margin-top:10px;color:#9b3a2e;font-size:.84rem;font-weight:680}.pl-result{background:var(--pl-text);color:#fff}.pl-result__hero{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.16)}.pl-result__hero p{margin:0;color:rgba(255,255,255,.65);font-size:.72rem;font-weight:720;letter-spacing:.1em;text-transform:uppercase}.pl-result__hero strong{font-size:clamp(2rem,5vw,3.5rem);line-height:.9}.pl-result dl{display:grid;grid-template-columns:1fr 1fr;gap:0 22px;margin:18px 0}.pl-result dl div{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.8rem}.pl-result dt{color:rgba(255,255,255,.64)}.pl-result dd{margin:0;text-align:right;font-weight:700}.pl-equation{padding:13px 14px;border-radius:10px;background:rgba(255,255,255,.08);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.78rem;line-height:1.5}.pl-estimate{display:flex;justify-content:space-between;gap:16px;margin:18px 0}.pl-result button{width:100%;min-height:56px;border:0;border-radius:12px;background:var(--pl-accent);color:#fff;cursor:pointer;font:inherit;font-weight:760}.pl-result button:disabled{cursor:not-allowed;opacity:.44}.pl-price-note{margin:11px 0 0;color:rgba(255,255,255,.58);font-size:.72rem;text-align:center}.pl-inputs input:focus-visible,.pl-option input:focus-visible+label,.pl-result button:focus-visible{outline:3px solid var(--pl-accent);outline-offset:3px}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+  @media(max-width:899px){.purchase-logic__layout{grid-template-columns:1fr}.pl-product{position:static}.pl-product__media{max-height:580px}}
+  @media(max-width:520px){.purchase-logic__intro h1{font-size:clamp(2.15rem,11.5vw,3rem)}.pl-step,.pl-result{padding:19px}.pl-inputs,.pl-result dl{grid-template-columns:1fr}.pl-result__hero{align-items:flex-start;flex-direction:column}.pl-result__hero strong{font-size:2.65rem}}
+  @media(prefers-reduced-motion:reduce){.purchase-logic *{scroll-behavior:auto!important;transition:none!important}}
+{% endstylesheet %}
+
+<script>
+  (() => {
+    document.querySelectorAll('[id^="PurchaseLogic-"]').forEach((root) => {
+      if (root.dataset.initialized === 'true') return;
+      root.dataset.initialized = 'true';
+      const form = root.querySelector('.pl-form');
+      const variants = JSON.parse(root.querySelector('[data-pl-variants]').textContent);
+      const groups = [...root.querySelectorAll('[data-pl-option]')];
+      const unitsInput = root.querySelector('[data-pl-units]');
+      const reserveInput = root.querySelector('[data-pl-reserve]');
+      const quantityInput = root.querySelector('[data-pl-quantity]');
+      const variantInput = root.querySelector('[data-pl-variant-id]');
+      const submit = root.querySelector('[data-pl-submit]');
+      const submitLabel = root.querySelector('[data-pl-submit-label]');
+      const message = root.querySelector('[data-pl-message]');
+      const perCase = Number(root.dataset.unitsPerCase);
+      const maxUnits = Number(root.dataset.maxUnits);
+      let activeVariant;
+      let calculation;
+      const chosenOptions = () => groups.map((group) => group.querySelector('input:checked')?.value || '');
+      const findVariant = (values) => variants.find((variant) => variant.options.every((value, index) => value === values[index]));
+      const clean = (value) => Number.isInteger(value) ? String(value) : value.toFixed(2).replace(/0+$/,'').replace(/\.$/,'');
+      const money = (cents) => new Intl.NumberFormat(undefined,{style:'currency',currency:root.dataset.currency}).format(cents / 100);
+      const showMedia = (id) => root.querySelectorAll('[data-pl-media]').forEach((media) => { media.hidden = Number(media.dataset.plMedia) !== Number(id); });
+      const renderVariant = () => {
+        const chosen = chosenOptions(); activeVariant = findVariant(chosen);
+        groups.forEach((group,index) => {
+          const selected = group.querySelector('input:checked'); if (selected) group.querySelector('[data-pl-option-value]').textContent = selected.value;
+          group.querySelectorAll('input[type="radio"]').forEach((radio) => { const candidate=[...chosen]; candidate[index]=radio.value; radio.disabled=!findVariant(candidate); });
+        });
+        if (!activeVariant) { submit.disabled=true; submitLabel.textContent='Unavailable'; return; }
+        variantInput.value=activeVariant.id; root.querySelector('[data-pl-variant]').textContent=activeVariant.options.join(' / '); root.querySelector('[data-pl-price]').textContent=`${activeVariant.priceFormatted} per case`; root.querySelector('[data-pl-availability]').textContent=activeVariant.available?'Available':'Sold out'; if(activeVariant.featuredMediaId) showMedia(activeVariant.featuredMediaId);
+        const url=new URL(window.location.href); url.searchParams.set('variant',activeVariant.id); window.history.replaceState({},'',url); calculate();
+      };
+      const calculate = () => {
+        const requested=Number(unitsInput.value); const reserve=Number(reserveInput.value);
+        let error='';
+        if(!Number.isInteger(requested)||requested<1) error='Enter a whole requested quantity of at least 1.';
+        else if(requested>maxUnits) error=`Requested quantity cannot exceed ${maxUnits}.`;
+        else if(!Number.isFinite(reserve)||reserve<0||reserve>50) error='Reserve allowance must be between 0% and 50%.';
+        message.textContent=error;
+        if(error){ calculation=null; submit.disabled=true; submitLabel.textContent='Fix calculator values'; return; }
+        const buffer=requested*(reserve/100); const total=requested+buffer; const raw=total/perCase; const cases=Math.ceil(raw); const capacity=cases*perCase; const surplus=capacity-total;
+        calculation={requested,reserve,buffer,total,raw,cases,capacity,surplus};
+        const caseWord=cases===1?'case':'cases'; root.querySelector('[data-pl-cases]').textContent=cases; root.querySelector('[data-pl-case-word]').textContent=caseWord; root.querySelector('[data-pl-requested]').textContent=clean(requested); root.querySelector('[data-pl-buffer]').textContent=clean(buffer); root.querySelector('[data-pl-total]').textContent=clean(total); root.querySelector('[data-pl-raw]').textContent=raw.toFixed(2); root.querySelector('[data-pl-capacity]').textContent=clean(capacity); root.querySelector('[data-pl-surplus]').textContent=clean(surplus); [['requested',requested],['buffer',buffer],['total',total],['capacity',capacity],['surplus',surplus]].forEach(([key,value])=>{root.querySelector(`[data-pl-${key}-word]`).textContent=value===1?'bottle':'bottles'}); root.querySelector('[data-pl-equation]').textContent=`ceil((${clean(requested)} × ${clean(1+reserve/100)}) ÷ ${perCase}) = ${cases} ${caseWord}`; root.querySelector('[data-pl-estimate]').textContent=activeVariant?money(activeVariant.price*cases):'—';
+        quantityInput.value=cases; root.querySelector('[data-pl-property-units]').value=clean(requested); root.querySelector('[data-pl-property-reserve]').value=`${clean(reserve)}%`; root.querySelector('[data-pl-property-rule]').value=`ceil((${clean(requested)} × ${clean(1+reserve/100)}) ÷ ${perCase}) = ${cases} cases`; submit.disabled=!activeVariant?.available; submitLabel.textContent=activeVariant?.available?`Add ${cases} ${cases===1?'case':'cases'}`:'Sold out';
+      };
+      groups.forEach((group)=>group.querySelectorAll('input').forEach((input)=>input.addEventListener('change',renderVariant)));
+      unitsInput.addEventListener('input',calculate); reserveInput.addEventListener('input',calculate);
+      form.addEventListener('submit',(event)=>{ event.preventDefault(); calculate(); if(!calculation||!activeVariant?.available)return; submit.disabled=true; submitLabel.textContent='Adding…'; HTMLFormElement.prototype.submit.call(form); });
+      renderVariant();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Case quantity calculator",
+  "tag": "section",
+  "class": "purchase-logic-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Plan by case, not guesswork" },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Enter the event requirement and reserve allowance. The calculator rounds up to the whole cases Shopify can actually sell.</p>" },
+    { "type": "text", "id": "units_label", "label": "Required units label", "default": "Bottles required" },
+    { "type": "text", "id": "case_note", "label": "Product note", "default": "Case quantities are calculated before the Shopify product form is submitted." },
+    { "type": "range", "id": "units_per_case", "label": "Bottles per case", "min": 2, "max": 48, "step": 1, "default": 12 },
+    { "type": "range", "id": "default_units", "label": "Default bottles required", "min": 25, "max": 225, "step": 2, "default": 125 },
+    { "type": "range", "id": "default_reserve", "label": "Default reserve percent", "min": 0, "max": 25, "step": 1, "default": 10 },
+    { "type": "range", "id": "max_units", "label": "Maximum bottles per order", "min": 300, "max": 3000, "step": 100, "default": 2000 },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#f3f0e8" },
+    { "type": "color", "id": "card_color", "label": "Card", "default": "#fffdf8" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#1f2721" },
+    { "type": "color", "id": "muted_color", "label": "Muted text", "default": "#687168" },
+    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#b95538" }
+  ],
+  "presets": [{ "name": "Case quantity calculator" }]
+}
+{% endschema %}
