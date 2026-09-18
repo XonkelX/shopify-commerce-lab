@@ -8,9 +8,10 @@ Last updated: 2026-09-17
 - Product Comparison Section running in a real unpublished Shopify theme.
 - Advanced PDP running against a real six-variant Shopify product.
 - Bug Fix Evidence Lab with three reproduced, diagnosed, fixed, and remotely verified storefront defects.
+- Personalized Product Configurator with structured selection, live preview, validation, real variants, merchant settings, and cart-persistent line-item properties.
 - Valid Online Store 2.0 schema with configurable settings and addable, removable, reorderable blocks.
 - Variant/media/price/availability/URL synchronization, Ajax add-to-cart, product metafields, and a referenced warranty metaobject.
-- Real Theme Editor verification, desktop/mobile captures, clean Theme Check, case studies, test matrices, and demo scripts.
+- Real Theme Editor verification, desktop/mobile/cart captures, clean Theme Check, case studies, test matrices, and demo scripts.
 
 ## Jobs I can credibly apply for RIGHT NOW
 
@@ -26,10 +27,13 @@ Last updated: 2026-09-17
 - Contained AJAX add-to-cart work
 - Shopify Liquid debugging and inherited-theme troubleshooting
 - Cart badge, variant-display, and empty-state repairs
+- Contained Shopify product configurators
+- Product personalization interfaces
+- Line-item property capture and cart rendering
+- Advanced PDP option and validation logic
 
 ## Jobs I should NOT claim yet
 
-- Product configurators
 - Advanced cart drawers, bundles, and purchase calculators
 - Shopify app development
 - Admin GraphQL integrations
@@ -54,6 +58,9 @@ Last updated: 2026-09-17
 | Cart-state troubleshooting | [Phase 3 test matrix](test-results/phase-3-bug-fix-lab.md) |
 | Variant display repair | [Cart source](../theme/sections/cart.liquid) and [Bug 2 evidence](case-studies/bug-fix-lab.md#bug-2--cart-lines-hid-the-selected-variant) |
 | Empty-state repair | [Bug 3 evidence](case-studies/bug-fix-lab.md#bug-3--empty-cart-showed-an-unusable-checkout-state) |
+| Product configurator | [Personalized Product Configurator case study](case-studies/product-configurator.md) |
+| Product personalization | [Phase 4 validation matrix](test-results/phase-4-product-configurator.md) |
+| Line-item properties | [Cart rendering source](../theme/sections/cart.liquid) and [Phase 4 completion evidence](evidence/phase-4-completion.md) |
 
 ## READY
 
@@ -69,20 +76,24 @@ Last updated: 2026-09-17
 - Liquid debugging — three real defects with reproduction, root cause, fix commit, and verification
 - Inherited-theme troubleshooting — product/header/cart behavior repaired in the existing Skeleton-based theme
 - Cart-state and conditional-rendering fixes — stale badge, missing variants, and empty checkout state verified
+- Product configurator — structured personalization, live preview, validation, real variants, and cart-persistent properties verified
+- Product personalization — text/style/gift choices survive as visible Shopify line-item properties
+- Advanced PDP option logic — variant and custom state remain synchronized across desktop and mobile
 
 ## PLAUSIBLE
 
 - Small homepage customizations — adjacent to the completed section, but no broader homepage rebuild is claimed.
 - Basic cart-template edits — Ajax cart behavior is proven, but a full cart-drawer system is not.
 - Basic accessibility repair — count-aware names and variant-specific controls are proven, but a full accessibility audit is not.
+- Small conditional personalization additions — adjacent to the completed module, but uploads and surcharge architectures are not claimed.
 
 ## NOT YET
 
-- Product configurator, advanced cart engineering, Shopify API, and webhook categories in [job-mapping.md](evidence/job-mapping.md).
+- Quantity/purchase calculators, advanced cart engineering, Shopify API, and webhook categories in [job-mapping.md](evidence/job-mapping.md).
 
 ## Approximate job scope currently supported
 
-Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Ajax-cart, Liquid-debugging, and inherited-theme repair tasks. Pricing is intentionally not inferred from this independent evidence.
+Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Ajax/native-cart, Liquid-debugging, inherited-theme repair, configurator, and personalization tasks. The evidence now supports contained Shopify functionality projects in the prompt's $300–$1,000 target band; actual pricing still depends on scope, data model, design, and integration risk.
 
 ## Best applications to target now
 
@@ -92,13 +103,15 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 4. Implement or repair a contained Ajax add-to-cart flow.
 5. Fix responsive behavior within an existing section or PDP.
 6. Diagnose and repair contained Liquid, cart-state, or conditional-rendering defects.
+7. Build a contained product configurator or personalization flow using real variants and line-item properties.
 
 ## Do not target yet
 
-1. Product configurators, bundles, subscription logic, or quantity calculators.
+1. Bundles, subscription logic, or complex quantity/purchase calculators.
 2. Full cart drawers or advanced cart architecture.
-3. Shopify app, API, webhook, checkout, Functions, or Plus work.
+3. Image-upload personalization or dynamic-pricing architecture without a scoped app/variant design.
+4. Shopify app, API, webhook, checkout, Functions, or Plus work.
 
 ## Next evidence gap
 
-Build the Product Configurator. It is the next module that can unlock higher-value contained customization work by proving structured personalization, validation, live state, Shopify variant selection, and line-item properties reaching cart/order context.
+Build the Quantity / Purchase Logic Module. It is the next evidence gap for quantity tiers, purchase constraints, calculation transparency, and technically correct cart behavior.

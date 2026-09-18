@@ -8,7 +8,7 @@ Last updated: 2026-09-17
 | Custom comparison section | Complete | Yes | Verified unpublished theme | Yes | Desktop, mobile, editor session | Yes | Theme Check + browser matrix | Yes |
 | Advanced PDP | Complete | Yes | Verified unpublished product preview | Yes | Authenticated desktop/mobile task captures | Yes | Theme Check + browser matrix | Yes |
 | Bug Fix Lab | Complete | Yes — 3 fixes | Verified unpublished product/cart previews | Yes | Authenticated before/after task captures | Yes | Theme Check + browser matrix | Yes |
-| Product configurator | Not started | No | No | No | No | No | No | No |
+| Product configurator | Complete | Yes | Verified unpublished product preview | Yes | Authenticated desktop/mobile/editor/cart captures | Yes | Theme Check + browser matrix | Yes |
 | Quantity/purchase logic | Not started | No | No | No | No | No | No | No |
 | Cart engineering | Not started | No | No | No | No | No | No | No |
 | Quality evidence | Not started | No | No | No | No | No | No | No |
@@ -31,6 +31,9 @@ Last updated: 2026-09-17
 - The Phase 2 desktop storefront and mobile Theme Editor captures are preserved as authenticated task deliverables.
 - Phase 3 reproduced and fixed a stale AJAX cart count, missing cart variant details, and an invalid empty-cart checkout state.
 - Phase 3 before/after browser captures are preserved as authenticated task deliverables; fix source is commit `049ab5c`.
+- Atlas Personalized Bottle exists as a real Shopify product with the duplicated six-variant matrix and assigned media.
+- Phase 4 verifies structured personalization, invalid states, live preview, merchant settings, responsive behavior, correct Navy / 32 oz selection, and four line-item properties rendered in cart.
+- Phase 4 desktop, mobile, Theme Editor, and cart captures are preserved as authenticated task deliverables.
 
 ## Tooling limitation
 

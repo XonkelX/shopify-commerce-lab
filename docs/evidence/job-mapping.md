@@ -19,9 +19,11 @@ Readiness is based on inspectable evidence in this repository, not expected abil
 | Cart-state bug | Live AJAX badge synchronization fix | READY |
 | Variant display bug | Cart option rendering fix | READY |
 | Empty-state bug | Conditional empty-cart repair | READY |
-| Product configurator | None yet | NOT YET |
+| Product configurator | Personalized Product Configurator preview, source, case study, and cart proof | READY |
+| Product personalization | Live preview, validation, and four line-item properties | READY |
+| Advanced PDP option logic | Real variant/media/availability synchronization plus personalization state | READY |
 | Quantity/purchase calculator | None yet | NOT YET |
 | Shopify GraphQL/API integration | None yet | NOT YET |
 | Webhook processing | None yet | NOT YET |
 
-Phases 1–3 directly support contained section work, product-page/variant work, structured content, Ajax add-to-cart, and evidence-backed Liquid/storefront debugging. Configurator, advanced cart engineering, and backend/API claims remain unsupported until their dedicated phases are complete.
+Phases 1–4 directly support contained section work, product-page/variant work, structured content, Ajax and native cart work, evidence-backed Liquid debugging, product configurators, and personalization interfaces. Quantity calculators, advanced cart engineering, and backend/API claims remain unsupported until their dedicated phases are complete.

@@ -12,14 +12,15 @@ Each completed module will pair real Shopify behavior with source code, testing 
 - Phase 1 — **COMPLETE**
 - Phase 2 — **COMPLETE**
 - Phase 3 — **COMPLETE**
+- Phase 4 — **COMPLETE**
 - Local Shopify CLI: 4.8.0
 - Base theme: Shopify Skeleton theme
-- Current Theme Check: 40 files inspected, 0 offenses
+- Current Theme Check: 42 files inspected, 0 offenses
 - Shopify development store: Oniel Lab
 - Unpublished evidence theme: Shopify Commerce Lab, theme ID `155175092398`
-- Completed client-facing modules: Product Comparison Section, Advanced Product Detail Page, and Shopify Bug Fix Evidence Lab
+- Completed client-facing modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, and Personalized Product Configurator
 
-Both modules are verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 2 adds a real six-variant product, variant/media/price/availability synchronization, Shopify metafields, a reusable warranty metaobject, and Ajax add-to-cart behavior.
+All modules are verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 4 adds structured personalization, live preview, validation, real variant selection, merchant controls, and Shopify line-item properties rendered in cart.
 
 ## Live preview
 
@@ -52,6 +53,7 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 - [Product Comparison Section](docs/case-studies/product-comparison-section.md)
 - [Advanced Product Detail Page](docs/case-studies/advanced-product-page.md)
 - [Shopify Bug Fix Evidence Lab](docs/case-studies/bug-fix-lab.md)
+- [Personalized Product Configurator](docs/case-studies/product-configurator.md)
 
 ## Supported job categories
 
@@ -65,6 +67,9 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 - AJAX add-to-cart work
 - Liquid and storefront debugging
 - Cart-state, variant-display, and empty-state fixes
+- Contained product configurators and personalization interfaces
+- Shopify line-item property implementation
+- Advanced PDP selection and validation flows
 
 See [`docs/evidence/job-mapping.md`](docs/evidence/job-mapping.md) for exact readiness labels and exclusions.
 
