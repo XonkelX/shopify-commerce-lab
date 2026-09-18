@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "product-configurator",
+      "blocks": {
+        "classic": { "type": "engraving_style", "settings": { "label": "Classic", "preview_style": "classic" } },
+        "modern": { "type": "engraving_style", "settings": { "label": "Modern", "preview_style": "modern" } },
+        "script": { "type": "engraving_style", "settings": { "label": "Script", "preview_style": "script" } }
+      },
+      "block_order": ["classic", "modern", "script"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

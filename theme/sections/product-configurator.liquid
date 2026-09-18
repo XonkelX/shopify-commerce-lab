@@ -1,0 +1,197 @@
+{% liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  assign selected_media = selected_variant.featured_media | default: product.featured_media
+%}
+
+<section
+  id="PersonalizationConfigurator-{{ section.id }}"
+  class="product-configurator"
+  style="--cfg-accent:{{ section.settings.accent_color }};--cfg-bg:{{ section.settings.background_color }};--cfg-card:{{ section.settings.card_color }};--cfg-text:{{ section.settings.text_color }};--cfg-muted:{{ section.settings.muted_color }};"
+>
+  <header class="product-configurator__intro">
+    {% if section.settings.eyebrow != blank %}<p>{{ section.settings.eyebrow | escape }}</p>{% endif %}
+    <h1>{{ product.title | escape }}</h1>
+    {% if section.settings.intro != blank %}<div class="product-configurator__copy">{{ section.settings.intro }}</div>{% endif %}
+  </header>
+
+  <div class="product-configurator__layout">
+    <div class="cfg-preview" aria-label="Live product preview">
+      <div class="cfg-preview__stage">
+        {% if product.media.size > 0 %}
+          {% for media in product.media %}
+            <figure data-cfg-media="{{ media.id }}"{% unless media.id == selected_media.id %} hidden{% endunless %}>
+              {{ media.preview_image | image_url: width: 1400 | image_tag: widths: '480, 720, 960, 1200, 1400', sizes: '(min-width: 900px) 50vw, 100vw', loading: 'eager', alt: media.alt | default: product.title }}
+            </figure>
+          {% endfor %}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'cfg-preview__placeholder' }}
+        {% endif %}
+        <span class="cfg-preview__engraving is-classic" data-cfg-preview>{{ section.settings.preview_placeholder | escape }}</span>
+      </div>
+      <div class="cfg-preview__summary" aria-live="polite">
+        <span data-cfg-summary-variant>{{ selected_variant.title | escape }}</span>
+        <strong data-cfg-summary-text>{{ section.settings.preview_placeholder | escape }}</strong>
+        <span data-cfg-summary-style>{% if section.blocks.first %}{{ section.blocks.first.settings.label | escape }}{% endif %}</span>
+      </div>
+      <p class="cfg-preview__note">Preview is a placement guide; final engraving uses the submitted text.</p>
+    </div>
+
+    <form class="cfg-form" action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="id" value="{{ selected_variant.id }}" data-cfg-variant-id>
+      <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
+
+      <div class="cfg-step">
+        <div class="cfg-step__heading"><span>1</span><div><p>Choose the bottle</p><h2>Color and capacity</h2></div></div>
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <fieldset class="cfg-option" data-cfg-option="{{ forloop.index0 }}">
+              <legend>{{ option.name | escape }}: <span data-cfg-option-value>{{ option.selected_value | escape }}</span></legend>
+              <div>
+                {% for value in option.values %}
+                  {% assign option_id = section.id | append: '-cfg-' | append: option.position | append: '-' | append: forloop.index %}
+                  <input class="visually-hidden" type="radio" id="{{ option_id }}" name="cfg-options[{{ option.name | escape }}]" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}>
+                  <label for="{{ option_id }}">{{ value | escape }}</label>
+                {% endfor %}
+              </div>
+            </fieldset>
+          {% endfor %}
+        {% endunless %}
+        <div class="cfg-price"><span data-cfg-price>{{ selected_variant.price | money }}</span><span data-cfg-availability>{% if selected_variant.available %}Available{% else %}Sold out{% endif %}</span></div>
+      </div>
+
+      <div class="cfg-step">
+        <div class="cfg-step__heading"><span>2</span><div><p>Make it yours</p><h2>Engraving</h2></div></div>
+        <label class="cfg-field" for="Personalization-{{ section.id }}">
+          <span>{{ section.settings.personalization_label | escape }}</span>
+          <input id="Personalization-{{ section.id }}" type="text" name="properties[Personalization]" maxlength="{{ section.settings.max_characters }}" placeholder="{{ section.settings.input_placeholder | escape }}" autocomplete="off" {% if section.settings.require_personalization %}required{% endif %} data-cfg-text>
+          <small><span data-cfg-count>0</span>/{{ section.settings.max_characters }} characters</small>
+        </label>
+        {% if section.blocks.size > 0 %}
+          <fieldset class="cfg-style">
+            <legend>Engraving style</legend>
+            <div>
+              {% for block in section.blocks %}
+                <input class="visually-hidden" type="radio" id="Style-{{ block.id }}" name="properties[Engraving style]" value="{{ block.settings.label | escape }}" data-cfg-style="{{ block.settings.preview_style }}" {% if forloop.first %}checked{% endif %} {{ block.shopify_attributes }}>
+                <label class="is-{{ block.settings.preview_style }}" for="Style-{{ block.id }}">{{ block.settings.label | escape }}</label>
+              {% endfor %}
+            </div>
+          </fieldset>
+        {% endif %}
+      </div>
+
+      <div class="cfg-step">
+        <div class="cfg-step__heading"><span>3</span><div><p>Final details</p><h2>Gift options</h2></div></div>
+        <label class="cfg-field" for="GiftNote-{{ section.id }}"><span>Gift note <em>Optional</em></span><textarea id="GiftNote-{{ section.id }}" name="properties[Gift note]" rows="3" maxlength="160" placeholder="Add a short message"></textarea></label>
+        <label class="cfg-check"><input type="checkbox" name="properties[Gift wrap]" value="Yes"><span>Add complimentary recyclable gift wrap</span></label>
+      </div>
+
+      <div class="cfg-submit">
+        <label><span>Quantity</span><input type="number" name="quantity" value="1" min="1" inputmode="numeric"></label>
+        <button type="submit" data-cfg-submit{% unless selected_variant.available %} disabled{% endunless %}><span data-cfg-submit-label>{% if selected_variant.available %}Add personalized bottle{% else %}Sold out{% endif %}</span></button>
+      </div>
+      <p class="cfg-pricing-note">Personalization is included in the displayed Shopify variant price.</p>
+      <div class="cfg-message" role="status" aria-live="polite" tabindex="-1" data-cfg-message></div>
+    </form>
+  </div>
+
+  <script type="application/json" data-cfg-variants>
+    [{% for variant in product.variants %}{"id":{{ variant.id | json }},"available":{{ variant.available | json }},"price":{{ variant.price | money | json }},"options":{{ variant.options | json }},"featuredMediaId":{{ variant.featured_media.id | default: 0 | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}]
+  </script>
+</section>
+
+{% stylesheet %}
+  .product-configurator{grid-column:1/-1;padding:clamp(48px,7vw,96px) max(18px,calc((100vw - 1240px)/2));background:var(--cfg-bg);color:var(--cfg-text)}
+  .product-configurator.product-configurator .product-configurator__intro{display:block!important;height:auto!important}
+  .product-configurator *{box-sizing:border-box}.product-configurator__intro{max-width:760px;margin-bottom:42px}.product-configurator__intro>p{margin:0 0 10px;color:var(--cfg-accent);font-size:.76rem;font-weight:760;letter-spacing:.15em;text-transform:uppercase}.product-configurator__intro h1{margin:0;font-size:clamp(2.6rem,6vw,5.5rem);line-height:.96;letter-spacing:-.055em;overflow-wrap:anywhere}.product-configurator__copy{max-width:58ch;margin-top:18px;color:var(--cfg-muted);line-height:1.6}.product-configurator__layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,.78fr);gap:clamp(36px,6vw,84px);align-items:start}.cfg-preview{position:sticky;top:24px}.cfg-preview__stage{position:relative;overflow:hidden;border-radius:28px;background:#eee8dc;aspect-ratio:1}.cfg-preview__stage figure{width:100%;height:100%;margin:0}.cfg-preview__stage figure[hidden]{display:none}.cfg-preview__stage img{width:100%;height:100%;object-fit:cover}.cfg-preview__placeholder{width:100%;height:100%;padding:15%;color:#b8ae9d}.cfg-preview__engraving{position:absolute;top:54%;left:50%;display:block;max-width:42%;transform:translate(-50%,-50%) rotate(-2deg);color:#e9dfca;font-size:clamp(.76rem,2.5vw,1.65rem);font-weight:760;letter-spacing:.08em;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.45);text-transform:uppercase;overflow-wrap:anywhere}.is-classic{font-family:Georgia,serif}.is-modern{font-family:Arial,sans-serif;letter-spacing:.16em}.is-script{font-family:cursive;font-style:italic;letter-spacing:.03em;text-transform:none}.cfg-preview__summary{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.cfg-preview__summary span,.cfg-preview__summary strong{padding:8px 12px;border-radius:999px;background:var(--cfg-card);font-size:.8rem}.cfg-preview__summary strong{background:var(--cfg-text);color:var(--cfg-card)}.cfg-preview__note{margin-top:12px;color:var(--cfg-muted);font-size:.78rem}.cfg-form{display:grid;gap:18px;min-width:0}.cfg-step{padding:24px;border:1px solid rgba(31,39,33,.12);border-radius:20px;background:var(--cfg-card)}.cfg-step__heading{display:flex;gap:13px;align-items:center;margin-bottom:21px}.cfg-step__heading>span{display:grid;width:34px;height:34px;place-items:center;border-radius:50%;background:var(--cfg-text);color:var(--cfg-card);font-weight:760}.cfg-step__heading p{margin:0;color:var(--cfg-accent);font-size:.7rem;font-weight:740;letter-spacing:.11em;text-transform:uppercase}.cfg-step__heading h2{margin:2px 0 0;font-size:1.25rem}.cfg-option,.cfg-style{margin:0 0 19px;padding:0;border:0;min-width:0}.cfg-option legend,.cfg-style legend{margin-bottom:10px;font-size:.86rem;font-weight:720}.cfg-option legend span{color:var(--cfg-muted);font-weight:520}.cfg-option>div,.cfg-style>div{display:flex;flex-wrap:wrap;gap:9px}.cfg-option label,.cfg-style label{display:inline-flex;min-height:43px;align-items:center;justify-content:center;padding:8px 14px;border:1px solid rgba(31,39,33,.18);border-radius:999px;cursor:pointer;font-size:.86rem;font-weight:680}.cfg-option input:checked+label,.cfg-style input:checked+label{border-color:var(--cfg-text);background:var(--cfg-text);color:var(--cfg-card);box-shadow:0 0 0 2px var(--cfg-card),0 0 0 4px var(--cfg-text)}.cfg-option input:disabled+label{cursor:not-allowed;opacity:.34;text-decoration:line-through}.cfg-option input:focus-visible+label,.cfg-style input:focus-visible+label,.cfg-field input:focus-visible,.cfg-field textarea:focus-visible,.cfg-submit input:focus-visible,.cfg-submit button:focus-visible{outline:3px solid var(--cfg-accent);outline-offset:3px}.cfg-price{display:flex;justify-content:space-between;gap:20px;padding-top:4px;font-weight:760}.cfg-price span:last-child{color:#27634b;font-size:.84rem}.cfg-field{display:grid;gap:7px}.cfg-field>span,.cfg-check{font-size:.86rem;font-weight:700}.cfg-field em{color:var(--cfg-muted);font-size:.75rem;font-style:normal;font-weight:500}.cfg-field input,.cfg-field textarea{width:100%;padding:12px 14px;border:1px solid rgba(31,39,33,.18);border-radius:12px;background:#fff;color:var(--cfg-text);font:inherit}.cfg-field small{color:var(--cfg-muted);text-align:right}.cfg-check{display:flex;gap:10px;align-items:flex-start;margin-top:16px}.cfg-check input{width:18px;height:18px;accent-color:var(--cfg-accent)}.cfg-submit{display:grid;grid-template-columns:90px 1fr;gap:12px}.cfg-submit label{display:grid;gap:6px;color:var(--cfg-muted);font-size:.7rem;font-weight:720;letter-spacing:.08em;text-transform:uppercase}.cfg-submit input{width:100%;min-height:54px;padding:0 12px;border:1px solid rgba(31,39,33,.18);border-radius:12px}.cfg-submit button{align-self:end;min-height:54px;border:0;border-radius:12px;background:var(--cfg-accent);color:#fff;cursor:pointer;font:inherit;font-weight:760}.cfg-submit button:disabled{cursor:not-allowed;opacity:.45}.cfg-pricing-note{margin:0;color:var(--cfg-muted);font-size:.78rem;text-align:center}.cfg-message{min-height:24px;font-size:.9rem;font-weight:680}.cfg-message.is-error{color:#9b3a2e}.cfg-message a{color:inherit;text-underline-offset:3px}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+  @media(max-width:899px){.product-configurator__layout{grid-template-columns:1fr}.cfg-preview{position:static}.cfg-preview__engraving{font-size:clamp(.78rem,5vw,1.45rem)}}
+  @media(max-width:480px){.product-configurator__intro h1{font-size:clamp(2.15rem,11.5vw,3rem)}.cfg-step{padding:19px}.cfg-submit{grid-template-columns:78px 1fr}.cfg-preview__stage{border-radius:20px}}
+  @media(prefers-reduced-motion:reduce){.product-configurator *{scroll-behavior:auto!important;transition:none!important}}
+{% endstylesheet %}
+
+<script>
+  (() => {
+    document.querySelectorAll('[id^="PersonalizationConfigurator-"]').forEach((root) => {
+      if (root.dataset.initialized === 'true') return;
+      root.dataset.initialized = 'true';
+      const form = root.querySelector('.cfg-form');
+      const variants = JSON.parse(root.querySelector('[data-cfg-variants]').textContent);
+      const groups = [...root.querySelectorAll('[data-cfg-option]')];
+      const variantInput = root.querySelector('[data-cfg-variant-id]');
+      const price = root.querySelector('[data-cfg-price]');
+      const availability = root.querySelector('[data-cfg-availability]');
+      const submit = root.querySelector('[data-cfg-submit]');
+      const submitLabel = root.querySelector('[data-cfg-submit-label]');
+      const textInput = root.querySelector('[data-cfg-text]');
+      const preview = root.querySelector('[data-cfg-preview]');
+      const summaryText = root.querySelector('[data-cfg-summary-text]');
+      const summaryVariant = root.querySelector('[data-cfg-summary-variant]');
+      const summaryStyle = root.querySelector('[data-cfg-summary-style]');
+      const count = root.querySelector('[data-cfg-count]');
+      const message = root.querySelector('[data-cfg-message]');
+      const placeholder = preview.textContent.trim();
+      const options = () => groups.map((group) => group.querySelector('input:checked')?.value || '');
+      const findVariant = (values) => variants.find((variant) => variant.options.every((value, index) => value === values[index]));
+      const showMedia = (id) => root.querySelectorAll('[data-cfg-media]').forEach((media) => { media.hidden = Number(media.dataset.cfgMedia) !== Number(id); });
+      const renderVariant = () => {
+        const chosen = options(); const variant = findVariant(chosen);
+        groups.forEach((group, index) => {
+          const selected = group.querySelector('input:checked'); const value = group.querySelector('[data-cfg-option-value]'); if (selected && value) value.textContent = selected.value;
+          group.querySelectorAll('input[type="radio"]').forEach((radio) => { const candidate = [...chosen]; candidate[index] = radio.value; radio.disabled = !findVariant(candidate); });
+        });
+        if (!variant) { submit.disabled = true; submitLabel.textContent = 'Unavailable'; availability.textContent = 'Unavailable'; return; }
+        variantInput.value = variant.id; price.textContent = variant.price; availability.textContent = variant.available ? 'Available' : 'Sold out'; submit.disabled = !variant.available; submitLabel.textContent = variant.available ? 'Add personalized bottle' : 'Sold out'; summaryVariant.textContent = variant.options.join(' / '); if (variant.featuredMediaId) showMedia(variant.featuredMediaId);
+        const url = new URL(window.location.href); url.searchParams.set('variant', variant.id); window.history.replaceState({}, '', url);
+      };
+      const renderText = () => { const shown = textInput.value.trim() || placeholder; preview.textContent = shown; summaryText.textContent = shown; count.textContent = textInput.value.length; message.textContent = ''; message.classList.remove('is-error'); };
+      const renderStyle = () => { const selected = root.querySelector('[data-cfg-style]:checked'); if (!selected) return; preview.classList.remove('is-classic','is-modern','is-script'); preview.classList.add(`is-${selected.dataset.cfgStyle}`); summaryStyle.textContent = selected.value; };
+      groups.forEach((group) => group.querySelectorAll('input').forEach((input) => input.addEventListener('change', renderVariant)));
+      root.querySelectorAll('[data-cfg-style]').forEach((input) => input.addEventListener('change', renderStyle));
+      textInput.addEventListener('input', renderText);
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault(); if (submit.disabled) return;
+        const personalization = textInput.value.trim(); const quantity = Number(form.querySelector('[name="quantity"]').value);
+        if (textInput.required && !personalization) { message.textContent = 'Enter the personalization text before adding this bottle.'; message.classList.add('is-error'); textInput.focus(); return; }
+        if (personalization && !/^[A-Za-z0-9 .&'\-]+$/.test(personalization)) { message.textContent = 'Use letters, numbers, spaces, and simple punctuation only.'; message.classList.add('is-error'); textInput.focus(); return; }
+        if (!Number.isInteger(quantity) || quantity < 1) { message.textContent = 'Enter a quantity of 1 or more.'; message.classList.add('is-error'); message.focus(); return; }
+        submit.disabled = true; submitLabel.textContent = 'Adding…'; message.textContent = '';
+        HTMLFormElement.prototype.submit.call(form);
+      });
+      renderVariant(); renderText(); renderStyle();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product configurator",
+  "tag": "section",
+  "class": "product-configurator-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Personalized for you" },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Choose the bottle, preview your engraving, and send the complete configuration to Shopify cart.</p>" },
+    { "type": "text", "id": "personalization_label", "label": "Personalization field label", "default": "Name or short message" },
+    { "type": "text", "id": "input_placeholder", "label": "Input placeholder", "default": "e.g. ONIEL" },
+    { "type": "text", "id": "preview_placeholder", "label": "Preview placeholder", "default": "YOUR TEXT" },
+    { "type": "range", "id": "max_characters", "label": "Maximum characters", "min": 6, "max": 24, "step": 1, "default": 14 },
+    { "type": "checkbox", "id": "require_personalization", "label": "Require personalization", "default": true },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#f5f2eb" },
+    { "type": "color", "id": "card_color", "label": "Card", "default": "#fffdf8" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#1f2721" },
+    { "type": "color", "id": "muted_color", "label": "Muted text", "default": "#687168" },
+    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#b95538" }
+  ],
+  "blocks": [
+    {
+      "type": "engraving_style",
+      "name": "Engraving style",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Classic" },
+        { "type": "select", "id": "preview_style", "label": "Preview style", "options": [{ "value": "classic", "label": "Classic" }, { "value": "modern", "label": "Modern" }, { "value": "script", "label": "Script" }], "default": "classic" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Product configurator", "blocks": [{ "type": "engraving_style" }, { "type": "engraving_style" }, { "type": "engraving_style" }] }],
+  "disabled_on": { "groups": ["header", "footer"] }
+}
+{% endschema %}

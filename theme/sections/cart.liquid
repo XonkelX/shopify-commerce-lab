@@ -34,6 +34,19 @@
                 </dl>
               {% endunless %}
 
+              {%- capture visible_properties -%}
+                {%- for property in item.properties -%}
+                  {%- assign property_name_start = property.first | slice: 0 -%}
+                  {%- if property.last != blank and property_name_start != '_' -%}
+                    <div>
+                      <dt>{{ property.first | escape }}</dt>
+                      <dd>{{ property.last | escape }}</dd>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endcapture -%}
+              {% if visible_properties != blank %}<dl class="cart-item__properties">{{ visible_properties }}</dl>{% endif %}
+
               <p class="cart-item__price">{{ item.final_line_price | money }}</p>
               <a class="cart-item__remove" href="{{ item.url_to_remove }}" aria-label="Remove {{ item.product.title | escape }} — {{ item.variant.title | escape }}">
                 {{ 'cart.remove' | t }}
@@ -81,6 +94,11 @@
   .cart-item__options dt { color: #687168; font-size: .82rem; font-weight: 680; }
   .cart-item__options dt::after { content: ':'; }
   .cart-item__options dd { margin: 0; font-size: .82rem; }
+  .cart-item__properties { display: grid; gap: 5px; margin: 12px 0; padding: 11px 12px; border-radius: 10px; background: #f3eee4; }
+  .cart-item__properties div { display: grid; grid-template-columns: minmax(92px, auto) 1fr; gap: 8px; }
+  .cart-item__properties dt { color: #687168; font-size: .78rem; font-weight: 680; }
+  .cart-item__properties dt::after { content: ':'; }
+  .cart-item__properties dd { margin: 0; font-size: .78rem; overflow-wrap: anywhere; }
   .cart-item__price { margin: 0 0 8px; font-weight: 750; }
   .cart-item__remove { color: #9b3a2e; font-size: .82rem; text-underline-offset: 3px; }
   .cart-item__quantity { display: grid; gap: 7px; color: #687168; font-size: .72rem; font-weight: 720; letter-spacing: .08em; text-transform: uppercase; }
