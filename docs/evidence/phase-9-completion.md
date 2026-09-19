@@ -33,7 +33,7 @@ INCOMPLETE
 - The video is an evidence walkthrough from screenshots, not a live interaction recording.
 - Concurrent duplicate delivery was verified with PostgreSQL integration tests, not observed as a live race. The live failed webhook retry reclaimed the same event ID and processed successfully.
 - Dashboard listing is intentionally capped; webhook processing resolves the exact item/location separately.
-- A new app-quality CI job is configured for typecheck, lint, unit tests, and build; local commands passed, but its hosted result is not claimed until GitHub runs it.
+- The new app-quality CI job passed [in GitHub Actions](https://github.com/XonkelX/shopify-commerce-lab/actions/runs/35472771079): clean install, Prisma generate, typecheck, lint, five unit tests, and build.
 - The app implementation meets its functional criteria in the development store; `INCOMPLETE` here refers to the unmet hard prerequisite and buyer-review evidence, not a claim that GraphQL/webhooks were simulated.
 
 # CURRENT MARKET READINESS

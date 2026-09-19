@@ -20,7 +20,7 @@ Checked: 2026-09-19 against `shopify_evidence_kit_codex_prompt.md` as supplied f
 - [Theme Editor](../shopify/assets/phase-1-theme-editor.png); [PDP mobile](../shopify/assets/phase-2-mobile.png) and [selected variant](../shopify/assets/phase-2-variant-interaction.png).
 - Three real **after** bug states: [AJAX count](../shopify/assets/phase-3-after-ajax-count.png), [variant cart](../shopify/assets/phase-3-after-variant-cart.png), [mobile empty cart](../shopify/assets/phase-3-after-empty-cart.png).
 - [Configurator mobile](../shopify/assets/phase-4-personalized-mobile.png) and [cart properties](../shopify/assets/phase-4-personalized-cart.png); [calculator mobile](../shopify/assets/phase-5-mobile-calculator.png); [drawer mobile](../shopify/assets/phase-6-mobile-cart.png).
-- App typecheck, lint, five unit tests, and production build pass locally. A matching GitHub Actions job has been configured; hosted completion must be verified separately.
+- App typecheck, lint, five unit tests, and production build pass locally and in the [hosted quality run](https://github.com/XonkelX/shopify-commerce-lab/actions/runs/35472771079), together with Theme Check and repository quality.
 
 ## Exact next closure path
 

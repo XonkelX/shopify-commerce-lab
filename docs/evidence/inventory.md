@@ -46,7 +46,7 @@ Last updated: 2026-09-19
 - Phase 7 added push/PR CI for official Shopify Theme Check and repository quality invariants.
 - Phase 8 packages the major proof into one focused hub with six concise pages, six fresh screenshots, six short H.264 clips, verified live routes, direct code links, testing records, and explicit job mappings.
 - Phase 9 installed Inventory Sync Monitor in the development store. Real Admin GraphQL inventory correction, inventory/product webhooks, retry recovery, no-op self-write event, and PostgreSQL persistence are documented in the [case study](../case-studies/inventory-sync-monitor.md).
-- The public GitHub repository exists; the hosted [theme quality workflow](https://github.com/XonkelX/shopify-commerce-lab/actions/workflows/quality.yml) completed successfully. App-specific CI is now configured and passed locally; hosted completion and production hosting are not yet claimed.
+- The public GitHub repository exists; the [hosted quality run](https://github.com/XonkelX/shopify-commerce-lab/actions/runs/35472771079) passed Theme Check, repository checks, and app-specific clean install/typecheck/lint/unit tests/build. This does not imply production hosting.
 
 For authoritative strict statuses and closure criteria, see the [acceptance audit](strict-acceptance-audit.md).
 

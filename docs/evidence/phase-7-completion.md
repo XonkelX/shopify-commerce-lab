@@ -25,7 +25,7 @@ COMPLETE
 ## Known limitations
 - Lighthouse medians (Performance / Accessibility / Best Practices / SEO): home 91/96/75/100, product 70/96/75/100, collection 93/95/75/100. Product LCP varied under simulated mobile throttling.
 - Shopify preview-bar iframe and third-party cookie/favicon diagnostics affect some audit results. Automation is not a WCAG certification.
-- The app-quality job was added later; its hosted result must be checked separately from the original phase-7 theme run.
+- The app-quality job was added later and [passed in the hosted quality run](https://github.com/XonkelX/shopify-commerce-lab/actions/runs/35472771079); it remains separate from the original phase-7 theme validation.
 
 # CURRENT MARKET READINESS
 

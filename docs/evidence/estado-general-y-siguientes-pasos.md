@@ -54,7 +54,7 @@ Esto constituye evidencia creíble para trabajos Shopify **acotados**, pero no u
 ### Prioridad 3 — Mejorar la inspección pública
 
 - Mantener el [hub](../shopify/README.md), el `README` principal y el [mapa de trabajos](job-mapping.md) sincronizados con los logros de fase 9. Este documento es el panorama completo; las páginas cortas siguen siendo la entrada para un posible cliente.
-- Verificar el nuevo gate CI específico de la app (typecheck, unit tests, lint y build) en GitHub después de publicarlo; la integración con PostgreSQL sigue siendo una prueba local separada.
+- El [nuevo gate CI de la app](https://github.com/XonkelX/shopify-commerce-lab/actions/runs/35472771079) ya pasó en GitHub (instalación, typecheck, unit tests, lint y build); incorporar integración con PostgreSQL al CI solo si se añade un servicio de prueba reproducible. La prueba de integración actual sigue siendo local.
 - Preparar una demostración revisable sin compartir credenciales de Shopify: video real y capturas bastan para la primera inspección; acceso al admin solo para quien esté autorizado.
 
 ### Opcional, solo si coincide con el trabajo que quieres vender
