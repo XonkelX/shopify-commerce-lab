@@ -17,18 +17,19 @@ Each completed module will pair real Shopify behavior with source code, testing 
 - Phase 6 — **COMPLETE**
 - Phase 7 — **COMPLETE**
 - Phase 8 — **COMPLETE**
+- Phase 9 — **COMPLETE** (development-store integration proof; not production hosting)
 - Local Shopify CLI: 4.8.0
 - Base theme: Shopify Skeleton theme
 - Current Theme Check: 45 files inspected, 0 offenses
 - Shopify development store: Oniel Lab
 - Unpublished evidence theme: Shopify Commerce Lab, theme ID `155175092398`
-- Completed evidence modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, Personalized Product Configurator, Case Quantity Purchase Calculator, AJAX Cart Drawer, Storefront Quality Engineering, and focused Portfolio Evidence Packaging
+- Completed evidence modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, Personalized Product Configurator, Case Quantity Purchase Calculator, AJAX Cart Drawer, Storefront Quality Engineering, Portfolio Evidence Packaging, and Inventory Sync Monitor
 
-All modules are verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 8 packages the strongest proof into six concise buyer-facing pages with real screenshots, short clips, live previews, validation records, job mappings, and source links.
+Storefront modules were verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 8 packages them into six concise buyer-facing pages. Phase 9 adds a separate embedded-app proof with real Admin GraphQL and webhook activity in the development store; that app currently depends on a Shopify CLI tunnel.
 
 ## Two-minute Shopify proof
 
-[Open the focused Shopify evidence hub](docs/shopify/README.md) to review the six strongest proofs without reading the full project history.
+[Open the focused Shopify evidence hub](docs/shopify/README.md) for the six storefront proofs and the app integration proof. [Read the complete status and roadmap](docs/evidence/estado-general-y-siguientes-pasos.md) for what is done, what is limited, and what comes next.
 
 ## Live preview
 
@@ -43,6 +44,7 @@ All modules are verified in a real Shopify Theme Editor and unpublished storefro
 - [`docs/screenshots/`](docs/screenshots/) — verified visual evidence only
 - [`docs/test-results/`](docs/test-results/) — reproducible validation records
 - [`scripts/`](scripts/) — repeatable project checks
+- [`inventory-sync-monitor/`](inventory-sync-monitor/) — embedded app, GraphQL/webhooks, database schema, and tests
 
 ## Development workflow
 
@@ -66,6 +68,7 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 - [Case Quantity Purchase Calculator](docs/case-studies/purchase-logic-calculator.md)
 - [AJAX Cart Drawer Engineering](docs/case-studies/cart-engineering.md)
 - [Storefront Quality Engineering](docs/case-studies/quality-engineering.md)
+- [Inventory Sync Monitor](docs/case-studies/inventory-sync-monitor.md)
 
 ## Supported job categories
 
@@ -87,6 +90,7 @@ See [`docs/development-workflow.md`](docs/development-workflow.md) for the safe-
 - AJAX cart drawer, quantity updates, removal, and authoritative subtotal synchronization
 - Cart loading, inventory-error, empty, mobile, and keyboard states
 - Shopify theme QA with Theme Check, repeatable Lighthouse, accessibility verification, and CI
+- Contained Shopify Admin GraphQL integrations, webhook handling, and inventory/backend automation
 
 See [`docs/evidence/job-mapping.md`](docs/evidence/job-mapping.md) for exact readiness labels and exclusions.
 

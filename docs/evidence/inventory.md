@@ -1,6 +1,6 @@
 # Evidence Inventory
 
-Last updated: 2026-09-17
+Last updated: 2026-09-19
 
 | Module | Status | Working implementation | Shopify preview | Source | Screenshots | Case study | Tests | Demo script |
 |---|---|---|---|---|---|---|---|---|
@@ -13,7 +13,7 @@ Last updated: 2026-09-17
 | Cart engineering | Complete | Yes | Verified unpublished PDP and mobile Theme Editor flow | Yes | Authenticated populated/error/empty/mobile captures | Yes | Theme Check + AJAX cart matrix | Yes |
 | Quality evidence | Complete | Yes | Verified unpublished home/product/collection previews | Yes | Authenticated browser session | Yes | Theme Check + 9 Lighthouse runs + accessibility matrix + CI | Reproduction guide |
 | Portfolio packaging | Complete | Yes | Six verified live routes | Yes | Six fresh storefront captures | Six concise proof pages | Link/asset gate | Six short proof clips |
-| Integration Lab | Not started | No | No | No | No | No | No | No |
+| Integration Lab | Complete as development-store proof | Yes | Embedded app verified; active CLI preview required | Yes | Three real admin captures | Yes | Typecheck, five unit tests, PostgreSQL integration, lint, build, live GraphQL/webhooks | 18-second screenshot walkthrough |
 
 ## Verified evidence
 
@@ -45,6 +45,8 @@ Last updated: 2026-09-17
 - Phase 7 verified keyboard order, visible focus, native-dialog focus management, focus wrapping, Escape restoration, and focused live error messaging in the authenticated storefront.
 - Phase 7 added push/PR CI for official Shopify Theme Check and repository quality invariants.
 - Phase 8 packages the major proof into one focused hub with six concise pages, six fresh screenshots, six short H.264 clips, verified live routes, direct code links, testing records, and explicit job mappings.
+- Phase 9 installed Inventory Sync Monitor in the development store. Real Admin GraphQL inventory correction, inventory/product webhooks, retry recovery, no-op self-write event, and PostgreSQL persistence are documented in the [case study](../case-studies/inventory-sync-monitor.md).
+- The public GitHub repository now exists; the hosted [theme quality workflow](https://github.com/XonkelX/shopify-commerce-lab/actions/workflows/quality.yml) completed successfully. This does not imply app-specific CI or production hosting.
 
 ## Tooling limitation
 
