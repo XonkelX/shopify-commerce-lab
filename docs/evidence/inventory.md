@@ -7,7 +7,7 @@ Last updated: 2026-09-19
 | Phase 0 infrastructure | Complete | Yes | Verified unpublished theme | Yes | Not applicable | Not applicable | Theme Check + remote upload | Not applicable |
 | Custom comparison section | Complete | Yes | Verified unpublished theme | Yes | Desktop, mobile, [editor](../shopify/assets/phase-1-theme-editor.png) | Yes | Theme Check + browser matrix | Yes |
 | Advanced PDP | Complete | Yes | Verified unpublished product preview | Yes | [Desktop, mobile, variant](../shopify/advanced-pdp.md) | Yes | Theme Check + browser matrix | Yes |
-| Bug Fix Lab | **Incomplete evidence** | Yes — 3 fixes | Verified unpublished product/cart previews | Yes | Three [after images](../shopify/bug-fix-lab.md); three before images missing | Yes | Theme Check + browser matrix | Yes |
+| Bug Fix Lab | **Complete evidence** | Yes — 3 fixes | Verified unpublished product/cart previews | Yes | Three [before/after pairs](../shopify/bug-fix-lab.md), pre-fix states labeled as later reconstructions | Yes | Theme Check + browser matrix | Yes |
 | Product configurator | **Incomplete evidence** | Yes | Verified unpublished product preview | Yes | [Desktop/mobile/cart](../shopify/product-configurator.md); flow recording missing | Yes | Theme Check + browser matrix | Script and captured-state clip only |
 | Quantity/purchase logic | Implementation complete; sequence gate open | Yes | Verified unpublished Theme Editor preview and native cart flow | Yes | [Mobile calculator](../shopify/assets/phase-5-mobile-calculator.png) plus task cart capture | Yes | Theme Check + calculation/cart matrix | Yes |
 | Cart engineering | Implementation complete; sequence gate open | Yes | Verified unpublished PDP and mobile Theme Editor flow | Yes | [Mobile drawer](../shopify/assets/phase-6-mobile-cart.png) plus task captures | Yes | Theme Check + AJAX cart matrix | Yes |
@@ -30,7 +30,7 @@ Last updated: 2026-09-19
 - Advanced PDP variant, price, media, availability, URL, Ajax cart, metafield, and metaobject behavior was verified remotely.
 - Phase 2 now has durable [mobile](../shopify/assets/phase-2-mobile.png) and [variant](../shopify/assets/phase-2-variant-interaction.png) captures.
 - Phase 3 reproduced and fixed a stale AJAX cart count, missing cart variant details, and an invalid empty-cart checkout state.
-- Phase 3 after-state images are durable; three matching before-state files remain missing. Fix source is commit `049ab5c`.
+- Phase 3's before/after pairs are durable. The before images were captured on 2026-09-19 from pre-fix source commit `31191e6` in a separate unpublished draft theme; fix source is commit `049ab5c`.
 - Atlas Personalized Bottle exists as a real Shopify product with the duplicated six-variant matrix and assigned media.
 - Phase 4 verifies structured personalization, invalid states, live preview, merchant settings, responsive behavior, correct Navy / 32 oz selection, and four line-item properties rendered in cart.
 - Phase 4 has durable [mobile](../shopify/assets/phase-4-personalized-mobile.png) and [cart-property](../shopify/assets/phase-4-personalized-cart.png) captures; a genuine configuration-flow recording remains missing.

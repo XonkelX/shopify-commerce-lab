@@ -1,6 +1,6 @@
 # Shopify Bug Fix Evidence Lab
 
-Three real storefront defects were reproduced against the unpublished Shopify theme, diagnosed from source and browser state, fixed in commit `049ab5c`, and rerun in the remote preview. The repairs are real, but this is **not yet a complete buyer-facing before/after set**: the original before captures are not durable in the repository. No client or production claims are made.
+Three real storefront defects were reproduced, diagnosed from source and browser state, fixed in commit `049ab5c`, and rerun in Shopify. The [three public before/after pairs](../shopify/bug-fix-lab.md) use a separate unpublished theme rebuilt from the pre-fix source commit `31191e6` (`049ab5c^`). Those before images were taken on 2026-09-19, not before the historical fix. No client or production claims are made.
 
 ## Bug 1 — AJAX cart badge stayed stale
 
@@ -25,7 +25,7 @@ The remote product page loaded with 2 items. After AJAX add-to-cart, the same do
 
 ### Evidence
 
-- [Durable after-state capture](../shopify/assets/phase-3-after-ajax-count.png); original before capture was reported in the task but is not published.
+- [Before: successful AJAX add](../shopify/assets/phase-3-before-ajax-count.jpg) · [before: stale header at 2](../shopify/assets/phase-3-before-ajax-stale-header.jpg) · [after: synchronized count](../shopify/assets/phase-3-after-ajax-count.png). In the reconstructed run, opening the cart after the add rendered 3.
 - [Header source](../../theme/sections/header.liquid)
 - [AJAX synchronization source](../../theme/sections/product.liquid)
 - Fix commit: `049ab5c`
@@ -58,7 +58,7 @@ Each Remove link also announces the precise variant.
 
 ### Evidence
 
-- [Durable after-state capture](../shopify/assets/phase-3-after-variant-cart.png); original before capture was reported in the task but is not published.
+- [Before: title-only cart row](../shopify/assets/phase-3-before-variant-cart.jpg) · [after: selected options](../shopify/assets/phase-3-after-variant-cart.png). The reconstructed cart held Sage / 20 oz and Terracotta / 32 oz, each with a distinct variant URL but the same visible title.
 - [Cart source](../../theme/sections/cart.liquid)
 - [Phase 3 test matrix](../test-results/phase-3-bug-fix-lab.md)
 - Fix commit: `049ab5c`
@@ -86,7 +86,7 @@ The authenticated 390 px Shopify mobile preview now shows “Your cart is empty,
 
 ### Evidence
 
-- [Durable mobile after-state capture](../shopify/assets/phase-3-after-empty-cart.png); original before capture was reported in the task but is not published.
+- [Before: empty cart with Checkout](../shopify/assets/phase-3-before-empty-cart.jpg) · [after: mobile empty state](../shopify/assets/phase-3-after-empty-cart.png).
 - [Cart source](../../theme/sections/cart.liquid)
 - Fix commit: `049ab5c`
 
@@ -101,7 +101,7 @@ The authenticated 390 px Shopify mobile preview now shows “Your cart is empty,
 
 ## Known limitations
 
-- The three after states are now repository images. Matching before-state images remain missing; Phase 3 is therefore incomplete under the strict evidence rule.
+- The before states are later reconstructions from the actual parent commit, not original historical screenshots. The after images come from the enhanced repaired theme, so visual layout differences are not attributed solely to the Phase 3 fix.
 - Cart quantity changes still use Shopify's standard form submission; AJAX cart editing belongs to the later Cart Engineering phase.
 - The development store remains password protected and the theme remains unpublished.
 

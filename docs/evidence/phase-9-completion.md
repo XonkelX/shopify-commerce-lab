@@ -25,7 +25,7 @@ INCOMPLETE
 - [x] Failure states are visible in the merchant dashboard.
 - [x] Architecture, screenshots, walkthrough, case study, tests, public repository, and direct code links exist.
 - [x] CURRENT MARKET READINESS is updated.
-- [ ] Hard prerequisite: the storefront Evidence Kit is not yet fully accepted under the strict Phase 3/4/8 evidence gates.
+- [ ] Hard prerequisite: the storefront Evidence Kit is not yet fully accepted under the strict Phase 4/8 evidence gates; Phase 3's before/after set is complete.
 
 ## Known limitations
 - The app uses a Shopify CLI tunnel; it is not deployed to durable production hosting. The admin live link requires store access and an active preview.
@@ -66,4 +66,4 @@ Contained Shopify theme work and scoped app/API tasks: Admin GraphQL reads/write
 3. Checkout extensions or Shopify Functions without a separate proof module.
 
 ## Next evidence gap
-First close the storefront Phase 3 before/after and Phase 4 recorded-flow gaps required by the hard prerequisite. Then replace the CLI tunnel with durable hosting, verify auth and webhooks after restart, add monitoring/deployment evidence, and record a short live interaction demo.
+First close the storefront Phase 4 recorded-flow gap required by the hard prerequisite. Then replace the CLI tunnel with durable hosting, verify auth and webhooks after restart, add monitoring/deployment evidence, and record a short live interaction demo.

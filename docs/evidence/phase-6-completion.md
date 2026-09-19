@@ -51,7 +51,7 @@ COMPLETE
 - Subscription/bundle cart behavior or checkout extensions.
 
 ## Approximate job scope currently supported
-Scoped cart-drawer engineering on existing Shopify themes; the global Evidence Kit remains gated by Phase 3 before images.
+Scoped cart-drawer engineering on existing Shopify themes; the global Evidence Kit remains gated by the Phase 4 recorded flow.
 
 ## Best applications to target now
 1. Repair or implement an AJAX cart drawer.

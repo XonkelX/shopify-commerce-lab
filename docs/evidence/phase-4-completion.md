@@ -62,4 +62,4 @@ Contained theme-level personalization with no upload or dynamic-surcharge promis
 1. Upload-based personalization or checkout-price changes without a separate architecture.
 
 ## Next evidence gap
-Record and publish a genuine end-to-end configuration interaction, then close the Phase 3 before-state gate.
+Record and publish a genuine end-to-end configuration interaction; the Phase 3 before/after gate is now closed.

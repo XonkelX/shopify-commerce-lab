@@ -6,9 +6,9 @@
 
 ## Resumen ejecutivo
 
-El proyecto tiene implementaciones reales de las fases 0–9, pero **no cumple todavía todas las puertas estrictas de evidencia del prompt**. Hay un [repositorio público](https://github.com/XonkelX/shopify-commerce-lab), una [galería para compradores](../shopify/README.md), un tema Shopify **no publicado** y una app que ejecutó GraphQL y webhooks reales en la tienda de desarrollo. Falta publicar los tres estados «antes» de los bugs y grabar el flujo completo del configurador. La [auditoría estricta](strict-acceptance-audit.md) separa implementación de aceptación.
+El proyecto tiene implementaciones reales de las fases 0–9, pero **no cumple todavía todas las puertas estrictas de evidencia del prompt**. Hay un [repositorio público](https://github.com/XonkelX/shopify-commerce-lab), una [galería para compradores](../shopify/README.md), un tema Shopify **no publicado** y una app que ejecutó GraphQL y webhooks reales en la tienda de desarrollo. Las tres parejas antes/después de bugs ya son públicas; los «antes» son reconstrucciones posteriores desde el commit previo. Falta grabar el flujo completo del configurador. La [auditoría estricta](strict-acceptance-audit.md) separa implementación de aceptación.
 
-Esto constituye evidencia creíble para trabajos Shopify **acotados**, pero no un Evidence Kit totalmente cerrado según la secuencia del `.md`. Lo prioritario es cerrar primero las imágenes antes/después y el video de configuración; después, hacer que la app sea revisable sin túnel local.
+Esto constituye evidencia creíble para trabajos Shopify **acotados**, pero no un Evidence Kit totalmente cerrado según la secuencia del `.md`. Lo prioritario ahora es el video real de configuración; después, hacer que la app sea revisable sin túnel local.
 
 ## Qué se cumplió
 
@@ -17,12 +17,12 @@ Esto constituye evidencia creíble para trabajos Shopify **acotados**, pero no u
 | 0 — Infraestructura | Repositorio aislado, tema Skeleton, flujo seguro hacia tema no publicado y Theme Check reproducible. | [Reporte](phase-0-completion.md) |
 | 1 — Sección personalizada | Comparador configurable en Theme Editor, bloques reordenables y diseño desktop/móvil. | [Prueba para compradores](../shopify/custom-section.md) · [Reporte](phase-1-completion.md) |
 | 2 — PDP avanzado | Variantes reales, precio, media, disponibilidad, URL, carrito AJAX, metafields y metaobject. | [Prueba](../shopify/advanced-pdp.md) · [Reporte](phase-2-completion.md) |
-| 3 — Corrección de bugs | Tres defectos reales corregidos; faltan capturas durables de los tres estados antes. **INCOMPLETA** bajo el prompt. | [Caso](../case-studies/bug-fix-lab.md) · [Reporte](phase-3-completion.md) |
+| 3 — Corrección de bugs | Tres defectos reales corregidos y tres parejas antes/después durables; los «antes» son reconstrucciones del commit previo. **COMPLETA** como evidencia. | [Caso](../case-studies/bug-fix-lab.md) · [Reporte](phase-3-completion.md) |
 | 4 — Configurador | Personalización validada en carrito; falta video real del flujo. **INCOMPLETA** como paquete de evidencia. | [Prueba](../shopify/product-configurator.md) · [Reporte](phase-4-completion.md) |
 | 5 — Lógica de compra | Calculadora de cajas completas, límites, estados sin inventario y cantidad correcta en carrito. | [Prueba](../shopify/cart-purchase-logic.md) · [Reporte](phase-5-completion.md) |
 | 6 — Carrito | Drawer AJAX con cantidad, eliminación, subtotal autoritativo, errores, móvil y teclado. | [Caso](../case-studies/cart-engineering.md) · [Reporte](phase-6-completion.md) |
 | 7 — Calidad | Theme Check limpio, nueve mediciones Lighthouse, accesibilidad práctica, correcciones y automatización. | [Prueba](../shopify/performance-qa.md) · [Reporte](phase-7-completion.md) |
-| 8 — Portafolio | Seis páginas con capturas reales y clips de estados; **INCOMPLETA** por brechas de fases 3/4 y acceso gated. | [Hub](../shopify/README.md) · [Reporte](phase-8-completion.md) |
+| 8 — Portafolio | Seis páginas con capturas reales y clips de estados; **INCOMPLETA** por el video de fase 4 y el acceso gated. | [Hub](../shopify/README.md) · [Reporte](phase-8-completion.md) |
 | 9 — Integración | App React Router con GraphQL/webhooks reales, PostgreSQL y panel; **INCOMPLETA** bajo el prerequisito formal de fase 8. | [Caso](../case-studies/inventory-sync-monitor.md) · [Reporte](phase-9-completion.md) |
 
 ### Pruebas técnicas y de entrega más fuertes
@@ -38,9 +38,8 @@ Esto constituye evidencia creíble para trabajos Shopify **acotados**, pero no u
 
 ### Prioridad 1 — Cerrar las puertas estrictas del storefront
 
-1. Reconstruir en un tema no publicado los tres estados previos desde `049ab5c^`, etiquetarlos claramente como reconstrucciones y guardarlos junto a las tres nuevas capturas posteriores.
-2. Grabar una interacción real completa del configurador hasta el carrito, sin exponer credenciales ni ventanas privadas.
-3. Revalidar el hub y sus enlaces para un comprador externo; el preview puede pedir contraseña y no debe presentarse como público irrestricto.
+1. Grabar una interacción real completa del configurador hasta el carrito, sin exponer credenciales ni ventanas privadas.
+2. Revalidar el hub y sus enlaces para un comprador externo; el preview puede pedir contraseña y no debe presentarse como público irrestricto.
 
 ### Prioridad 2 — Cerrar la dependencia del entorno local
 
@@ -77,4 +76,4 @@ No significa construir todas las funciones posibles. Significa que cada promesa 
 
 ## Veredicto
 
-**Implementaciones sustanciales y reales; Evidence Kit estricto todavía incompleto.** El siguiente paso de mayor retorno es cerrar el antes/después y el video de flujo, y luego despliegue durable + verificación operativa de la app. No hace falta otra fase de features.
+**Implementaciones sustanciales y reales; Evidence Kit estricto todavía incompleto.** El antes/después ya quedó documentado; el siguiente paso de mayor retorno es el video real del flujo del configurador, y luego despliegue durable + verificación operativa de la app. No hace falta otra fase de features.

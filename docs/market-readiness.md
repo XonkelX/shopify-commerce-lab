@@ -2,14 +2,14 @@
 
 Last updated: 2026-09-19
 
-**Strict acceptance:** the implementations are real, but the [audit](evidence/strict-acceptance-audit.md) marks Phase 3, Phase 4, Phase 8, and Phase 9 incomplete as evidence/sequence gates. `READY` below refers to scoped technical capability, not an assertion that all phase reports are accepted or that any preview is publicly accessible without authentication.
+**Strict acceptance:** the implementations are real, but the [audit](evidence/strict-acceptance-audit.md) still marks Phase 4, Phase 8, and Phase 9 incomplete as evidence/sequence gates. Phase 3 now has reconstructed before/after proof. `READY` below refers to scoped technical capability, not an assertion that all phase reports are accepted or that any preview is publicly accessible without authentication.
 
 ## Evidence currently completed
 
 - Phase 0 infrastructure and safe-delivery workflow.
 - Product Comparison Section running in a real unpublished Shopify theme.
 - Advanced PDP running against a real six-variant Shopify product.
-- Bug Fix Evidence Lab with three reproduced, diagnosed, fixed, and remotely verified storefront defects; the three before-state visuals are not yet durable.
+- Bug Fix Evidence Lab with three reproduced, diagnosed, fixed, and remotely verified storefront defects; [all three before/after pairs](shopify/bug-fix-lab.md) are durable, with the before states labeled as later reconstructions.
 - Personalized Product Configurator with structured selection, live preview, validation, real variants, merchant settings, and cart-persistent line-item properties.
 - Case Quantity Purchase Calculator with transparent ceiling logic, edge validation, merchant controls, real variant states, computed cart quantity, and cart-persistent calculation properties.
 - AJAX Cart Drawer with product-form integration, quantity and removal controls, Shopify-authoritative section refresh, variant/property display, loading/error/empty states, shipping progress, mobile layout, and keyboard behavior.
@@ -117,7 +117,7 @@ Last updated: 2026-09-19
 - Theme quality audit — clean Theme Check, nine Lighthouse runs, manual accessibility checks, repaired findings, and disclosed limitations
 - Contained accessibility repair — ARIA semantics, labels, focus order/visibility, dialog management, error announcements, touch targets, and contrast are evidenced
 - Theme QA automation — warning-level Theme Check and structural invariants run on every push and pull request
-- Storefront evidence navigation — six major proofs are discoverable from one focused hub, though the strict before/after and recorded-flow gates remain open
+- Storefront evidence navigation — six major proofs are discoverable from one focused hub; the before/after gate is closed, while the recorded-flow gate remains open
 - Contained Shopify app/API integration — embedded React Router app with authenticated Admin GraphQL read/write and verified QA-product inventory correction
 - Webhook processing — real inventory/product deliveries, failed-event recovery, unique-ID claim logic, and self-write no-op shown
 - Inventory synchronization and backend automation — PostgreSQL event log, three-attempt recovery, failure visibility, compare-and-set, and idempotency evidence
@@ -129,7 +129,7 @@ Last updated: 2026-09-19
 - Performance remediation — image priority, responsive delivery, metadata, and measured page audits are proven, but production field Core Web Vitals are not.
 - Small conditional personalization additions — adjacent to the completed module, but uploads and surcharge architectures are not claimed.
 - Custom app adaptation within an existing deployment — the core integration is proven, but long-lived hosting and production operations are not.
-- A finished three-case before/after showcase and a complete configurator demo — fixes and flow are real, but the required durable visuals are not all present.
+- A complete configurator demo — the flow is real, but the required genuine interaction recording is not yet present. The three-case before/after bug showcase is inspectable, with reconstruction caveats.
 
 ## NOT YET
 
@@ -164,4 +164,4 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 
 ## Next evidence gap
 
-The highest-priority strict evidence gap is **Phase 3's three missing before-state visuals**, followed by the genuine Phase 4 configuration-flow recording. The [audit](evidence/strict-acceptance-audit.md) lists the exact closure path. After those storefront gates, durable app deployment, post-restart auth/webhook verification, and a live app recording would make the Phase 9 proof independently reviewable without a local tunnel.
+The highest-priority strict evidence gap is the genuine Phase 4 configuration-flow recording. The [audit](evidence/strict-acceptance-audit.md) lists the exact closure path. After that storefront gate, durable app deployment, post-restart auth/webhook verification, and a live app recording would make the Phase 9 proof independently reviewable without a local tunnel.

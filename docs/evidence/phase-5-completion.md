@@ -52,7 +52,7 @@ COMPLETE
 - Bundles, subscription purchase rules, or checkout-price changes.
 
 ## Approximate job scope currently supported
-Contained theme-level whole-unit quantity calculators; the global Evidence Kit remains gated by the Phase 3 before images.
+Contained theme-level whole-unit quantity calculators; the global Evidence Kit remains gated by the Phase 4 recorded flow.
 
 ## Best applications to target now
 1. Pack/case quantity calculation for an existing product.

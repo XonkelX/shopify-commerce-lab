@@ -11,9 +11,9 @@ Each module pairs real Shopify behavior with source code, testing notes, screens
 - Phase 0 — **COMPLETE**
 - Phase 1 — **COMPLETE**
 - Phase 2 — **COMPLETE**
-- Phase 3 — **INCOMPLETE evidence** (three before-state visuals missing; fixes verified)
+- Phase 3 — **COMPLETE evidence** (three source-backed before/after defect proofs; before states labeled as reconstructions)
 - Phase 4 — **INCOMPLETE evidence** (real configuration-flow recording missing; cart data verified)
-- Phases 5–7 — implementations verified; the prompt's sequential acceptance gate remains open because Phase 3 is incomplete
+- Phases 5–7 — implementations verified; the prompt's sequential acceptance gate remains open because Phase 4 is incomplete
 - Phase 8 — **INCOMPLETE** strict packaging gate
 - Phase 9 — real development-store integration verified, but **INCOMPLETE** under Phase 8's hard prerequisite; not production hosting
 - Local Shopify CLI: 4.8.0

@@ -5,6 +5,8 @@ Store: Oniel Lab development store
 Theme: Shopify Commerce Lab, unpublished, ID `155175092398`  
 Fix commit: `049ab5c`
 
+Before-state reconstruction: source commit `31191e6` (`049ab5c^`), separate unpublished theme `155226570926`, captured 2026-09-19 in Shopify Theme Editor. The repaired theme is unpublished theme `155175092398`. The before captures are later reconstructions of actual pre-fix behavior, not historical screenshots taken before the fix.
+
 | Bug | Before | Root cause | After | Result |
 |---|---|---|---|---|
 | Stale AJAX cart badge | Add succeeded while header remained at 1; cart page showed 2 | AJAX handler never refreshed cart state; header had no client hooks | Active page moved from 2 to 3 after add and announced `Cart, 3 items` | PASS |
@@ -52,4 +54,10 @@ Fix commit: `049ab5c`
 
 ## Capture inventory
 
-Durable after images: [AJAX count](../shopify/assets/phase-3-after-ajax-count.png), [variant details](../shopify/assets/phase-3-after-variant-cart.png), [mobile empty cart](../shopify/assets/phase-3-after-empty-cart.png). Before images for the three original defects were reported in the work session but are not inspectable from this repository. This evidence gate remains open.
+| Defect | Before capture | After capture | Reconstruction check |
+|---|---|---|---|
+| AJAX stale count | [AJAX success](../shopify/assets/phase-3-before-ajax-count.jpg) and [unchanged header count](../shopify/assets/phase-3-before-ajax-stale-header.jpg) | [Live updated count](../shopify/assets/phase-3-after-ajax-count.png) | In the pre-fix editor session the count stayed at `2` after the third unit was added; navigation to `/cart` rendered `3`. |
+| Variant omitted | [Pre-fix cart row](../shopify/assets/phase-3-before-variant-cart.jpg) | [Options visible](../shopify/assets/phase-3-after-variant-cart.png) | The cart contained Sage / 20 oz and Terracotta / 32 oz with distinct variant URLs; both visible row names were only `Atlas Insulated Bottle`. |
+| Empty checkout | [Pre-fix empty cart](../shopify/assets/phase-3-before-empty-cart.jpg) | [Empty-state branch](../shopify/assets/phase-3-after-empty-cart.png) | Clean pre-fix Theme Editor cart had zero lines and an enabled `Checkout` button. |
+
+The pre-fix worktree passed `shopify theme check` on 40 files with zero offenses before it was uploaded as a draft. The after captures come from the later enhanced repaired theme, so layout and viewport differences should not be mistaken for changes caused solely by commit `049ab5c`.

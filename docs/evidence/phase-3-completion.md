@@ -1,7 +1,7 @@
 # PHASE 3 COMPLETION REPORT
 
 ## Status
-INCOMPLETE
+COMPLETE — three source-backed before/after defect proofs; before states are labeled reconstructions.
 
 ## What was built
 - Fixed stale AJAX cart count, missing cart variant identity, and unusable empty-cart checkout state.
@@ -10,7 +10,7 @@ INCOMPLETE
 ## Evidence created
 - Live: [unpublished repaired cart](https://oniel-lab.myshopify.com/cart?preview_theme_id=155175092398) (password/session may be required).
 - Code: [header](../../theme/sections/header.liquid), [product AJAX handler](../../theme/sections/product.liquid), [cart](../../theme/sections/cart.liquid), and fix commit `049ab5c`.
-- Screenshots: durable **after** captures for [AJAX count](../shopify/assets/phase-3-after-ajax-count.png), [variant details](../shopify/assets/phase-3-after-variant-cart.png), and [mobile empty state](../shopify/assets/phase-3-after-empty-cart.png). Original before captures were reported in the task but are not inspectable from the repository.
+- Screenshots: [all three before/after pairs](../shopify/bug-fix-lab.md), including four 2026-09-19 captures of actual pre-fix behavior in a separate unpublished reconstruction theme.
 - Case study: [three root causes and repairs](../case-studies/bug-fix-lab.md).
 - Tests: [Phase 3 validation matrix](../test-results/phase-3-bug-fix-lab.md); Theme Check had zero offenses at the phase gate.
 - Demo: [reproduction script](phase-3-demo-script.md) and [after-state clip](../shopify/assets/bug-fix-lab-demo.mp4), not a before/after recording.
@@ -19,14 +19,14 @@ INCOMPLETE
 - [x] Three genuine defects and technical causes documented.
 - [x] Fixes verified in real Shopify preview and linked to commit `049ab5c`.
 - [x] Three durable after-state captures now exist.
-- [ ] Durable before screenshot/video for **each** defect is still missing.
-- [ ] A buyer can inspect all three before/after pairs from one public evidence link.
+- [x] Durable before screenshot for **each** defect exists, explicitly labeled as a later reconstruction.
+- [x] A buyer can inspect all three before/after pairs from [one public evidence page](../shopify/bug-fix-lab.md).
 - [x] Current market readiness records the gap.
 
 ## Known limitations
-- The earlier task-only before captures cannot substitute for durable buyer-facing evidence.
-- Reconstructing before states from the pre-fix commit must be labeled as a reconstruction, not passed off as a historical capture.
-- Do not treat this phase as accepted until the three before visuals are present and linked.
+- The original task-only before captures are still not in the repository; the new before captures are genuine browser renderings of commit `31191e6` (`049ab5c^`) on unpublished theme `155226570926`, made after the historical fix.
+- The after images are from the later enhanced repaired theme `155175092398`, not a pixel-matched snapshot of the immediate `049ab5c` result.
+- Shopify development-store preview access remains gated; public images, source, and test notes do not require that access.
 
 # CURRENT MARKET READINESS
 
@@ -34,20 +34,20 @@ INCOMPLETE
 - Contained Liquid/cart fixes — source diff, test matrix, and three verified after states.
 
 ## PLAUSIBLE
-- Inherited-theme troubleshooting — real diagnosis exists, but strict buyer-facing before/after packaging is unfinished.
+- Inherited-theme troubleshooting — three source-backed before/after cases are public; preview access is gated.
 
 ## NOT YET
-- A fully inspectable three-case before/after debugging portfolio claim.
+- An unrestricted live storefront preview for arbitrary buyers.
 
 ## Approximate job scope currently supported
-Small, scoped Shopify cart and Liquid repairs, with the before/after presentation caveat.
+Small, scoped Shopify cart and Liquid repairs with public reconstructed before/after evidence.
 
 ## Best applications to target now
 1. Cart count and variant-rendering fixes backed by code and tests.
 2. Empty-state and conditional-rendering repairs.
 
 ## Do not target yet
-1. Claims of a finished three-case before/after showcase.
+1. Claims that the reconstructed before screenshots were captured before the original fix or that the draft preview is public without access.
 
 ## Next evidence gap
-Capture and publish the three genuine pre-fix states from commit `049ab5c^`, paired with the existing after images.
+Record the genuine Phase 4 configuration flow; Phase 3's three proof pairs are now durable.
