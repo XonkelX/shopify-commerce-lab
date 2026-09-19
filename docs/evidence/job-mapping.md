@@ -4,6 +4,8 @@ Last updated: 2026-09-19
 
 Readiness is based on inspectable evidence in this repository, not expected ability.
 
+These are **scoped capability** labels, not phase-acceptance labels. The [strict audit](strict-acceptance-audit.md) identifies incomplete before/after, flow-video, and prerequisite gates; live previews are authenticated.
+
 | Job category | Strongest evidence | Readiness |
 |---|---|---|
 | Custom Shopify section | [Custom Section buyer proof](../shopify/custom-section.md) | READY |
@@ -19,7 +21,7 @@ Readiness is based on inspectable evidence in this repository, not expected abil
 | Cart-state bug | Live AJAX badge synchronization fix | READY |
 | Variant display bug | Cart option rendering fix | READY |
 | Empty-state bug | Conditional empty-cart repair | READY |
-| Product configurator | [Product Configurator buyer proof](../shopify/product-configurator.md) | READY |
+| Product configurator | [Product Configurator buyer proof](../shopify/product-configurator.md); real cart properties but required interaction recording missing | PLAUSIBLE |
 | Product personalization | Live preview, validation, and four line-item properties | READY |
 | Advanced PDP option logic | Real variant/media/availability synchronization plus personalization state | READY |
 | Quantity/purchase calculator | [Cart / Purchase Logic buyer proof](../shopify/cart-purchase-logic.md) | READY |
@@ -30,8 +32,8 @@ Readiness is based on inspectable evidence in this repository, not expected abil
 | Free-shipping progress | Merchant-configured threshold with live authoritative cart total | READY |
 | Shopify theme quality audit | [Performance / QA buyer proof](../shopify/performance-qa.md) | READY |
 | Theme QA automation | Reproducible PowerShell gates plus push/PR GitHub Actions | READY |
-| Contained Shopify GraphQL/API integration | [Inventory Sync Monitor live proof](../case-studies/inventory-sync-monitor.md) — authenticated real read/write on an unpublished QA product | READY |
-| Shopify webhook processing | Real inventory/product deliveries, failed-event recovery, persistent log, and duplicate-handling tests in [Phase 9 report](phase-9-completion.md) | READY |
+| Contained Shopify GraphQL/API integration | [Inventory Sync Monitor proof](../case-studies/inventory-sync-monitor.md) — real development-store read/write, but Phase 8 hard prerequisite and durable access remain open | PLAUSIBLE |
+| Shopify webhook processing | Real inventory/product deliveries and tests in [Phase 9 report](phase-9-completion.md); local-tunnel dependency | PLAUSIBLE |
 | Production warehouse operations or public app distribution | Development tunnel and mock warehouse only; no durable hosting or production SLA | NOT YET |
 
-Phases 1–8 directly support contained section work, product-page/variant work, structured content, evidence-backed Liquid debugging, product configurators, personalization interfaces, fixed-unit purchase calculators, advanced AJAX cart-drawer work, and evidence-led theme QA. Phase 9 adds scoped Admin GraphQL, webhook, inventory-sync, and backend automation proof. The [focused Shopify evidence hub](../shopify/README.md) makes those claims inspectable. Bundles, subscriptions, recommendations, app-store distribution, and production-critical inventory operations remain unsupported.
+The implementations support contained theme work, with a real development-store API/webhook prototype. The [focused Shopify evidence hub](../shopify/README.md) makes much of the work inspectable, while the [strict audit](strict-acceptance-audit.md) names what still blocks a fully accepted Evidence Kit. Bundles, subscriptions, app-store distribution, and production-critical inventory operations remain unsupported.

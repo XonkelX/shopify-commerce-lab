@@ -5,15 +5,15 @@ Last updated: 2026-09-19
 | Module | Status | Working implementation | Shopify preview | Source | Screenshots | Case study | Tests | Demo script |
 |---|---|---|---|---|---|---|---|---|
 | Phase 0 infrastructure | Complete | Yes | Verified unpublished theme | Yes | Not applicable | Not applicable | Theme Check + remote upload | Not applicable |
-| Custom comparison section | Complete | Yes | Verified unpublished theme | Yes | Desktop, mobile, editor session | Yes | Theme Check + browser matrix | Yes |
-| Advanced PDP | Complete | Yes | Verified unpublished product preview | Yes | Authenticated desktop/mobile task captures | Yes | Theme Check + browser matrix | Yes |
-| Bug Fix Lab | Complete | Yes — 3 fixes | Verified unpublished product/cart previews | Yes | Authenticated before/after task captures | Yes | Theme Check + browser matrix | Yes |
-| Product configurator | Complete | Yes | Verified unpublished product preview | Yes | Authenticated desktop/mobile/editor/cart captures | Yes | Theme Check + browser matrix | Yes |
-| Quantity/purchase logic | Complete | Yes | Verified unpublished Theme Editor preview and native cart flow | Yes | Authenticated mobile/editor/cart captures | Yes | Theme Check + calculation/cart matrix | Yes |
-| Cart engineering | Complete | Yes | Verified unpublished PDP and mobile Theme Editor flow | Yes | Authenticated populated/error/empty/mobile captures | Yes | Theme Check + AJAX cart matrix | Yes |
+| Custom comparison section | Complete | Yes | Verified unpublished theme | Yes | Desktop, mobile, [editor](../shopify/assets/phase-1-theme-editor.png) | Yes | Theme Check + browser matrix | Yes |
+| Advanced PDP | Complete | Yes | Verified unpublished product preview | Yes | [Desktop, mobile, variant](../shopify/advanced-pdp.md) | Yes | Theme Check + browser matrix | Yes |
+| Bug Fix Lab | **Incomplete evidence** | Yes — 3 fixes | Verified unpublished product/cart previews | Yes | Three [after images](../shopify/bug-fix-lab.md); three before images missing | Yes | Theme Check + browser matrix | Yes |
+| Product configurator | **Incomplete evidence** | Yes | Verified unpublished product preview | Yes | [Desktop/mobile/cart](../shopify/product-configurator.md); flow recording missing | Yes | Theme Check + browser matrix | Script and captured-state clip only |
+| Quantity/purchase logic | Implementation complete; sequence gate open | Yes | Verified unpublished Theme Editor preview and native cart flow | Yes | [Mobile calculator](../shopify/assets/phase-5-mobile-calculator.png) plus task cart capture | Yes | Theme Check + calculation/cart matrix | Yes |
+| Cart engineering | Implementation complete; sequence gate open | Yes | Verified unpublished PDP and mobile Theme Editor flow | Yes | [Mobile drawer](../shopify/assets/phase-6-mobile-cart.png) plus task captures | Yes | Theme Check + AJAX cart matrix | Yes |
 | Quality evidence | Complete | Yes | Verified unpublished home/product/collection previews | Yes | Authenticated browser session | Yes | Theme Check + 9 Lighthouse runs + accessibility matrix + CI | Reproduction guide |
-| Portfolio packaging | Complete | Yes | Six verified live routes | Yes | Six fresh storefront captures | Six concise proof pages | Link/asset gate | Six short proof clips |
-| Integration Lab | Complete as development-store proof | Yes | Embedded app verified; active CLI preview required | Yes | Three real admin captures | Yes | Typecheck, five unit tests, PostgreSQL integration, lint, build, live GraphQL/webhooks | 18-second screenshot walkthrough |
+| Portfolio packaging | **Incomplete strict gate** | Yes | Six authenticated preview routes | Yes | Six fresh storefront captures plus additions | Six concise proof pages | Link/asset gate | Six captured-state clips; flow recording missing |
+| Integration Lab | Functional development proof; hard prerequisite open | Yes | Embedded app verified; active CLI preview required | Yes | Three real admin captures | Yes | Typecheck, five unit tests, PostgreSQL integration, lint, build, live GraphQL/webhooks | 18-second screenshot walkthrough |
 
 ## Verified evidence
 
@@ -28,12 +28,12 @@ Last updated: 2026-09-19
 - Theme Editor schema controls and live preview updates were verified in the authenticated editor.
 - Atlas Insulated Bottle exists as a real six-variant Shopify product with assigned variant media and inventory.
 - Advanced PDP variant, price, media, availability, URL, Ajax cart, metafield, and metaobject behavior was verified remotely.
-- The Phase 2 desktop storefront and mobile Theme Editor captures are preserved as authenticated task deliverables.
+- Phase 2 now has durable [mobile](../shopify/assets/phase-2-mobile.png) and [variant](../shopify/assets/phase-2-variant-interaction.png) captures.
 - Phase 3 reproduced and fixed a stale AJAX cart count, missing cart variant details, and an invalid empty-cart checkout state.
-- Phase 3 before/after browser captures are preserved as authenticated task deliverables; fix source is commit `049ab5c`.
+- Phase 3 after-state images are durable; three matching before-state files remain missing. Fix source is commit `049ab5c`.
 - Atlas Personalized Bottle exists as a real Shopify product with the duplicated six-variant matrix and assigned media.
 - Phase 4 verifies structured personalization, invalid states, live preview, merchant settings, responsive behavior, correct Navy / 32 oz selection, and four line-item properties rendered in cart.
-- Phase 4 desktop, mobile, Theme Editor, and cart captures are preserved as authenticated task deliverables.
+- Phase 4 has durable [mobile](../shopify/assets/phase-4-personalized-mobile.png) and [cart-property](../shopify/assets/phase-4-personalized-cart.png) captures; a genuine configuration-flow recording remains missing.
 - Phase 5 verifies whole-case ceiling logic, calculation transparency, range validation, variant availability, and native cart submission with the computed quantity.
 - The verified 125-bottle, 10%-reserve flow submitted 12 Navy / 32 oz cases, produced a $480 cart subtotal, and preserved all four calculation properties.
 - Phase 5 mobile Theme Editor and cart captures are preserved as authenticated task deliverables.
@@ -46,7 +46,9 @@ Last updated: 2026-09-19
 - Phase 7 added push/PR CI for official Shopify Theme Check and repository quality invariants.
 - Phase 8 packages the major proof into one focused hub with six concise pages, six fresh screenshots, six short H.264 clips, verified live routes, direct code links, testing records, and explicit job mappings.
 - Phase 9 installed Inventory Sync Monitor in the development store. Real Admin GraphQL inventory correction, inventory/product webhooks, retry recovery, no-op self-write event, and PostgreSQL persistence are documented in the [case study](../case-studies/inventory-sync-monitor.md).
-- The public GitHub repository now exists; the hosted [theme quality workflow](https://github.com/XonkelX/shopify-commerce-lab/actions/workflows/quality.yml) completed successfully. This does not imply app-specific CI or production hosting.
+- The public GitHub repository exists; the hosted [theme quality workflow](https://github.com/XonkelX/shopify-commerce-lab/actions/workflows/quality.yml) completed successfully. App-specific CI is now configured and passed locally; hosted completion and production hosting are not yet claimed.
+
+For authoritative strict statuses and closure criteria, see the [acceptance audit](strict-acceptance-audit.md).
 
 ## Tooling limitation
 

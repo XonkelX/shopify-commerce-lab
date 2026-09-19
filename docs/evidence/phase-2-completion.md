@@ -1,29 +1,55 @@
-# Phase 2 Completion Record
+# PHASE 2 COMPLETION REPORT
 
-Status: **COMPLETE**  
-Completed: 2026-09-17
+## Status
+COMPLETE
 
-## Acceptance gate
+## What was built
+- A real six-variant PDP with synchronized price, media, availability, URL state, and AJAX add-to-cart.
+- Metafield-driven specifications and a referenced warranty metaobject.
+- Responsive controls and sold-out, missing-data, quantity, and cart-error handling.
 
-- Variant states: verified across color, size, available, and sold-out selections.
-- Correct cart variant: Navy / 32 oz cart line retained variant `49379141714094`.
-- Price/media/availability synchronization: verified in the remote preview.
-- Mobile: verified with Shopify Theme Editor mobile preview.
-- Structured data: three product metafields plus a referenced warranty metaobject render in Liquid.
-- Edge cases: sold out, invalid quantity, missing optional data guards, pending/success/error cart states.
-- Theme Check: 40 files, zero offenses.
-- Evidence: case study, test matrix, demo script, data model, source links, live preview, and authenticated desktop/mobile captures.
-- Market readiness: updated without expanding claims beyond the completed implementation.
+## Evidence created
+- Live: [unpublished Atlas product preview](https://oniel-lab.myshopify.com/products/atlas-insulated-bottle?preview_theme_id=155175092398) (store access/password may be required).
+- Code: [PDP section](../../theme/sections/product.liquid) and [product template](../../theme/templates/product.json).
+- Screenshots: [desktop](../shopify/assets/advanced-pdp.png), [mobile](../shopify/assets/phase-2-mobile.png), and [selected Navy / 32 oz interaction state](../shopify/assets/phase-2-variant-interaction.png).
+- Case study: [Advanced Product Page](../case-studies/advanced-product-page.md), including the product-data model.
+- Tests: [six-variant matrix and edge cases](../test-results/phase-2-advanced-pdp.md); Theme Check had zero offenses at the phase gate.
+- Demo: [variant-interaction script](phase-2-demo-script.md) and [captured-state clip](../shopify/assets/advanced-pdp-demo.mp4); the clip is not a live screen recording.
 
-## Delivery state
+## Acceptance criteria
+- [x] Variant, cart identity, price, media, availability, and URL behavior verified in Shopify.
+- [x] Responsive and sold-out behavior verified.
+- [x] Metafields and metaobject genuinely used.
+- [x] Theme Check acceptable; tests and evidence artifacts exist.
+- [x] Current market readiness updated.
 
-The implementation is uploaded to unpublished theme `Shopify Commerce Lab` (`155175092398`). Nothing was published to the live theme.
+## Known limitations
+- The theme is unpublished and preview access can require a development-store password.
+- The MP4 packages captured states; the live link and validation matrix carry the interaction proof.
+- No client sales, conversion, or production-performance claims.
 
-## Primary links
+# CURRENT MARKET READINESS
 
-- [Product source](../../theme/sections/product.liquid)
-- [Case study](../case-studies/advanced-product-page.md)
-- [Test matrix](../test-results/phase-2-advanced-pdp.md)
-- [Demo script](phase-2-demo-script.md)
-- [Product import data](assets/phase-2-atlas-product.csv)
+## READY
+- Contained Shopify PDP customization — real variant, media, data, cart, and responsive evidence.
+- Variant/media repairs — tested six-variant matrix and selected-state capture.
 
+## PLAUSIBLE
+- Adjacent product-page enhancements — scope and data model require discovery.
+
+## NOT YET
+- Diagnosed inherited-theme bugs, configurators, cart engineering, and app/API integrations at this historical phase gate.
+
+## Approximate job scope currently supported
+Small-to-mid storefront PDP and variant tasks; no backend or production-operations claim.
+
+## Best applications to target now
+1. Product variant/media and availability fixes.
+2. Metafield-driven PDP content.
+3. Responsive product-page customization.
+
+## Do not target yet
+1. Enterprise storefront rebuilds or backend integrations.
+
+## Next evidence gap
+Three durable before/after debugging examples with source diffs (Phase 3).

@@ -1,6 +1,6 @@
 # Shopify Bug Fix Evidence Lab
 
-Three real storefront defects were reproduced against the unpublished Shopify theme, diagnosed from source and browser state, fixed in commit `049ab5c`, and rerun in the remote preview. These are independent technical examples; no client or production claims are made.
+Three real storefront defects were reproduced against the unpublished Shopify theme, diagnosed from source and browser state, fixed in commit `049ab5c`, and rerun in the remote preview. The repairs are real, but this is **not yet a complete buyer-facing before/after set**: the original before captures are not durable in the repository. No client or production claims are made.
 
 ## Bug 1 — AJAX cart badge stayed stale
 
@@ -25,7 +25,7 @@ The remote product page loaded with 2 items. After AJAX add-to-cart, the same do
 
 ### Evidence
 
-- Before/after authenticated browser captures preserved as Phase 3 task deliverables.
+- [Durable after-state capture](../shopify/assets/phase-3-after-ajax-count.png); original before capture was reported in the task but is not published.
 - [Header source](../../theme/sections/header.liquid)
 - [AJAX synchronization source](../../theme/sections/product.liquid)
 - Fix commit: `049ab5c`
@@ -58,7 +58,7 @@ Each Remove link also announces the precise variant.
 
 ### Evidence
 
-- Before/after cart captures preserved as Phase 3 task deliverables.
+- [Durable after-state capture](../shopify/assets/phase-3-after-variant-cart.png); original before capture was reported in the task but is not published.
 - [Cart source](../../theme/sections/cart.liquid)
 - [Phase 3 test matrix](../test-results/phase-3-bug-fix-lab.md)
 - Fix commit: `049ab5c`
@@ -86,7 +86,7 @@ The authenticated 390 px Shopify mobile preview now shows “Your cart is empty,
 
 ### Evidence
 
-- Before/after mobile Theme Editor captures preserved as Phase 3 task deliverables.
+- [Durable mobile after-state capture](../shopify/assets/phase-3-after-empty-cart.png); original before capture was reported in the task but is not published.
 - [Cart source](../../theme/sections/cart.liquid)
 - Fix commit: `049ab5c`
 
@@ -101,7 +101,7 @@ The authenticated 390 px Shopify mobile preview now shows “Your cart is empty,
 
 ## Known limitations
 
-- Captures are authenticated task deliverables rather than repository image files because browser security policy blocks automated export.
+- The three after states are now repository images. Matching before-state images remain missing; Phase 3 is therefore incomplete under the strict evidence rule.
 - Cart quantity changes still use Shopify's standard form submission; AJAX cart editing belongs to the later Cart Engineering phase.
 - The development store remains password protected and the theme remains unpublished.
 
@@ -113,4 +113,3 @@ The authenticated 390 px Shopify mobile preview now shows “Your cart is empty,
 - Empty-cart and conditional-rendering fixes
 - Responsive cart/template repair
 - Accessibility-focused storefront fixes
-

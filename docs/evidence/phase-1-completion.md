@@ -12,7 +12,7 @@ COMPLETE
 ## Evidence created
 - Live: `https://oniel-lab.myshopify.com/?preview_theme_id=155175092398` (password protected).
 - Code: `theme/sections/product-comparison.liquid`.
-- Screenshots: `docs/screenshots/phase-1-desktop.png`, `docs/screenshots/phase-1-mobile.png`, plus authenticated Theme Editor capture in the work session.
+- Screenshots: `docs/screenshots/phase-1-desktop.png`, `docs/screenshots/phase-1-mobile.png`, and [authenticated Theme Editor capture](../shopify/assets/phase-1-theme-editor.png).
 - Case study: `docs/case-studies/product-comparison-section.md`.
 - Tests: `docs/test-results/phase-1-product-comparison.md`.
 - Demo: `docs/evidence/phase-1-demo-script.md`.

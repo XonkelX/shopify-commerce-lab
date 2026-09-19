@@ -52,12 +52,4 @@ Fix commit: `049ab5c`
 
 ## Capture inventory
 
-The Phase 3 task contains authenticated before/after captures for:
-
-- product AJAX success with stale header state;
-- original cart with missing variant details;
-- original mobile empty-cart checkout state;
-- updated count-aware AJAX state;
-- updated non-empty cart with variant details;
-- updated mobile empty-cart state.
-
+Durable after images: [AJAX count](../shopify/assets/phase-3-after-ajax-count.png), [variant details](../shopify/assets/phase-3-after-variant-cart.png), [mobile empty cart](../shopify/assets/phase-3-after-empty-cart.png). Before images for the three original defects were reported in the work session but are not inspectable from this repository. This evidence gate remains open.

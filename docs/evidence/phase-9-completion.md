@@ -1,7 +1,7 @@
 # PHASE 9 COMPLETION REPORT
 
 ## Status
-COMPLETE
+INCOMPLETE
 
 ## What was built
 - Inventory Sync Monitor: an embedded Shopify React Router app using TypeScript, App Bridge, Polaris web components, Prisma, PostgreSQL, and an authenticated mock warehouse API.
@@ -25,6 +25,7 @@ COMPLETE
 - [x] Failure states are visible in the merchant dashboard.
 - [x] Architecture, screenshots, walkthrough, case study, tests, public repository, and direct code links exist.
 - [x] CURRENT MARKET READINESS is updated.
+- [ ] Hard prerequisite: the storefront Evidence Kit is not yet fully accepted under the strict Phase 3/4/8 evidence gates.
 
 ## Known limitations
 - The app uses a Shopify CLI tunnel; it is not deployed to durable production hosting. The admin live link requires store access and an active preview.
@@ -32,13 +33,15 @@ COMPLETE
 - The video is an evidence walkthrough from screenshots, not a live interaction recording.
 - Concurrent duplicate delivery was verified with PostgreSQL integration tests, not observed as a live race. The live failed webhook retry reclaimed the same event ID and processed successfully.
 - Dashboard listing is intentionally capped; webhook processing resolves the exact item/location separately.
+- A new app-quality CI job is configured for typecheck, lint, unit tests, and build; local commands passed, but its hosted result is not claimed until GitHub runs it.
+- The app implementation meets its functional criteria in the development store; `INCOMPLETE` here refers to the unmet hard prerequisite and buyer-review evidence, not a claim that GraphQL/webhooks were simulated.
 
 # CURRENT MARKET READINESS
 
 ## READY
-- Contained Shopify Admin GraphQL integration — real read/write against an unpublished development-store QA product.
-- Shopify webhook processing — real inventory/product deliveries, retry recovery, persistent log, and self-write no-op.
-- Scoped inventory synchronization/backend automation — working embedded app plus retry/idempotency test evidence.
+- Development-store Shopify Admin GraphQL integration — real read/write against an unpublished QA product, with authenticated access required.
+- Development-store webhook processing — real deliveries, retry recovery, persistent log, and self-write no-op.
+- Scoped inventory synchronization/backend automation **prototype** — working embedded app plus retry/idempotency tests, not a durable service.
 - Existing storefront section, PDP, configurator, cart, Liquid-debugging, and theme-QA work — Phases 0–8 evidence remains available in the [Shopify evidence hub](../shopify/README.md).
 
 ## PLAUSIBLE
@@ -63,4 +66,4 @@ Contained Shopify theme work and scoped app/API tasks: Admin GraphQL reads/write
 3. Checkout extensions or Shopify Functions without a separate proof module.
 
 ## Next evidence gap
-Durably deploy the existing app and PostgreSQL outside the CLI tunnel, verify auth and webhooks after restart, add monitoring/deployment evidence, and record a short live interaction demo. This is the highest-value next module because the current app proof otherwise depends on a local preview.
+First close the storefront Phase 3 before/after and Phase 4 recorded-flow gaps required by the hard prerequisite. Then replace the CLI tunnel with durable hosting, verify auth and webhooks after restart, add monitoring/deployment evidence, and record a short live interaction demo.

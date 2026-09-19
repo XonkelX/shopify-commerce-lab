@@ -6,8 +6,10 @@
 
 ![Case calculator converting 125 bottles plus reserve into 12 cases](assets/cart-purchase-logic.png)
 
+[Mobile calculator](assets/phase-5-mobile-calculator.png) · [Mobile AJAX cart drawer](assets/phase-6-mobile-cart.png)
+
 - **Live demo:** [Open the case calculator](https://oniel-lab.myshopify.com/products/atlas-insulated-bottle?preview_theme_id=155175092398&view=case-calculator)
-- **Short demo video:** [Watch the 8-second calculation walkthrough](assets/cart-purchase-logic-demo.mp4)
+- **Short demo video:** [Watch the 8-second captured-state walkthrough](assets/cart-purchase-logic-demo.mp4) (not a live interaction recording).
 - **Technologies:** Liquid, JavaScript, Shopify variants, Ajax Cart API, section rendering, native dialog.
 - **Testing status:** PASS — exact and round-up boundaries, invalid ranges, sold-out blocking, quantity-12 cart submission, authoritative updates, removal, errors, empty state, mobile, and keyboard behavior verified. [Purchase-logic matrix](../test-results/phase-5-purchase-logic.md) · [Cart matrix](../test-results/phase-6-cart-engineering.md)
 - **Relevant code:** [Calculator](../../theme/sections/purchase-logic-calculator.liquid) · [AJAX cart drawer](../../theme/sections/cart-drawer.liquid) · [Calculator template](../../theme/templates/product.case-calculator.json)

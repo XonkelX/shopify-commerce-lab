@@ -2,21 +2,23 @@
 
 Last updated: 2026-09-19
 
+**Strict acceptance:** the implementations are real, but the [audit](evidence/strict-acceptance-audit.md) marks Phase 3, Phase 4, Phase 8, and Phase 9 incomplete as evidence/sequence gates. `READY` below refers to scoped technical capability, not an assertion that all phase reports are accepted or that any preview is publicly accessible without authentication.
+
 ## Evidence currently completed
 
 - Phase 0 infrastructure and safe-delivery workflow.
 - Product Comparison Section running in a real unpublished Shopify theme.
 - Advanced PDP running against a real six-variant Shopify product.
-- Bug Fix Evidence Lab with three reproduced, diagnosed, fixed, and remotely verified storefront defects.
+- Bug Fix Evidence Lab with three reproduced, diagnosed, fixed, and remotely verified storefront defects; the three before-state visuals are not yet durable.
 - Personalized Product Configurator with structured selection, live preview, validation, real variants, merchant settings, and cart-persistent line-item properties.
 - Case Quantity Purchase Calculator with transparent ceiling logic, edge validation, merchant controls, real variant states, computed cart quantity, and cart-persistent calculation properties.
 - AJAX Cart Drawer with product-form integration, quantity and removal controls, Shopify-authoritative section refresh, variant/property display, loading/error/empty states, shipping progress, mobile layout, and keyboard behavior.
 - Quality Engineering evidence with warning-level Theme Check, nine Lighthouse audits, three-run medians, automated/manual accessibility verification, issue remediation, reproducible scripts, and push/PR CI.
-- Focused Shopify evidence packaging with six concise buyer pages, six real storefront screenshots, six short proof clips, live previews, test status, job mappings, and direct source links.
+- Focused Shopify evidence packaging with six concise buyer pages, real screenshots, captured-state clips, gated live previews, test status, job mappings, and direct source links; strict Phase 8 acceptance is still open.
 - Valid Online Store 2.0 schema with configurable settings and addable, removable, reorderable blocks.
 - Variant/media/price/availability/URL synchronization, Ajax add-to-cart, product metafields, and a referenced warranty metaobject.
 - Real Theme Editor verification, desktop/mobile/cart captures, clean Theme Check, case studies, test matrices, and demo scripts.
-- Inventory Sync Monitor embedded in a Shopify development store, with real Admin GraphQL inventory reads/writes, real inventory/product webhooks, retry/failure visibility, PostgreSQL persistence, screenshots, walkthrough, and public source.
+- Inventory Sync Monitor embedded in a Shopify development store, with real Admin GraphQL inventory reads/writes, real inventory/product webhooks, retry/failure visibility, PostgreSQL persistence, screenshots, walkthrough, and public source; Phase 9's storefront prerequisite is not yet met.
 
 ## Jobs I can credibly apply for RIGHT NOW
 
@@ -66,7 +68,7 @@ Last updated: 2026-09-19
 |---|---|
 | Custom Shopify section | [Product Comparison case study](case-studies/product-comparison-section.md) |
 | Liquid section edit | [Product Comparison source](../theme/sections/product-comparison.liquid) |
-| Theme Editor configuration | [Editor verification matrix](test-results/phase-1-product-comparison.md) and authenticated session capture |
+| Theme Editor configuration | [Editor verification matrix](test-results/phase-1-product-comparison.md) and [durable editor capture](shopify/assets/phase-1-theme-editor.png) |
 | Responsive section work | [Desktop](screenshots/phase-1-desktop.png) and [mobile](screenshots/phase-1-mobile.png) evidence |
 | Product-page customization | [Advanced PDP case study](case-studies/advanced-product-page.md) |
 | Variant/media synchronization | [Phase 2 test matrix](test-results/phase-2-advanced-pdp.md) |
@@ -78,7 +80,7 @@ Last updated: 2026-09-19
 | Empty-state repair | [Bug 3 evidence](case-studies/bug-fix-lab.md#bug-3--empty-cart-showed-an-unusable-checkout-state) |
 | Product configurator | [Personalized Product Configurator case study](case-studies/product-configurator.md) |
 | Product personalization | [Phase 4 validation matrix](test-results/phase-4-product-configurator.md) |
-| Line-item properties | [Cart rendering source](../theme/sections/cart.liquid) and [Phase 4 completion evidence](evidence/phase-4-completion.md) |
+| Line-item properties | [Cart rendering source](../theme/sections/cart.liquid) and [real cart-property screenshot](shopify/assets/phase-4-personalized-cart.png) |
 | Quantity/purchase calculator | [Case Quantity Purchase Calculator](case-studies/purchase-logic-calculator.md) |
 | Non-standard order logic | [Phase 5 calculation and cart matrix](test-results/phase-5-purchase-logic.md) |
 | AJAX cart drawer | [AJAX Cart Drawer Engineering](case-studies/cart-engineering.md) |
@@ -115,7 +117,7 @@ Last updated: 2026-09-19
 - Theme quality audit — clean Theme Check, nine Lighthouse runs, manual accessibility checks, repaired findings, and disclosed limitations
 - Contained accessibility repair — ARIA semantics, labels, focus order/visibility, dialog management, error announcements, touch targets, and contrast are evidenced
 - Theme QA automation — warning-level Theme Check and structural invariants run on every push and pull request
-- Portfolio evidence packaging — six major proofs are discoverable from one focused hub with working screenshot, video, live, test, job, and code links
+- Storefront evidence navigation — six major proofs are discoverable from one focused hub, though the strict before/after and recorded-flow gates remain open
 - Contained Shopify app/API integration — embedded React Router app with authenticated Admin GraphQL read/write and verified QA-product inventory correction
 - Webhook processing — real inventory/product deliveries, failed-event recovery, unique-ID claim logic, and self-write no-op shown
 - Inventory synchronization and backend automation — PostgreSQL event log, three-attempt recovery, failure visibility, compare-and-set, and idempotency evidence
@@ -127,6 +129,7 @@ Last updated: 2026-09-19
 - Performance remediation — image priority, responsive delivery, metadata, and measured page audits are proven, but production field Core Web Vitals are not.
 - Small conditional personalization additions — adjacent to the completed module, but uploads and surcharge architectures are not claimed.
 - Custom app adaptation within an existing deployment — the core integration is proven, but long-lived hosting and production operations are not.
+- A finished three-case before/after showcase and a complete configurator demo — fixes and flow are real, but the required durable visuals are not all present.
 
 ## NOT YET
 
@@ -161,4 +164,4 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 
 ## Next evidence gap
 
-Phase 9 — [Inventory Sync Monitor](case-studies/inventory-sync-monitor.md) — is complete as a development-store integration proof. The next highest-value module is **durable app deployment and operational verification**: host the existing app and PostgreSQL outside the Shopify CLI tunnel, reverify authenticated sessions and webhook delivery after restart, add deployment/monitoring evidence, and replace the screenshot-sequence walkthrough with a short live interaction recording. That would make the app proof independently reviewable without a local preview and support stronger ongoing custom-app claims.
+The highest-priority strict evidence gap is **Phase 3's three missing before-state visuals**, followed by the genuine Phase 4 configuration-flow recording. The [audit](evidence/strict-acceptance-audit.md) lists the exact closure path. After those storefront gates, durable app deployment, post-restart auth/webhook verification, and a live app recording would make the Phase 9 proof independently reviewable without a local tunnel.

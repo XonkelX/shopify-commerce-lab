@@ -1,35 +1,52 @@
-# Phase 7 Completion
+# PHASE 7 COMPLETION REPORT
 
-Status: **COMPLETE**  
-Completed: 2026-09-17
+## Status
+COMPLETE
 
-Phase 7 converted the existing storefront modules into reproducible quality evidence. It added a warning-level Theme Check gate, pinned three-run Lighthouse automation, combined automated and manual accessibility verification, repaired the material findings, documented remaining limitations, and added useful CI without exposing private preview access.
+## What was built
+- Reproducible Theme Check, three-run Lighthouse measurements on home/product/collection, accessibility checks, and targeted repairs.
+- Theme quality CI on push and pull request.
 
-## Acceptance evidence
+## Evidence created
+- Live: [unpublished Shopify theme](https://oniel-lab.myshopify.com/?preview_theme_id=155175092398) (preview access may require a password).
+- Code: [quality workflow](../../.github/workflows/quality.yml), [local gate](../../scripts/verify-phase-7.ps1), and [Lighthouse runner](../../scripts/run-lighthouse.ps1).
+- Screenshots: [buyer-facing quality evidence](../shopify/assets/performance-qa.png).
+- Case study: [Storefront Quality Engineering](../case-studies/quality-engineering.md).
+- Tests: [quality matrix with environment, nine Lighthouse results, median method, accessibility notes, and limitations](../test-results/phase-7-quality.md); [reproduction guide](phase-7-reproduction.md).
+- Demo: [captured-state quality clip](../shopify/assets/performance-qa-demo.mp4), not a live screen recording.
 
-- QA evidence: [Phase 7 Quality Evidence](../test-results/phase-7-quality.md)
-- Reproduction: [Phase 7 Reproduction Guide](phase-7-reproduction.md)
-- Case study: [Storefront Quality Engineering](../case-studies/quality-engineering.md)
-- Local gate: [`scripts/verify-phase-7.ps1`](../../scripts/verify-phase-7.ps1)
-- Lighthouse runner: [`scripts/run-lighthouse.ps1`](../../scripts/run-lighthouse.ps1)
-- CI: [`.github/workflows/quality.yml`](../../.github/workflows/quality.yml)
+## Acceptance criteria
+- [x] Theme Check: 45 files, zero errors, warnings, or suppressions at the phase gate.
+- [x] Three Lighthouse runs per page; medians and environment disclosed.
+- [x] Keyboard, focus, form, dialog, and error-message checks documented without claiming certification.
+- [x] Reproducible local gate and useful hosted theme CI exist; the GitHub workflow passed after publication.
+- [x] Known issues and current market readiness documented.
 
-## Final results
+## Known limitations
+- Lighthouse medians (Performance / Accessibility / Best Practices / SEO): home 91/96/75/100, product 70/96/75/100, collection 93/95/75/100. Product LCP varied under simulated mobile throttling.
+- Shopify preview-bar iframe and third-party cookie/favicon diagnostics affect some audit results. Automation is not a WCAG certification.
+- The app-quality job was added later; its hosted result must be checked separately from the original phase-7 theme run.
 
-- Theme Check: 45 files, 0 errors, 0 warnings, 0 suppressions.
-- Lighthouse medians (Performance / Accessibility / Best Practices / SEO):
-  - Home: `91 / 96 / 75 / 100`
-  - Product: `70 / 96 / 75 / 100`
-  - Collection: `93 / 95 / 75 / 100`
-- Browser accessibility: logical keyboard traversal, visible focus, valid form names, focus-managed cart dialog, focus wrap, Escape restoration, and focused live error messaging verified.
-- Remote delivery: strict upload completed to unpublished theme `155175092398`; the live theme was not published or modified.
+# CURRENT MARKET READINESS
 
-## Honest boundary
+## READY
+- Contained Shopify theme QA — reproducible checks, measured medians, manual accessibility verification, and documented fixes.
 
-The remaining accessibility failure belongs to Shopify's injected preview-bar iframe. Best Practices is reduced by preview/account third-party-cookie diagnostics and a missing favicon request. Product LCP remains variable under simulated mobile throttling. These are recorded as limitations, not hidden with suppressions or a cherry-picked run.
+## PLAUSIBLE
+- Performance remediation — measured local fixes, but no production Core Web Vitals or traffic outcome.
 
-The GitHub Actions workflow is configured, but this repository has no Git remote; therefore, a hosted workflow run is not claimed. The equivalent local gate passed.
+## NOT YET
+- Full accessibility certification or production performance guarantee.
 
-## Next phase
+## Approximate job scope currently supported
+Scoped theme audits and targeted performance/accessibility repairs, not sitewide certification.
 
-Phase 8 — Portfolio Evidence Packaging.
+## Best applications to target now
+1. Theme Check and CI setup.
+2. Lighthouse-based theme audit and contained remediation.
+
+## Do not target yet
+1. WCAG certification or Core Web Vitals guarantees.
+
+## Next evidence gap
+Package every major storefront proof into concise, directly inspectable buyer pages (Phase 8).

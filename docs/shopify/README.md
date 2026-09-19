@@ -2,6 +2,8 @@
 
 Six concise storefront proofs from a real unpublished Shopify theme, plus a contained embedded-app integration proof. Each page links its relevant captures, validation, and source.
 
+**Acceptance note:** real functionality does not mean every prompt gate is closed. The [strict audit](../evidence/strict-acceptance-audit.md) tracks three missing pre-fix visuals, the missing real configuration-flow recording, and Phase 9's hard prerequisite. The existing MP4s are captured-state sequences, not live interaction recordings.
+
 | Proof | What it demonstrates | Job categories |
 |---|---|---|
 | [Custom Section](custom-section.md) | Merchant-configurable comparison content | Custom Shopify sections, Liquid, responsive theme work |

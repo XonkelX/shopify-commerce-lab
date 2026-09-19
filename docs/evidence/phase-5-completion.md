@@ -1,4 +1,4 @@
-# Phase 5 Completion Report
+# PHASE 5 COMPLETION REPORT
 
 ## Status
 
@@ -19,25 +19,18 @@ COMPLETE
 
 - Live: [authenticated unpublished-theme calculator preview](https://admin.shopify.com/store/oniel-lab/themes/155175092398/editor?previewPath=%2Fproducts%2Fatlas-insulated-bottle%3Fview%3Dcase-calculator&previewMode=mobile)
 - Code: [calculator section](../../theme/sections/purchase-logic-calculator.liquid), [alternate template](../../theme/templates/product.case-calculator.json)
-- Screenshots: authenticated Shopify mobile-editor and cart captures preserved as task deliverables
+- Screenshots: [durable mobile calculator capture](../shopify/assets/phase-5-mobile-calculator.png); authenticated cart capture from the original task
 - Case study: [Case Quantity Purchase Calculator](../case-studies/purchase-logic-calculator.md)
 - Tests: [Phase 5 validation matrix](../test-results/phase-5-purchase-logic.md)
 - Demo: [purchase-flow script](phase-5-demo-script.md)
 
 ## Acceptance criteria
 
-- Calculations are correct: PASS
-- Exact and round-up boundaries are covered: PASS
-- Invalid inputs are handled: PASS
-- Real sold-out state is handled: PASS
-- Quantity sent to Shopify is correct: PASS — 12 cases
-- Variant sent to Shopify is correct: PASS — Navy / 32 oz
-- Calculation context reaches cart: PASS — four visible line-item properties
-- Mobile behavior works: PASS
-- Merchant settings exist: PASS
-- Required evidence exists: PASS
-- Case study exists: PASS
-- Current market readiness updated: PASS
+- [x] Calculations, exact/round-up boundaries, invalid inputs, and sold-out state verified.
+- [x] Shopify received 12 cases of the selected Navy / 32 oz variant in the original validation.
+- [x] Four calculation properties reached the cart in the original validation.
+- [x] Merchant settings, mobile behavior, case study, and evidence exist.
+- [x] Current market readiness updated.
 
 ## Known limitations
 
@@ -46,3 +39,27 @@ COMPLETE
 - A dedicated case-product record is retained for future assignment, but is not claimed as a published storefront deliverable.
 - The client-side merchandise total is an estimate; Shopify remains authoritative for final prices, discounts, tax, shipping, and checkout.
 - No production-order, revenue, traffic, conversion, or client claims.
+
+# CURRENT MARKET READINESS
+
+## READY
+- Fixed-case purchase logic — calculator, transparent rounding, and real cart quantity proof.
+
+## PLAUSIBLE
+- Related pack/area/volume calculators — the pattern transfers, but each product model requires data validation.
+
+## NOT YET
+- Bundles, subscription purchase rules, or checkout-price changes.
+
+## Approximate job scope currently supported
+Contained theme-level whole-unit quantity calculators; the global Evidence Kit remains gated by the Phase 3 before images.
+
+## Best applications to target now
+1. Pack/case quantity calculation for an existing product.
+2. Validation and cart-quantity repair for a fixed-unit purchase flow.
+
+## Do not target yet
+1. Multi-product bundles or subscription logic.
+
+## Next evidence gap
+AJAX cart editing, authoritative subtotals, loading/error/empty states, and one meaningful commerce behavior.

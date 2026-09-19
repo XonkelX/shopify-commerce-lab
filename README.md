@@ -4,32 +4,30 @@ Shopify Commerce Lab is an independent technical project for building small, ins
 
 ## What it will prove
 
-Each completed module will pair real Shopify behavior with source code, testing notes, screenshots, a concise case study, and a short demo script. Work advances one phase at a time; a later module is not started until the current module satisfies its acceptance criteria.
+Each module pairs real Shopify behavior with source code, testing notes, screenshots, a concise case study, and a short demo script. The strict acceptance audit distinguishes working implementations from evidence gates that remain open; later modules were built before every earlier gate was durably closed.
 
 ## Current status
 
 - Phase 0 — **COMPLETE**
 - Phase 1 — **COMPLETE**
 - Phase 2 — **COMPLETE**
-- Phase 3 — **COMPLETE**
-- Phase 4 — **COMPLETE**
-- Phase 5 — **COMPLETE**
-- Phase 6 — **COMPLETE**
-- Phase 7 — **COMPLETE**
-- Phase 8 — **COMPLETE**
-- Phase 9 — **COMPLETE** (development-store integration proof; not production hosting)
+- Phase 3 — **INCOMPLETE evidence** (three before-state visuals missing; fixes verified)
+- Phase 4 — **INCOMPLETE evidence** (real configuration-flow recording missing; cart data verified)
+- Phases 5–7 — implementations verified; the prompt's sequential acceptance gate remains open because Phase 3 is incomplete
+- Phase 8 — **INCOMPLETE** strict packaging gate
+- Phase 9 — real development-store integration verified, but **INCOMPLETE** under Phase 8's hard prerequisite; not production hosting
 - Local Shopify CLI: 4.8.0
 - Base theme: Shopify Skeleton theme
 - Current Theme Check: 45 files inspected, 0 offenses
 - Shopify development store: Oniel Lab
 - Unpublished evidence theme: Shopify Commerce Lab, theme ID `155175092398`
-- Completed evidence modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, Personalized Product Configurator, Case Quantity Purchase Calculator, AJAX Cart Drawer, Storefront Quality Engineering, Portfolio Evidence Packaging, and Inventory Sync Monitor
+- Built modules: Product Comparison Section, Advanced Product Detail Page, Shopify Bug Fix Evidence Lab, Personalized Product Configurator, Case Quantity Purchase Calculator, AJAX Cart Drawer, Storefront Quality Engineering, Portfolio Evidence Packaging, and Inventory Sync Monitor. Built does not mean every strict evidence gate is closed.
 
-Storefront modules were verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 8 packages them into six concise buyer-facing pages. Phase 9 adds a separate embedded-app proof with real Admin GraphQL and webhook activity in the development store; that app currently depends on a Shopify CLI tunnel.
+Storefront modules were verified in a real Shopify Theme Editor and unpublished storefront preview. Phase 8 packages them into six concise buyer-facing pages, but three pre-fix visuals and a real configuration-flow recording remain missing. Phase 9 adds a separate embedded-app proof with real Admin GraphQL and webhook activity in the development store; that app currently depends on a Shopify CLI tunnel. [Read the strict acceptance audit](docs/evidence/strict-acceptance-audit.md).
 
 ## Two-minute Shopify proof
 
-[Open the focused Shopify evidence hub](docs/shopify/README.md) for the six storefront proofs and the app integration proof. [Read the complete status and roadmap](docs/evidence/estado-general-y-siguientes-pasos.md) for what is done, what is limited, and what comes next.
+[Open the focused Shopify evidence hub](docs/shopify/README.md) for the six storefront proofs and the app integration proof. [Read the strict acceptance audit](docs/evidence/strict-acceptance-audit.md) for what is done, what remains open, and why.
 
 ## Live preview
 

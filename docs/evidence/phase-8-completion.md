@@ -1,34 +1,53 @@
-# Phase 8 Completion
+# PHASE 8 COMPLETION REPORT
 
-Date: 2026-09-17
-Status: COMPLETE
+## Status
+INCOMPLETE
 
-## Delivered
+## What was built
+- A focused [Shopify evidence hub](../shopify/README.md) with six concise proof pages, source links, screenshots, preview routes, test status, and job mappings.
+- Six short MP4 clips derived from verified storefront captures; these are not live interaction recordings.
 
-- A focused buyer-facing [Shopify evidence hub](../shopify/README.md), not a portfolio redesign.
-- Six concise proof pages: Custom Section, Advanced PDP, Bug Fix Lab, Product Configurator, Cart / Purchase Logic, and Performance / QA.
-- Six fresh storefront screenshots captured from the real unpublished evidence theme.
-- Six short H.264 proof clips derived from those verified storefront states.
-- Live preview, testing, source, detailed case-study, and job-category links on every page.
-- A repeatable Phase 8 gate for required fields, assets, and local link integrity.
+## Evidence created
+- Live: six preview routes linked from the [hub](../shopify/README.md), requiring development-store access/password when applicable.
+- Code: [theme source](../../theme/) and [link/asset verifier](../../scripts/verify-phase-8.ps1).
+- Screenshots: six original page images plus new [Theme Editor](../shopify/assets/phase-1-theme-editor.png), [PDP mobile](../shopify/assets/phase-2-mobile.png), [PDP variant](../shopify/assets/phase-2-variant-interaction.png), [Phase 3 after states](../shopify/bug-fix-lab.md), [configurator mobile/cart](../shopify/product-configurator.md), and [calculator/drawer mobile](../shopify/cart-purchase-logic.md) evidence.
+- Case study: six buyer pages in the [hub](../shopify/README.md), each linked to a deeper technical case study.
+- Tests: [Phase 8 gate](../../scripts/verify-phase-8.ps1) for required fields, media, and local link integrity.
+- Demo: six captured-state clips, clearly labeled as such; the Phase 4 full configuration-flow recording remains missing.
 
-## Acceptance evidence
+## Acceptance criteria
+- [x] Major evidence is discoverable from one hub and maps to real job categories.
+- [x] Code, test, screenshot, and preview links are provided; automated local-link gate exists.
+- [ ] The Bug Fix Lab lacks three durable before images required by Phase 3.
+- [ ] The configurator lacks the required real configuration-flow recording.
+- [ ] A password-free or otherwise independently reviewable live route is not available to an arbitrary merchant.
+- [x] Current market readiness records these boundaries.
 
-| Requirement | Result |
-|---|---|
-| Major evidence discoverable | PASS — one index routes to all six proof pages |
-| No broken links | PASS — local links validated by `scripts/verify-phase-8.ps1`; all six live routes opened during capture |
-| Pages map to real jobs | PASS — each page names only categories supported by prior phase evidence |
-| Live/demo/code links work | PASS — live routes verified in the authenticated storefront; MP4s probed; code paths validated |
-| Market readiness updated | PASS — Phase 8 packaging and best-evidence links are reflected in `docs/market-readiness.md` |
+## Known limitations
+- The unpublished development-store theme is password protected; code/screenshots/clips remain public but live previews are gated.
+- Screenshot-derived clips should not be described as recordings of interactions.
+- Packaging later phases cannot retroactively satisfy the strict Phase 3 prerequisite.
 
-## Scope and limitations
+# CURRENT MARKET READINESS
 
-- The Shopify theme remains unpublished; the production theme was not modified.
-- Preview links may ask for the development-store password, which is intentionally not stored in the repository.
-- The short videos are silent visual walkthroughs of captured verified states, not narrated marketing videos.
-- Phase 8 packages existing evidence; it does not add unsupported client, revenue, conversion, or production-performance claims.
+## READY
+- Scoped theme/section/PDP/cart work — inspectable code, screenshots, test matrices, and authenticated live behavior.
 
-## Next phase
+## PLAUSIBLE
+- A polished merchant-facing evidence kit — the hub is concise, but before/after and recorded-flow gaps weaken independent review.
 
-Phase 9 — Shopify Integration Lab — may begin only after this storefront evidence kit is considered usable for paid applications.
+## NOT YET
+- A fully accepted Phase 8 portfolio package under every evidence requirement in the prompt.
+
+## Approximate job scope currently supported
+Contained Shopify theme implementation and QA; do not infer production outcomes or unrestricted preview access.
+
+## Best applications to target now
+1. Custom sections and variant-aware PDP repairs.
+2. Contained cart and personalization work with code plus screenshot proof.
+
+## Do not target yet
+1. Claims that every demo is a live recording or that preview links are public without authentication.
+
+## Next evidence gap
+Finish the Phase 3 before/after pairs and publish a genuine Phase 4 configuration-flow recording; then rerun the hub gate.
