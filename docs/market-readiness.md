@@ -1,6 +1,6 @@
 # CURRENT MARKET READINESS
 
-Last updated: 2026-09-17
+Last updated: 2026-09-19
 
 ## Evidence currently completed
 
@@ -16,6 +16,7 @@ Last updated: 2026-09-17
 - Valid Online Store 2.0 schema with configurable settings and addable, removable, reorderable blocks.
 - Variant/media/price/availability/URL synchronization, Ajax add-to-cart, product metafields, and a referenced warranty metaobject.
 - Real Theme Editor verification, desktop/mobile/cart captures, clean Theme Check, case studies, test matrices, and demo scripts.
+- Inventory Sync Monitor embedded in a Shopify development store, with real Admin GraphQL inventory reads/writes, real inventory/product webhooks, retry/failure visibility, PostgreSQL persistence, screenshots, walkthrough, and public source.
 
 ## Jobs I can credibly apply for RIGHT NOW
 
@@ -44,13 +45,15 @@ Last updated: 2026-09-17
 - Shopify theme QA and handoff audits
 - Lighthouse measurement and contained performance/accessibility remediation
 - Theme Check and practical GitHub Actions quality gates
+- Contained Shopify Admin GraphQL integrations
+- Shopify webhook processing and inventory synchronization
+- Small custom Shopify app features and backend automation
 
 ## Jobs I should NOT claim yet
 
 - Bundles and subscription cart logic
-- Shopify app development
-- Admin GraphQL integrations
-- Webhooks
+- Production-hosted Shopify app operations or app-store distribution
+- Enterprise inventory integrations with external warehouse SLAs
 - Shopify Functions
 - Checkout extensions
 - Shopify Plus architecture
@@ -85,6 +88,7 @@ Last updated: 2026-09-17
 | Lighthouse and accessibility QA | [Phase 7 reproduction guide](evidence/phase-7-reproduction.md) |
 | Theme QA automation | [Quality workflow](../.github/workflows/quality.yml) and [local gate](../scripts/verify-phase-7.ps1) |
 | Fast buyer evaluation | [Focused Shopify evidence hub](shopify/README.md) |
+| Contained Shopify API/app work | [Inventory Sync Monitor case study](case-studies/inventory-sync-monitor.md), [dashboard capture](shopify/assets/inventory-sync-dashboard.png), and [source](../inventory-sync-monitor/) |
 
 ## READY
 
@@ -112,6 +116,9 @@ Last updated: 2026-09-17
 - Contained accessibility repair — ARIA semantics, labels, focus order/visibility, dialog management, error announcements, touch targets, and contrast are evidenced
 - Theme QA automation — warning-level Theme Check and structural invariants run on every push and pull request
 - Portfolio evidence packaging — six major proofs are discoverable from one focused hub with working screenshot, video, live, test, job, and code links
+- Contained Shopify app/API integration — embedded React Router app with authenticated Admin GraphQL read/write and verified QA-product inventory correction
+- Webhook processing — real inventory/product deliveries, failed-event recovery, unique-ID claim logic, and self-write no-op shown
+- Inventory synchronization and backend automation — PostgreSQL event log, three-attempt recovery, failure visibility, compare-and-set, and idempotency evidence
 
 ## PLAUSIBLE
 
@@ -119,14 +126,15 @@ Last updated: 2026-09-17
 - Conditional cart messaging — shipping-goal behavior is proven, but cross-sell and recommendation rules are not.
 - Performance remediation — image priority, responsive delivery, metadata, and measured page audits are proven, but production field Core Web Vitals are not.
 - Small conditional personalization additions — adjacent to the completed module, but uploads and surcharge architectures are not claimed.
+- Custom app adaptation within an existing deployment — the core integration is proven, but long-lived hosting and production operations are not.
 
 ## NOT YET
 
-- Bundles, subscriptions, recommendation logic, Shopify API, and webhook categories in [job-mapping.md](evidence/job-mapping.md).
+- Bundles, subscriptions, recommendation logic, Shopify Functions, checkout extensions, app-store distribution, and production inventory operations.
 
 ## Approximate job scope currently supported
 
-Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Liquid-debugging, inherited-theme repair, configurator, personalization, fixed-unit purchase-calculator, AJAX cart-drawer, and theme-quality tasks. The [focused evidence hub](shopify/README.md) makes the strongest proof reviewable in under two minutes. The evidence supports contained Shopify functionality and QA projects in the prompt's $300–$1,000 target band; actual pricing still depends on scope, data model, design, and integration risk.
+Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mobile, Liquid-debugging, inherited-theme repair, configurator, personalization, fixed-unit purchase-calculator, AJAX cart-drawer, and theme-quality tasks. Phase 9 additionally supports scoped Admin GraphQL, webhook, inventory-sync, and custom app-feature work with explicit deployment/warehouse boundaries. The [focused evidence hub](shopify/README.md) makes the strongest proof reviewable quickly. The evidence supports contained Shopify functionality and QA projects in the prompt's $300–$1,000 target band; API/app work needs separate scoping for hosting, data ownership, and operational risk.
 
 ## Best applications to target now
 
@@ -140,14 +148,17 @@ Contained section work plus small-to-mid PDP, variant, metafield, media-sync, mo
 8. Build a fixed-pack, case, coverage, or volume calculator that submits a correct whole Shopify quantity.
 9. Build or repair an AJAX cart drawer with quantity, removal, totals, properties, and responsive states.
 10. Audit and repair a contained Shopify theme area using Theme Check, Lighthouse, keyboard/accessibility checks, and documented handoff evidence.
+11. Build a scoped Shopify Admin GraphQL integration or webhook processor with persistent logs and retry/idempotency safeguards.
+12. Add or adapt a contained custom-app inventory or backend automation feature on an existing hosting setup.
 
 ## Do not target yet
 
 1. Bundles, subscription logic, or multi-product purchase calculators.
 2. Cross-sell recommendation engines or complex promotional cart rules.
 3. Image-upload personalization or dynamic-pricing architecture without a scoped app/variant design.
-4. Shopify app, API, webhook, checkout, Functions, or Plus work.
+4. App-store launches, production-critical warehouse synchronization, or custom app operations without a hosting/monitoring plan.
+5. Checkout extensions, Functions, or Plus architecture.
 
 ## Next evidence gap
 
-Phase 8 — Portfolio Evidence Packaging — is complete. The next gap is Phase 9, a contained Shopify Integration Lab demonstrating real Admin GraphQL, webhooks, persistence, retry/idempotency behavior, failure visibility, and a merchant-facing UI. Backend/API work remains unsupported until that evidence exists.
+Phase 9 — [Inventory Sync Monitor](case-studies/inventory-sync-monitor.md) — is complete as a development-store integration proof. The next highest-value module is **durable app deployment and operational verification**: host the existing app and PostgreSQL outside the Shopify CLI tunnel, reverify authenticated sessions and webhook delivery after restart, add deployment/monitoring evidence, and replace the screenshot-sequence walkthrough with a short live interaction recording. That would make the app proof independently reviewable without a local preview and support stronger ongoing custom-app claims.

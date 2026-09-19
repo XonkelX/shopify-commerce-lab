@@ -1,6 +1,6 @@
 # Shopify Evidence
 
-Six concise, inspectable proofs from a real unpublished Shopify theme. Start anywhere below; each page includes a storefront capture, short proof clip, live preview, validation status, and source links.
+Six concise storefront proofs from a real unpublished Shopify theme, plus a contained embedded-app integration proof. Each page links its relevant captures, validation, and source.
 
 | Proof | What it demonstrates | Job categories |
 |---|---|---|
@@ -10,5 +10,8 @@ Six concise, inspectable proofs from a real unpublished Shopify theme. Start any
 | [Product Configurator](product-configurator.md) | Validated personalization that survives into Shopify cart data | Product configurators, personalization, line-item properties |
 | [Cart / Purchase Logic](cart-purchase-logic.md) | Whole-case calculation plus authoritative cart behavior | Quantity calculators, AJAX cart work, cart state management |
 | [Performance / QA](performance-qa.md) | Repeatable theme, Lighthouse, accessibility, and CI evidence | Theme audits, accessibility repair, quality automation |
+| [Inventory Sync Monitor](../case-studies/inventory-sync-monitor.md) | Real Admin GraphQL read/write, webhook delivery, retry recovery, and persistent failure log | Shopify API integrations, webhooks, contained custom apps |
 
 The live links target unpublished theme `155175092398` on the Oniel Lab development store and may request the storefront password. No production theme was modified or published.
+
+The app proof uses an unpublished QA product in that development store. Its live admin link requires store access and an active Shopify CLI preview; the screenshots and code remain reviewable without it.
