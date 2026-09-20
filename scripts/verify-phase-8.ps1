@@ -11,14 +11,14 @@ $pages = @(
   'performance-qa.md'
 )
 $requiredLabels = @(
-  'Problem proved:',
-  'Screenshot:',
-  'Live demo:',
-  'Short demo video:',
-  'Technologies:',
-  'Testing status:',
-  'Relevant code:',
-  'Jobs supported:'
+  '## What this proves',
+  '## Implementation and verification',
+  '## Preview and limits',
+  '**Shopify stack:**',
+  '**Verified:**',
+  '**Code:**',
+  '![',
+  'captured-state clip'
 )
 
 $errors = [System.Collections.Generic.List[string]]::new()

@@ -31,6 +31,22 @@ jobs:
 
   app-quality:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: inventory_sync
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d inventory_sync"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/inventory_sync?schema=public
     defaults:
       run:
         working-directory: inventory-sync-monitor
@@ -43,7 +59,9 @@ jobs:
           cache-dependency-path: inventory-sync-monitor/package-lock.json
       - run: npm ci
       - run: npm run prisma -- generate
+      - run: npm run prisma -- migrate deploy
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
+      - run: npm run test:integration
       - run: npm run build

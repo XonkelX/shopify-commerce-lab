@@ -1,11 +1,13 @@
-# Inventory Sync Monitor — Shopify Integration Lab
+# Inventory Sync Monitor
 
-An embedded Shopify app that reconciles inventory against an authenticated mock warehouse API. This is a contained development-store integration proof, not a production warehouse connector.
+An embedded Shopify app that reconciles inventory against an authenticated mock warehouse API and makes retries and failures inspectable. This is independent development-store work, not a production warehouse connector.
+
+![Inventory Sync Monitor dashboard inside the real Shopify admin](../shopify/assets/inventory-sync-dashboard.png)
 
 ## Evidence at a glance
 
 - [Live embedded app](https://admin.shopify.com/store/oniel-lab/apps/inventory-sync-monitor-2/app) — requires access to the Oniel Lab development store and an active Shopify CLI preview.
-- [Dashboard screenshot](../shopify/assets/inventory-sync-dashboard.png), [retry/sync log](../shopify/assets/inventory-sync-retry.png), and [webhook deliveries](../shopify/assets/inventory-sync-webhooks.png) — captured from the actual Shopify admin, not generated images.
+- [Retry/sync log](../shopify/assets/inventory-sync-retry.png) and [webhook deliveries](../shopify/assets/inventory-sync-webhooks.png) — captured from the actual Shopify admin, not generated images.
 - [18-second evidence walkthrough](../shopify/assets/inventory-sync-evidence-walkthrough.mp4) — a sequence of those real screenshots, **not** a live screen recording.
 - [GitHub repository](https://github.com/XonkelX/shopify-commerce-lab) and [app README](https://github.com/XonkelX/shopify-commerce-lab/tree/main/inventory-sync-monitor).
 - Direct source: [embedded dashboard](https://github.com/XonkelX/shopify-commerce-lab/blob/main/inventory-sync-monitor/app/routes/app._index.tsx), [sync/GraphQL service](https://github.com/XonkelX/shopify-commerce-lab/blob/main/inventory-sync-monitor/app/services/inventory-sync.server.ts), [webhook claim logic](https://github.com/XonkelX/shopify-commerce-lab/blob/main/inventory-sync-monitor/app/services/webhook-events.server.ts), [Prisma models](https://github.com/XonkelX/shopify-commerce-lab/blob/main/inventory-sync-monitor/prisma/schema.prisma), and [integration proof](https://github.com/XonkelX/shopify-commerce-lab/blob/main/inventory-sync-monitor/scripts/run-integration-proof.ts).

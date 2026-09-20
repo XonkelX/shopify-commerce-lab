@@ -1,18 +1,23 @@
-# Cart / Purchase Logic
+# Cart and whole-case purchase logic
 
-**Problem proved:** Customer demand converts into whole purchasable cases with transparent ceiling math, validation, real variant availability, and auditable cart properties.
-
-**Screenshot:** Verified 125-bottle plus reserve calculation state.
+The calculator converts customer demand into whole purchasable cases, while the AJAX cart displays Shopify-authoritative quantities and totals.
 
 ![Case calculator converting 125 bottles plus reserve into 12 cases](assets/cart-purchase-logic.png)
 
-[Mobile calculator](assets/phase-5-mobile-calculator.png) · [Mobile AJAX cart drawer](assets/phase-6-mobile-cart.png)
+## What this proves
 
-- **Live demo:** [Open the case calculator](https://oniel-lab.myshopify.com/products/atlas-insulated-bottle?preview_theme_id=155175092398&view=case-calculator)
-- **Short demo video:** [Watch the 8-second captured-state walkthrough](assets/cart-purchase-logic-demo.mp4) (not a live interaction recording).
-- **Technologies:** Liquid, JavaScript, Shopify variants, Ajax Cart API, section rendering, native dialog.
-- **Testing status:** PASS — exact and round-up boundaries, invalid ranges, sold-out blocking, quantity-12 cart submission, authoritative updates, removal, errors, empty state, mobile, and keyboard behavior verified. [Purchase-logic matrix](../test-results/phase-5-purchase-logic.md) · [Cart matrix](../test-results/phase-6-cart-engineering.md)
-- **Relevant code:** [Calculator](../../theme/sections/purchase-logic-calculator.liquid) · [AJAX cart drawer](../../theme/sections/cart-drawer.liquid) · [Calculator template](../../theme/templates/product.case-calculator.json)
-- **Jobs supported:** Quantity/purchase calculator, non-standard order logic, Ajax cart drawer, cart quantity/removal, loading/error/empty states.
+- Transparent ceiling math turns requested bottles plus reserve allowance into an exact whole-case cart quantity.
+- Cart quantity changes, removal, line-item properties, subtotal, shipping progress, loading, error, and empty states stay in sync.
 
-[Purchase-logic case study](../case-studies/purchase-logic-calculator.md) · [Cart-engineering case study](../case-studies/cart-engineering.md) · [Back to Shopify evidence](README.md)
+## Implementation and verification
+
+- **Shopify stack:** Liquid, JavaScript, variants, Ajax Cart API, section rendering, native dialog.
+- **Verified:** exact/round-up boundaries, invalid ranges, sold-out blocking, quantity-12 cart submission, server-authoritative updates, inventory error recovery, mobile, and keyboard behavior. [Calculator tests](../test-results/phase-5-purchase-logic.md) · [cart tests](../test-results/phase-6-cart-engineering.md).
+- **Code:** [calculator](../../theme/sections/purchase-logic-calculator.liquid) · [AJAX drawer](../../theme/sections/cart-drawer.liquid) · [product template](../../theme/templates/product.case-calculator.json).
+- **Additional evidence:** [mobile calculator](assets/phase-5-mobile-calculator.png) · [mobile drawer](assets/phase-6-mobile-cart.png) · [purchase case study](../case-studies/purchase-logic-calculator.md) · [cart case study](../case-studies/cart-engineering.md) · [captured-state clip](assets/cart-purchase-logic-demo.mp4) (not a live interaction recording).
+
+## Preview and limits
+
+[Open the case calculator preview](https://oniel-lab.myshopify.com/products/atlas-insulated-bottle?preview_theme_id=155175092398&view=case-calculator) — development-store access may be required. The module handles whole-case purchases, not bundles, subscriptions, or dynamic checkout pricing.
+
+Relevant work: fixed-pack calculators, non-standard purchase rules, and AJAX cart repairs. [See all Shopify evidence](README.md).
