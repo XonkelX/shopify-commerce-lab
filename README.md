@@ -2,7 +2,7 @@
 
 Independent Shopify engineering work by [Oniel Alejo Feliz](https://onielalejofeliz.space/). This repository shows real storefront behavior in a Shopify development store and a separate embedded integration app. It is technical proof, not commissioned client work or a claim of production results.
 
-**Start here:** [Storefront evidence](docs/shopify/README.md) · [Inventory integration](docs/case-studies/inventory-sync-monitor.md) · [Source code](theme/) · [Testing and QA](docs/shopify/performance-qa.md)
+**Start here:** [Public portfolio](https://onielalejofeliz.space/shopify) · [Storefront evidence](docs/shopify/README.md) · [Inventory integration](docs/case-studies/inventory-sync-monitor.md) · [Source code](theme/) · [Testing and QA](docs/shopify/performance-qa.md)
 
 ## What you can inspect
 
@@ -40,6 +40,6 @@ The app records webhook claims and sync attempts, retries transient warehouse fa
 - App: real development-store Admin GraphQL and webhook activity, PostgreSQL integration tests, and [CI checks](.github/workflows/quality.yml).
 - Safe theme changes use an isolated unpublished theme, desktop/mobile checks, preview review, and a rollback path; see the [delivery workflow](docs/development-workflow.md).
 
-For exact evidence boundaries and job categories, see [market readiness](docs/market-readiness.md). The [strict acceptance audit](docs/evidence/strict-acceptance-audit.md) records remaining release gates; a working implementation is not automatically a completed evidence package.
+For exact evidence boundaries and job categories, see [market readiness](docs/market-readiness.md). [v1.0.0 release scope](docs/releases/v1.0.0.md) defines what this portfolio release includes and defers. The separate [strict acceptance audit](docs/evidence/strict-acceptance-audit.md) tracks unmet requirements from the original phase prompt; this release does not claim that audit is complete.
 
 The theme began with Shopify's open-source Skeleton starter. Project-specific sections and repairs are distinguishable in the source history.

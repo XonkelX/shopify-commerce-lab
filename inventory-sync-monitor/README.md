@@ -28,4 +28,4 @@ The integration test uses a fake Admin GraphQL response. It proves local persist
 
 ## Architecture and limitations
 
-See [the Phase 9 case study](../docs/case-studies/inventory-sync-monitor.md) for the data flow, safety model, screenshots, evidence walkthrough, live outcomes, and test results. The dashboard currently lists the first 20 active products, up to 30 variants per product, and three inventory locations per variant; webhook processing queries the exact inventory item and up to 100 locations.
+See [the integration case study](../docs/case-studies/inventory-sync-monitor.md) for the data flow, safety model, screenshots, evidence walkthrough, live outcomes, and test results. The dashboard currently lists the first 20 active products, up to 30 variants per product, and three inventory locations per variant; webhook processing queries the exact inventory item and up to 100 locations.
