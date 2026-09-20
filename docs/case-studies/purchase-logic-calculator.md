@@ -1,6 +1,8 @@
 # Case Quantity Purchase Calculator
 
-## Problem proved
+![Whole-case purchasing calculator on the Shopify product page](../shopify/assets/cart-purchase-logic.png)
+
+## Problem and outcome
 
 Products sold in fixed packs, cases, area, or volume need more than a quantity input. The storefront must translate a customer's real requirement into the whole purchasing units Shopify can sell, explain the rounding, reject invalid input, and submit the calculated Shopify quantity without losing the business context.
 
@@ -11,7 +13,7 @@ Products sold in fixed packs, cases, area, or volume need more than a quantity i
 - [Alternate product template](../../theme/templates/product.case-calculator.json)
 - [Browser test matrix](../test-results/phase-5-purchase-logic.md)
 - [Purchase-flow demo script](../evidence/phase-5-demo-script.md)
-- Authenticated Shopify mobile-editor and cart captures preserved as task deliverables
+- [Mobile calculator state](../shopify/assets/phase-5-mobile-calculator.png) and [cart-and-purchase evidence](../shopify/cart-purchase-logic.md)
 
 ## Solution
 
@@ -74,7 +76,7 @@ See the [full validation matrix](../test-results/phase-5-purchase-logic.md).
 - A dedicated `Atlas Event Bottle Case — 12 Pack` product record was created for future assignment, but the unpublished alternate template is not assigned or presented as a published storefront product.
 - The calculator estimates merchandise total only; Shopify remains authoritative for currency, discounts, tax, shipping, and checkout totals.
 - The verified cart uses the existing Atlas product and represents each line quantity as one case through the module's explicit purchasing rule and line-item properties.
-- Captures are preserved in the authenticated Codex task because browser security policy prevents direct local screenshot export.
+- Public screenshots cover the calculator and mobile layout; the preview still requires store access.
 - No production orders, conversion, revenue, or client outcomes are claimed.
 
 ## Jobs supported

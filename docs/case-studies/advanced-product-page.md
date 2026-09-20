@@ -1,6 +1,8 @@
 # Advanced Product Detail Page
 
-## Problem proved
+![Atlas product page with variant-aware media and purchase state](../shopify/assets/advanced-pdp.png)
+
+## Problem and outcome
 
 Shopify product-page work often fails at the seams between variants, media, inventory, structured data, and cart state. This independent module proves those behaviors against a real development-store product instead of a static mockup.
 
@@ -9,7 +11,7 @@ Shopify product-page work often fails at the seams between variants, media, inve
 - [Password-protected product preview](https://oniel-lab.myshopify.com/products/atlas-insulated-bottle?preview_theme_id=155175092398)
 - [Advanced PDP source](../../theme/sections/product.liquid)
 - [Product import data](../evidence/assets/phase-2-atlas-product.csv)
-- Desktop storefront and mobile Theme Editor captures preserved as deliverables in the authenticated Codex task
+- [Desktop variant state](../shopify/assets/phase-2-variant-interaction.png) and [mobile product page](../shopify/assets/phase-2-mobile.png)
 - [Browser test matrix](../test-results/phase-2-advanced-pdp.md)
 - [60-second demo script](../evidence/phase-2-demo-script.md)
 
@@ -51,7 +53,7 @@ See the [full validation matrix](../test-results/phase-2-advanced-pdp.md).
 ## Known limitations
 
 - This is an unpublished, password-protected development-store theme, not a production storefront.
-- Desktop and mobile captures are preserved in the authenticated task rather than exported into the repository; browser security policy blocked an automated local export.
+- Storefront preview remains password-protected; public screenshots and source are available above.
 - The Skeleton theme's basic cart template does not print option names, so correctness was verified by the variant-specific cart URL and ID.
 - No conversion, revenue, client, or traffic claims are made.
 
@@ -63,4 +65,3 @@ See the [full validation matrix](../test-results/phase-2-advanced-pdp.md).
 - Metaobject modeling and rendering
 - AJAX add-to-cart implementation
 - Responsive PDP fixes
-

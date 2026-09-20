@@ -1,8 +1,10 @@
 # Storefront Quality Engineering
 
-## Brief
+![Verified Shopify collection route used in the quality matrix](../shopify/assets/performance-qa.png)
 
-Audit the completed Shopify evidence theme as an engineer would before handoff: static correctness, repeatable performance measurements, keyboard and assistive-technology behavior, documented limitations, and useful CI.
+## Problem and outcome
+
+The Shopify theme needs repeatable static, performance, responsive, and accessibility checks before handoff. This audit records the checks, repairs, and remaining limits.
 
 ## Approach
 
@@ -27,4 +29,3 @@ See [the full result matrix](../test-results/phase-7-quality.md) and [reproducti
 ## Limitations
 
 The remaining accessibility flag is caused by Shopify's injected preview-bar iframe. Best Practices is affected by private-preview account/cookie diagnostics and a missing favicon request. Product LCP is still variable under simulated mobile throttling. The report keeps all runs and states these limits explicitly.
-

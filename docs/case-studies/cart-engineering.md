@@ -1,6 +1,8 @@
 # AJAX Cart Drawer Engineering
 
-## Problem proved
+![Shopify cart drawer in a mobile storefront state](../shopify/assets/phase-6-mobile-cart.png)
+
+## Problem and outcome
 
 A useful Shopify cart drawer must stay synchronized with Shopify rather than maintaining a disconnected client-side copy. Quantity changes, removal, subtotal, header count, variant details, customization properties, loading, errors, empty state, and keyboard behavior all need to remain correct after every request.
 
@@ -12,7 +14,7 @@ A useful Shopify cart drawer must stay synchronized with Shopify rather than mai
 - [Advanced PDP integration](../../theme/sections/product.liquid)
 - [Browser test matrix](../test-results/phase-6-cart-engineering.md)
 - [Cart-flow demo script](../evidence/phase-6-demo-script.md)
-- Authenticated populated, empty, error, and mobile captures preserved as task deliverables
+- [Public mobile cart screenshot](../shopify/assets/phase-6-mobile-cart.png) and [purchase-flow screenshot](../shopify/assets/cart-purchase-logic.png)
 
 ## Solution
 
@@ -56,7 +58,7 @@ See the [full validation matrix](../test-results/phase-6-cart-engineering.md).
 - The evidence theme is unpublished and the development store is password protected.
 - The free-shipping goal is a presentation setting. Merchants must match it to the store's actual shipping-rate configuration; checkout remains authoritative.
 - The drawer does not implement bundles, cross-product recommendations, discounts, subscription logic, or checkout customization.
-- Captures are preserved in the authenticated Codex task because browser security policy prevents direct local screenshot export.
+- The public screenshot covers the mobile drawer; the test matrix records the remaining interaction states.
 - No production orders, conversion, revenue, or client outcomes are claimed.
 
 ## Jobs supported

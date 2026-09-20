@@ -1,6 +1,8 @@
 # Product Comparison Section
 
-## Problem proved
+![Merchant-configurable comparison section in the Shopify storefront](../shopify/assets/custom-section.png)
+
+## Problem and outcome
 
 Merchants frequently need a reusable way to compare related products without editing Liquid for every campaign. This module proves the ability to build an Online Store 2.0 section with merchant-controlled content, Shopify product fallbacks, reorderable blocks, responsive behavior, and accessible structure.
 
@@ -59,4 +61,3 @@ See [Phase 1 test results](../test-results/phase-1-product-comparison.md) for th
 ## Demo script
 
 Use the [60-second demo script](../evidence/phase-1-demo-script.md).
-

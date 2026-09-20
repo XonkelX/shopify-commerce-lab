@@ -1,4 +1,6 @@
-# Shopify Bug Fix Evidence Lab
+# Shopify Theme Debugging
+
+![Repaired Shopify cart with variant details](../shopify/assets/bug-fix-lab.png)
 
 Three real storefront defects were reproduced, diagnosed from source and browser state, fixed in commit `049ab5c`, and rerun in Shopify. The [three public before/after pairs](../shopify/bug-fix-lab.md) use a separate unpublished theme rebuilt from the pre-fix source commit `31191e6` (`049ab5c^`). Those before images were taken on 2026-09-19, not before the historical fix. No client or production claims are made.
 

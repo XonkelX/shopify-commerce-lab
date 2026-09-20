@@ -1,6 +1,8 @@
 # Personalized Product Configurator
 
-## Problem proved
+![Personalized bottle configuration in the Shopify storefront](../shopify/assets/product-configurator.png)
+
+## Problem and outcome
 
 Personalized products need more than a visual mockup: option choices must resolve to a real Shopify variant, invalid input must be blocked, and the customer's custom data must survive as line-item properties. This independent module proves that complete storefront-to-cart flow against a real development-store product.
 
@@ -12,7 +14,7 @@ Personalized products need more than a visual mockup: option choices must resolv
 - [Cart property rendering](../../theme/sections/cart.liquid)
 - [Browser test matrix](../test-results/phase-4-product-configurator.md)
 - [Configuration-flow demo script](../evidence/phase-4-demo-script.md)
-- Authenticated desktop, mobile, Theme Editor, and cart captures preserved as task deliverables
+- [Mobile configurator](../shopify/assets/phase-4-personalized-mobile.png) and [cart properties](../shopify/assets/phase-4-personalized-cart.png)
 
 ## Solution
 
@@ -67,7 +69,7 @@ See the [full validation matrix](../test-results/phase-4-product-configurator.md
 - The evidence theme is unpublished and the development store is password protected.
 - Shopify only lists alternate product templates from the published theme in the product-admin template picker. The configurator is therefore verified through the unpublished theme's `view=personalized` preview and is not assigned on the published theme.
 - No image upload or dynamic-price surcharge is included. Personalization is included in the Shopify variant price so storefront and cart totals cannot diverge.
-- Captures are preserved in the authenticated Codex task because browser security policy prevents direct local screenshot export.
+- Public screenshots cover the desktop, mobile, and cart-property states; the preview still requires store access.
 - No production orders, conversion, revenue, or client outcomes are claimed.
 
 ## Jobs supported
